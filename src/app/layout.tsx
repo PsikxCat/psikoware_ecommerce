@@ -1,33 +1,29 @@
 import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
+import { Space_Grotesk } from 'next/font/google'
 
 import './globals.css'
 import { Navbar, Footer } from '@/components'
 
-const poppins = Poppins({
+const space = Space_Grotesk({
   subsets: ['latin'],
   weight: ['400', '700']
 })
 
 export const metadata: Metadata = {
-  title: 'E-Commerce',
-  description: 'Aplicacion de E-Commerce'
+  title: 'PsikoWare',
+  description: 'En PsikoWare, te ofrecemos una amplia gama de componentes de alta calidad para tu PC. Descubre tarjetas gráficas, procesadores, placas base, torres, refrigeración líquida, fuentes de alimentación, memorias RAM, discos duros, SSDs y muchos más. Con productos de calidad y un servicio de atención al cliente excepcional, ¡PsikoWare es tu tienda de componentes online!'
 }
 
-export default function RootLayout({
-  children
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className='bg-[#000]'>
-      <body className={`${poppins.className} bg-[#111] text-[#eee]`}>
-        <div className='flex_center_column min-h-[100svh]'>
+    <html lang="es" className='bg-black'>
+      <body className={`${space.className} bg-[#111] text-primary`}>
+        <div className='flex_center_column '>
           <Navbar />
 
-          <main className='flex_center flex-1 bg-white/10 w-full'>
+          <div className='flex_center flex-1 w-full'>
             {children}
-          </main>
+          </div>
 
           <Footer />
         </div>

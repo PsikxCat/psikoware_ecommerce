@@ -1,15 +1,23 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Navbar() {
   return (
-    <section className="sticky top-0 w-full z-50 flex_center bg-stone-500 shadow-md py-4 border-b-[1px]">
-      <div className='container flex_center bg-green-500/20'>
-        <nav className='flex items-center justify-between w-full gap-3 md:gap-0 bg-red-600/20'>
-          {/* // # pendiente logo  <-------------------- */}
+    <section className="sticky top-0 w-full z-50 flex_center bg-[#050505] shadow-md py-4 border-b-[1px] border-secondary">
+      <div className='container flex_center'>
+        <nav className='flex items-center justify-between w-full gap-3 md:gap-0'>
+          {/* logo */}
           <Link href="/">
-            logo
+            <Image
+              src="/images/logo.webp"
+              alt="Sushi Logo"
+              width={200}
+              height={100}
+              className="cursor-pointer object-cover"
+            />
           </Link>
 
+          {/* // # todo... */}
           <div className='max-md:hidden'>Search</div>
 
           <div className='flex_center gap-8 md:gap-12'>
