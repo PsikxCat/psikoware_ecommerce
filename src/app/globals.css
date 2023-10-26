@@ -47,11 +47,9 @@
 
   .products_container {
     display: grid;
-    place-items: center;
     justify-content: center;
-    align-items: center;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 350px)) ;
-    gap: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 300px)) ;
+    gap: 30px;
   }
 
   .flex_center {

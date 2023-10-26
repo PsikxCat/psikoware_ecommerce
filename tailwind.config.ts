@@ -31,7 +31,11 @@ const config: Config = {
         }
       },
       borderColor: {
-        secondary: 'var(--clr-secondary)'
+        secondary: 'var(--clr-secondary)',
+        accent: 'var(--clr-accent)'
+      },
+      backgroundColor: {
+        accent: 'var(--clr-accent)'
       },
       maxWidth: {
         '3xl': '2000px'

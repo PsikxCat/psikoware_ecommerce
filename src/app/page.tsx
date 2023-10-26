@@ -1,6 +1,5 @@
-import { HomeBanner } from '@/components'
+import { HomeBanner, ProductCard } from '@/components'
 import { products } from '@/utils/products'
-import { truncate } from '@/utils'
 
 export default function Home() {
   return (
@@ -15,9 +14,7 @@ export default function Home() {
           {/* lista productos */}
           <section className='section products_container bg-sushi'>
             {products.map((product) => (
-              <div key={product.id} className='border'>
-                <h2>{truncate(product.name, 25)}</h2>
-              </div>
+              <ProductCard key={product.id} data={product} />
             ))}
           </section>
         </main>

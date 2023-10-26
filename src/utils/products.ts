@@ -12,7 +12,7 @@ export const products = [
         color: 'White',
         colorCode: '#FFFFFF',
         image:
-          'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1688622161445-iphone14-white.png?alt=media&token=fe2065e5-fdfe-4a6f-baa6-380b5fad90b8'
+          '/images/products/Board_Asus_ROG_Strix_B550-E_Gaming_WIFI_Ryzen_DDR4.webp'
       },
       {
         color: 'Gray',
@@ -28,7 +28,7 @@ export const products = [
     name: 'Logitech MX Keys Advanced Wireless Illuminated Keyboard, Tactile Responsive Typing, Backlighting, Bluetooth, USB-C, Apple macOS, Microsoft Windows, Linux, iOS, Android, Metal Build (Black)',
     description:
       'PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision',
-    price: 102.99,
+    price: 13899000,
     brand: 'logitech',
     category: 'Accesories',
     inStock: true,
@@ -37,7 +37,7 @@ export const products = [
         color: 'Black',
         colorCode: '#000000',
         image:
-          'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1688529886610-black-logitech-keyboard.jpg?alt=media&token=353aa276-1316-4e50-bc26-8e3828fe6cdd'
+          '/images/products/Board_GIGABYTE_B550_AORUS_MASTER_WIFI_Ryzen_DDR4_AM4.webp'
       }
     ],
     reviews: [
@@ -77,7 +77,7 @@ export const products = [
         color: 'Black',
         colorCode: '#000000',
         image:
-          'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1686386605041-iphone12-black.jpg?alt=media&token=32abf316-ddf6-4870-9e1e-a7c884b750d6'
+          '/images/products/GPU_Asus_ROG_Strix_RTX_3080_TI_Gaming_12GB_GDDR6X_OC.webp'
       },
       {
         color: 'Blue',
@@ -150,7 +150,7 @@ export const products = [
         color: 'Graphite',
         colorCode: ' #383838',
         image:
-          'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1688529379028-logitech-graphite-mouse.jpg?alt=media&token=f9dfba29-832f-4c58-88c6-a7a0ae6b22bf'
+          '/images/products/Procesador_AMD_Ryzen_5_5600X_3.7GHz.webp'
       }
     ],
     reviews: []
@@ -169,7 +169,7 @@ export const products = [
         color: 'Black',
         colorCode: '#000000',
         image:
-          'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1688041293609-watch-black.jpg?alt=media&token=270f918c-d9f5-41a2-ad32-45d5f3c66bf0'
+          '/images/products/Procesador_AMD_Ryzen_7_5800X_3.8GHz.webp'
       },
       {
         color: 'Silver',
