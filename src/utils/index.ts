@@ -12,3 +12,6 @@ export const formatPrice = (price: number) => {
     maximumFractionDigits: 0
   }).format(price)
 }
+
+export const productRating = (data: any) => // corregir any
+  data.reviews.reduce((acc: number, review: any) => acc + review.rating, 0) / data.reviews.length

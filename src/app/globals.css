@@ -10,29 +10,35 @@
   padding: 0;
 }
 
-@layer base {
-  :root {
-    --clr-primary: #f3f3f3;
-    --clr-muted: #aeaeae;
-    --clr-secondary: #8aa947;
-    --clr-accent: #eab308;
+:root {
+  --clr-primary: #f3f3f3;
+  --clr-secondary: #8aa947;
+  --clr-accent: #eab308;
+  --clr-dark: #0C0A09;
+  --clr-muted: #c6c6c6;
 
-    webkit-font-smoothing: antialiased;
+  webkit-font-smoothing: antialiased;
+}
 
-    &::-webkit-scrollbar {
-      width: 4px;
-      height: 4px;
-      background-color: transparent
-    }
+html, body, * {
+  scrollbar-width: auto;
+  scrollbar-color: var(--clr-accent) transparent;
 
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--clr-accent);
-      border-radius: 4px;
-    }
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: transparent
   }
 
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--clr-accent);
+    border-radius: 4px;
+  }
+}
+
+@layer base {
   h1 {
-    @apply text-[clamp(1rem,1.2rem_+_3.2vw,3rem)] text-accent tracking-tight leading-6 md:leading-10 mb-4 font-bold;
+    @apply text-[clamp(1rem,1.2rem_+_3.5vw,4.5rem)] text-accent tracking-tight leading-8 md:leading-[50px] mb-4 font-bold;
   }
 }
 
@@ -42,7 +48,15 @@
   }
 
   .section {
-    @apply w-full py-8 px-3 md:px-8;
+    @apply w-full py-12 px-3 md:px-8;
+  }
+
+  .container {
+    @apply w-full max-w-3xl flex justify-center items-center;
+  }
+
+  .footer_list {
+    @apply w-full flex flex-col gap-2 sm:w-1/2 md:w-1/4 lg:w-1/6;
   }
 
   .products_container {
@@ -52,19 +66,31 @@
     gap: 30px;
   }
 
+  .box_shadow {
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
+  }
+
+  .screen_shadow {
+    @apply fixed bottom-0 h-[12%] w-full bg-gradient-to-t from-black via-black/50 to-transparent;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.05),
+      rgba(0, 0, 0, 0)
+    );
+  }
+
   .flex_center {
     @apply flex justify-center items-center;
   }
 
   .flex_center_column {
     @apply flex flex-col justify-center items-center;
-  }
-
-  .container {
-    @apply w-full max-w-3xl flex justify-center items-center;
-  }
-
-  .footer_list {
-    @apply w-full flex flex-col gap-2 sm:w-1/2 md:w-1/4 lg:w-1/6;
   }
 }

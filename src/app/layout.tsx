@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Space_Grotesk } from 'next/font/google'
 
 import './globals.css'
-import { Navbar, Footer } from '@/components'
+import { Navbar, Footer, ScreenShadow } from '@/components'
 
 const space = Space_Grotesk({
   subsets: ['latin'],
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className='bg-black'>
-      <body className={`${space.className} bg-[#111] text-primary`}>
-        <div className='flex_center_column '>
+    <html lang="es">
+      <body className={`${space.className} bg-dark text-primary`}>
+        <div className='flex_center_column min-h-[100svh] w-full'>
           <Navbar />
 
           <div className='flex_center flex-1 w-full'>
@@ -26,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
 
           <Footer />
+          <ScreenShadow />
         </div>
       </body>
     </html>

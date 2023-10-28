@@ -12,6 +12,7 @@ const config: Config = {
         primary: 'var(--clr-primary)',
         secondary: 'var(--clr-secondary)',
         accent: 'var(--clr-accent)',
+        dark: 'var(--clr-dark)',
         muted: 'var(--clr-muted)'
       },
       colors: {
@@ -35,7 +36,9 @@ const config: Config = {
         accent: 'var(--clr-accent)'
       },
       backgroundColor: {
-        accent: 'var(--clr-accent)'
+        secondary: 'var(--clr-secondary)',
+        accent: 'var(--clr-accent)',
+        dark: 'var(--clr-dark)'
       },
       maxWidth: {
         '3xl': '2000px'

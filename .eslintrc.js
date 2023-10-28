@@ -37,6 +37,7 @@ module.exports = {
       anonymous: 'always',
       named: 'never',
       asyncArrow: 'always'
-    }]
+    }],
+    '@typescript-eslint/strict-boolean-expressions': 'off'
   }
 }

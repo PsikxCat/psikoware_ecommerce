@@ -1,21 +1,22 @@
 import { HomeBanner, ProductCard } from '@/components'
-import { products } from '@/utils/products'
+import { products } from '@/utils/dummyData'
 
 export default function Home() {
   return (
-    <section className="bg-stone-950 w-full flex_center py-4">
+    <section className="w-full flex_center bg-dark">
       <div className="container">
-        <main className="w-full flex_center_column py-8">
+        <main className="w-full flex_center_column">
           {/* banner */}
-          <section className='flex_center'>
+          <section className='section flex_center bg-dark'>
             <HomeBanner />
           </section>
 
           {/* lista productos */}
-          <section className='section products_container bg-sushi'>
+          <section className='section products_container bg-secondary'>
             {products.map((product) => (
               <ProductCard key={product.id} data={product} />
             ))}
+
           </section>
         </main>
       </div>

@@ -1,3 +1,5 @@
+// ! this is dummy data while we make the user interface, eventually we will fetch data from the database
+
 export const products = [
   {
     id: '64a654593e91b8e73a351e9b',
@@ -181,3 +183,69 @@ export const products = [
     reviews: []
   }
 ]
+
+export const product = {
+  id: '64a654593e91b8e73a351e9b',
+  name: 'iPhone 14, 128GB',
+  description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptates obcaecati odio recusandae inventore sed unde dolorem, quasi necessitatibus beatae est, praesentium perspiciatis libero esse. Inventore aliquid fuga quo enim saepe id eum sequi sapiente amet? Molestiae adipisci perferendis vitae eveniet vel, repudiandae consequatur! Expedita iure at minima suscipit provident tenetur totam necessitatibus sit, nemo a, obcaecati commodi harum aliquam repellendus temporibus, debitis rerum. Nobis aliquam animi neque quidem voluptatem natus, nisi quasi ullam dolorum, rerum incidunt possimus laudantium odio numquam maxime laboriosam vero nostrum accusamus.',
+  price: 2999,
+  brand: 'Apple',
+  category: 'Celular',
+  inStock: true,
+  images: [
+    {
+      color: 'White',
+      colorCode: '#FFFFFF',
+      image:
+        '/images/products/Board_Asus_ROG_Strix_B550-E_Gaming_WIFI_Ryzen_DDR4.webp'
+    },
+    {
+      color: 'Gray',
+      colorCode: '#808080',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1688622165836-iphone14-gray.png?alt=media&token=58f684db-998e-43eb-aa06-efe3d6ccfad4'
+    }
+  ],
+  reviews: [
+    {
+      id: '64a65a6158b470c6e06959ee',
+      userId: '6475af156bad4917456e6e1e',
+      productId: '64a4ebe300900d44bb50628a',
+      rating: 5,
+      comment: 'good',
+      createdDate: '2023-07-06T06:08:33.067Z',
+      user: {
+        id: '6475af156bad4917456e6e1e',
+        name: 'Charles',
+        email: 'example@gmail.com',
+        emailVerified: null,
+        image:
+          'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+        hashedPassword: null,
+        createdAt: '2023-05-30T08:08:53.979Z',
+        updatedAt: '2023-05-30T08:08:53.979Z',
+        role: 'ADMIN'
+      }
+    },
+    {
+      id: '64a65a6158b470c6e06959e2',
+      userId: '6475af156bad4917456e6e1e',
+      productId: '64a4ebe300900d44bb50628a',
+      rating: 4,
+      comment: 'good item',
+      createdDate: '2023-07-06T06:08:33.067Z',
+      user: {
+        id: '6475af156bad4917456e6e1e',
+        name: 'Charles',
+        email: 'example@gmail.com',
+        emailVerified: null,
+        image:
+          'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+        hashedPassword: null,
+        createdAt: '2023-05-30T08:08:53.979Z',
+        updatedAt: '2023-05-30T08:08:53.979Z',
+        role: 'ADMIN'
+      }
+    }
+  ]
+}
