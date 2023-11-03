@@ -8,5 +8,6 @@ export { default as Button } from './Button/Button.tsx'
 export { default as HomeBanner } from './_home/HomeBanner.tsx'
 
 export { default as ProductDetails } from './_products/ProductDetails.tsx'
-export { default as SetColor } from './_products/SetColor.tsx'
+export { default as SetVariant } from './_products/SetVariant.tsx'
 export { default as SetQuantity } from './_products/SetQuantity.tsx'
+export { default as ProductImage } from './_products/ProductImage.tsx'

@@ -40,6 +40,10 @@ html, body, * {
   h1 {
     @apply text-[clamp(1rem,1.2rem_+_3.5vw,4.5rem)] text-accent tracking-tight leading-8 md:leading-[50px] mb-4 font-bold;
   }
+
+  h2 {
+    @apply text-[clamp(0.5rem,1rem_+_2vw,2rem)] tracking-tight leading-6 md:leading-8 mb-4 font-bold;
+  }
 }
 
 @layer utilities {

@@ -1,7 +1,7 @@
-export interface SelectedImgType {
+export interface ProductVariantType {
   color: string
   colorCode: string
-  image: string
+  images: string[]
 }
 
 export interface CartProductType {
@@ -12,6 +12,6 @@ export interface CartProductType {
   brand: string
   price: number
   stock: number
-  selectedImg: SelectedImgType
+  productVariant: ProductVariantType
   quantity: number
 }

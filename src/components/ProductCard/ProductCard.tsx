@@ -24,7 +24,7 @@ export default function ProductCard({ data }: ProductCardProps) {
           <div className='absolute top-[40%] left-0 w-full h-[25%] bg-accent hidden group-hover:block'/>
           <Image
             className='w-full h-full object-contain z-20'
-            src={data.images[0].image}
+            src={data.productVariant[0].images[0]}
             alt={data.name}
             fill
             sizes='(max-width: 768px) 100vw, 400px'
@@ -32,7 +32,7 @@ export default function ProductCard({ data }: ProductCardProps) {
         </div>
 
         {/* nombre */}
-        <div className='uppercase tracking-tight'>{truncate(data.name, 25)}</div>
+        <div className='flex_center uppercase tracking-tight h-[50px] px-3'>{truncate(data.name, 50)}</div>
 
         {/* rating & reviews */}
         <div className='bg-stone-700 rounded-sm w-full'>

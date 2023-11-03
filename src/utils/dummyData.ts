@@ -1,211 +1,135 @@
 // ! this is dummy data while we make the user interface, eventually we will fetch data from the database
 
-export const products = [
-  {
-    id: '64a654593e91b8e73a351e9b',
-    name: 'iphone 14',
-    description: 'Short description',
-    price: 2999,
-    brand: 'apple',
-    category: 'Phone',
-    inStock: true,
-    images: [
-      {
-        color: 'White',
-        colorCode: '#FFFFFF',
-        image:
-          '/images/products/Board_Asus_ROG_Strix_B550-E_Gaming_WIFI_Ryzen_DDR4.webp'
-      },
-      {
-        color: 'Gray',
-        colorCode: '#808080',
-        image:
-          'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1688622165836-iphone14-gray.png?alt=media&token=58f684db-998e-43eb-aa06-efe3d6ccfad4'
-      }
-    ],
-    reviews: []
-  },
-  {
-    id: '64a4ebe300900d44bb50628a',
-    name: 'Logitech MX Keys Advanced Wireless Illuminated Keyboard, Tactile Responsive Typing, Backlighting, Bluetooth, USB-C, Apple macOS, Microsoft Windows, Linux, iOS, Android, Metal Build (Black)',
-    description:
-      'PERFECT STROKE KEYS - Spherically-dished keys match the shape of your fingertips, offering satisfying feedback with every tap\nCOMFORT AND STABILITY - Type with confidence on a keyboard crafted for comfort, stability, and precision',
-    price: 13899000,
-    brand: 'logitech',
-    category: 'Accesories',
-    inStock: true,
-    images: [
-      {
-        color: 'Black',
-        colorCode: '#000000',
-        image:
-          '/images/products/Board_GIGABYTE_B550_AORUS_MASTER_WIFI_Ryzen_DDR4_AM4.webp'
-      }
-    ],
-    reviews: [
-      {
-        id: '64a65a6158b470c6e06959ee',
-        userId: '6475af156bad4917456e6e1e',
-        productId: '64a4ebe300900d44bb50628a',
-        rating: 5,
-        comment: 'good',
-        createdDate: '2023-07-06T06:08:33.067Z',
-        user: {
-          id: '6475af156bad4917456e6e1e',
-          name: 'Charles',
-          email: 'example@gmail.com',
-          emailVerified: null,
-          image:
-            'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
-          hashedPassword: null,
-          createdAt: '2023-05-30T08:08:53.979Z',
-          updatedAt: '2023-05-30T08:08:53.979Z',
-          role: 'ADMIN'
-        }
-      }
-    ]
-  },
-  {
-    id: '648437b38c44d52b9542e340',
-    name: 'Apple iPhone 12, 64GB',
-    description:
-      'The product is refurbished, fully functional, and in excellent condition. Backed by the 90-day E~Shop Renewed Guarantee.\n- This pre-owned product has been professionally inspected, tested and cleaned by Amazon qualified vendors. It is not certified by Apple.\n- This product is in "Excellent condition". The screen and body show no signs of cosmetic damage visible from 12 inches away.\n- This product will have a battery that exceeds 80% capacity relative to new.\n- Accessories may not be original, but will be compatible and fully functional. Product may come in generic box.\n- Product will come with a SIM removal tool, a charger and a charging cable. Headphone and SIM card are not included.\n- This product is eligible for a replacement or refund within 90-day of receipt if it does not work as expected.\n- Refurbished phones are not guaranteed to be waterproof.',
-    price: 40,
-    brand: 'Apple',
-    category: 'Phone',
-    inStock: true,
-    images: [
-      {
-        color: 'Black',
-        colorCode: '#000000',
-        image:
-          '/images/products/GPU_Asus_ROG_Strix_RTX_3080_TI_Gaming_12GB_GDDR6X_OC.webp'
-      },
-      {
-        color: 'Blue',
-        colorCode: ' #0000FF',
-        image:
-          'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1686386607274-iphone12-blue.jpg?alt=media&token=e83a9b13-86b6-4518-9f1e-8ddef12ba9a2'
-      },
-      {
-        color: 'Red',
-        colorCode: '#FF0000',
-        image:
-          'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1686386608652-iphone12-red.jpg?alt=media&token=603a9e86-5b8c-4f8d-b61c-c1c77e60e954'
-      }
-    ],
-    reviews: [
-      {
-        id: '6499b4887402b0efd394d8f3',
-        userId: '6499b184b0e9a8c8709821d3',
-        productId: '648437b38c44d52b9542e340',
-        rating: 4,
-        comment:
-          'good enough. I like the camera and casing. the delivery was fast too.',
-        createdDate: '2023-06-26T15:53:44.483Z',
-        user: {
-          id: '6499b184b0e9a8c8709821d3',
-          name: 'Chaoo',
-          email: 'example1@gmail.com',
-          emailVerified: null,
-          image:
-            'https://lh3.googleusercontent.com/a/AAcHTtcuRLwWi1vPKaQOcJlUurlhRAIIq2LgYccE8p32=s96-c',
-          hashedPassword: null,
-          createdAt: '2023-06-26T15:40:52.558Z',
-          updatedAt: '2023-06-26T15:40:52.558Z',
-          role: 'USER'
-        }
-      },
-      {
-        id: '6499a110efe4e4de451c7edc',
-        userId: '6475af156bad4917456e6e1e',
-        productId: '648437b38c44d52b9542e340',
-        rating: 5,
-        comment: 'I really liked it!!',
-        createdDate: '2023-06-26T14:30:40.998Z',
-        user: {
-          id: '6475af156bad4917456e6e1e',
-          name: 'Charles',
-          email: 'example@gmail.com',
-          emailVerified: null,
-          image:
-            'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
-          hashedPassword: null,
-          createdAt: '2023-05-30T08:08:53.979Z',
-          updatedAt: '2023-05-30T08:08:53.979Z',
-          role: 'ADMIN'
-        }
-      }
-    ]
-  },
-  {
-    id: '64a4e9e77e7299078334019f',
-    name: 'Logitech MX Master 2S Wireless Mouse – Use on Any Surface, Hyper-Fast Scrolling, Ergonomic Shape, Rechargeable, Control Upto 3 Apple Mac and Windows Computers, Graphite',
-    description:
-      'Cross computer control: Game changing capacity to navigate seamlessly on 3 computers, and copy paste text, images, and files from 1 to the other using Logitech flow\nDual connectivity: Use with upto 3 Windows or Mac computers via included Unifying receiver or Bluetooth Smart wireless technology. Gesture button- Yes',
-    price: 70,
-    brand: 'logitech',
-    category: 'Accesories',
-    inStock: true,
-    images: [
-      {
-        color: 'Graphite',
-        colorCode: ' #383838',
-        image:
-          '/images/products/Procesador_AMD_Ryzen_5_5600X_3.7GHz.webp'
-      }
-    ],
-    reviews: []
-  },
-  {
-    id: '649d775128b6744f0f497040',
-    name: 'Smart Watch(Answer/Make Call), 1.85" Smartwatch for Men Women IP68 Waterproof, 100+ Sport Modes, Fitness Activity Tracker, Heart Rate Sleep Monitor, Pedometer, Smart Watches for Android iOS, 2023',
-    description:
-      'Bluetooth Call and Message Reminder: The smart watch is equipped with HD speaker, after connecting to your phone via Bluetooth, you can directly use the smartwatches to answer or make calls, read messages, store contacts, view call history. The smartwatch can set up more message notifications in "GloryFit" APP. You will never miss any calls and messages during meetings, workout and riding.',
-    price: 50,
-    brand: 'Nerunsa',
-    category: 'Watch',
-    inStock: true,
-    images: [
-      {
-        color: 'Black',
-        colorCode: '#000000',
-        image:
-          '/images/products/Procesador_AMD_Ryzen_7_5800X_3.8GHz.webp'
-      },
-      {
-        color: 'Silver',
-        colorCode: '#C0C0C0',
-        image:
-          'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1688041295389-watch-silver.jpg?alt=media&token=7341e7f0-5c29-4f91-a7e3-57e50faafb74'
-      }
-    ],
-    reviews: []
-  }
-]
-
 export const product = {
   id: '64a654593e91b8e73a351e9b',
-  name: 'iPhone 14, 128GB',
-  description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptates obcaecati odio recusandae inventore sed unde dolorem, quasi necessitatibus beatae est, praesentium perspiciatis libero esse. Inventore aliquid fuga quo enim saepe id eum sequi sapiente amet? Molestiae adipisci perferendis vitae eveniet vel, repudiandae consequatur! Expedita iure at minima suscipit provident tenetur totam necessitatibus sit, nemo a, obcaecati commodi harum aliquam repellendus temporibus, debitis rerum. Nobis aliquam animi neque quidem voluptatem natus, nisi quasi ullam dolorum, rerum incidunt possimus laudantium odio numquam maxime laboriosam vero nostrum accusamus.',
-  price: 2999,
-  brand: 'Apple',
-  category: 'Celular',
+  name: 'SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4',
+  price: 1089900,
+  brand: 'GIGABYTE',
+  category: 'Almacenamiento',
   inStock: true,
-  images: [
+  shortDescription: 'El SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 ofrece un almacenamiento de 1 TB y un rendimiento excepcional gracias a la interfaz NVMe 4.0, proporcionando velocidades ultrarrápidas para aplicaciones y archivos. Ideal para mejorar la eficiencia y velocidad de tu computadora.',
+  description: [
     {
-      color: 'White',
-      colorCode: '#FFFFFF',
-      image:
-        '/images/products/Board_Asus_ROG_Strix_B550-E_Gaming_WIFI_Ryzen_DDR4.webp'
+      title: 'Primera controladora PCIe 4.0×4 del mundo',
+      description:
+        'El SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 es el primer controlador PCIe 4.0×4 del mundo, el controlador Phison PS5016-E16, fabricado con tecnología de fabricación de 28 nm. El proceso de fabricación avanzado garantiza que PS5016-E16 tenga suficiente potencia de cálculo para el procesamiento ECC cuando se adopta el último flash 3D TLC NAND. PS5016-E16 también cuenta con ocho canales NAND con 32 destinos CE, almacenamiento en caché DDR4 DRAM y una interfaz PCIe 4.0×4. En cuanto a las características, el chip admite el protocolo NVMe 1.3, la corrección de errores LDPC y las tecnologías Wear Leveling, Over-Provision para mejorar la confiabilidad y durabilidad de los SSD.'
     },
     {
-      color: 'Gray',
-      colorCode: '#808080',
-      image:
-        'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-cc542.appspot.com/o/products%2F1688622165836-iphone14-gray.png?alt=media&token=58f684db-998e-43eb-aa06-efe3d6ccfad4'
+      title: 'Velocidad de lectura secuencial de hasta 5000 MB/s',
+      description:
+        'El SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 utiliza la interfaz PCIe 4.0×4 y admite el protocolo NVMe 1.3, lo que permite que la secuencia de lectura / escritura alcance hasta 5000 / 4400MB / s, 10 veces más rápido que el SSD SATA tradicional y 50 veces más rápido que el HDD tradicional. El rendimiento de lectura / escritura aleatoria IOPS alcanza hasta 750k / 700k, lo que mejora enormemente la capacidad de respuesta del sistema y acelera el tiempo de arranque del sistema operativo.'
+    },
+    {
+      title: 'TOSHIBA BiCS4 96 capas 3D TLC (800MT / s)',
+      description: 'Toshiba BiCS4 NAND Flash optimiza los circuitos y la arquitectura aumentando a 96 capas para un mayor espacio de almacenamiento por unidad de área. El rendimiento de 800MT / s en el SSD AORUS NVMe Gen 4 supera con creces el de los dispositivos PCIe 3.0×4 para un rendimiento de almacenamiento superior.'
+    },
+    {
+      title: 'Rendimiento de almacenamiento Xtreme',
+      description: 'Con el nuevo controlador PCIe 4.0, el SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 ofrece velocidades asombrosas: hasta 5,000 MB / s para lectura secuencial y hasta 4,400 MB / s escritura secuencial. El rendimiento de lectura secuencial de las SSD PCIe 4.0 es hasta un 40% más rápido que las SSD PCIe 3.0. Prepárese para ingresar a la próxima generación de computación con un renderizado intensivo de gráficos, streaming y juegos más rápido y fluido.'
     }
   ],
+  specifications: [
+    {
+      title: 'Interfaz',
+      description: 'PCI-Express 4.0 x4, NVMe 1.3'
+    },
+    {
+      title: 'Factor de forma',
+      description: 'M.2 2280'
+    },
+    {
+      title: 'Capacidad',
+      description: '1 TB'
+    },
+    {
+      title: 'Flash NAND',
+      description: 'TLC 3D de 96 capas'
+    },
+    {
+      title: 'Dimensiones (L x W x H)',
+      description: '80 x 23 x 11 mm'
+    },
+    {
+      title: 'Peso',
+      description: '9g'
+    },
+    {
+      title: 'Controlador',
+      description: 'Phison PS5016-E16'
+    },
+    {
+      title: 'DRAM',
+      description: 'DDR4 1 GB'
+    },
+    {
+      title: 'Secuencia de lectura secuencial',
+      description: 'Hasta 5000 MB / s'
+    },
+    {
+      title: 'Secuencia de escritura secuencial',
+      description: 'Hasta 4400 MB / s'
+    },
+    {
+      title: 'Lectura aleatoria 4K',
+      description: 'Hasta 750k IOPS'
+    },
+    {
+      title: 'Escritura aleatoria 4K',
+      description: 'Hasta 700k IOPS'
+    },
+    {
+      title: 'Temperatura de funcionamiento',
+      description: '0 ° C a 70 ° C'
+    },
+    {
+      title: 'Temperatura de almacenamiento',
+      description: '-40 ° C a 85 ° C'
+    },
+    {
+      title: 'Resistencia',
+      description: '1.800 TBW'
+    },
+    {
+      title: 'MTBF',
+      description: '1,800,000 horas'
+    },
+    {
+      title: 'Garantía',
+      description: '5 años'
+    },
+    {
+      title: 'Consumo de energía (activo)',
+      description: 'Promedio: R: 6.5W; W: 5.0W'
+    },
+    {
+      title: 'Consumo de energía (inactivo)',
+      description: '0.14W'
+    },
+    {
+      title: 'Choque',
+      description: '1500G / 0.5ms'
+    }
+  ],
+  productVariant: [
+    {
+      color: 'Por defecto',
+      colorCode: '#000000',
+      images: [
+        'https://i.ibb.co/XxPgpz2/Procesador-Intel-Core-i9-10900.webp',
+        'https://i.ibb.co/4tFcc5J/SSD-M-2-2280-GIGABYTE-AORUS-NVMe4-2.webp'
+      ]
+    },
+    {
+      color: 'White',
+      colorCode: '#ffffff',
+      images: [
+        'https://i.ibb.co/z7VzKwX/Board-Asus-ROG-Strix-B550-E-Gaming-WIFI-Ryzen-DDR4.webp',
+        'https://i.ibb.co/QP54NL8/Board-Asus-ROG-Strix-B550-E-Gaming-WIFI-Ryzen-DDR4-2.webp'
+      ]
+    }
+
+  ],
+
   reviews: [
     {
       id: '64a65a6158b470c6e06959ee',
@@ -249,3 +173,1091 @@ export const product = {
     }
   ]
 }
+
+export const products = [
+  {
+    id: '64a4ebe300900d44bb50628a',
+    name: 'Board Asus ROG Strix B550-E Gaming WIFI Ryzen DDR4',
+    price: 1609900,
+    brand: 'Asus',
+    category: 'Board',
+    inStock: true,
+    productVariant: [
+      {
+        color: 'Por defecto',
+        colorCode: '#000000',
+        images: [
+          'https://i.ibb.co/z7VzKwX/Board-Asus-ROG-Strix-B550-E-Gaming-WIFI-Ryzen-DDR4.webp',
+          'https://i.ibb.co/QP54NL8/Board-Asus-ROG-Strix-B550-E-Gaming-WIFI-Ryzen-DDR4-2.webp',
+          'https://i.ibb.co/hK0Dxw6/Board-Asus-ROG-Strix-B550-E-Gaming-WIFI-Ryzen-DDR4-3.webp'
+        ]
+      }
+    ],
+    description: [
+      {
+        title: 'Incrementa tu inmersión en los juegos',
+        description: 'La Board Asus ROG Strix B550-E Gaming WIFI soporta PCIe® 4.0 y cuenta con las tecnologías más avanzadas de redes y transferencias de archivos más rápidas. Las mejoras de audio te sumergen en los juegos como nunca antes y te permiten escuchar claramente los sonidos de tus enemigos para que compitas con ventaja.'
+      },
+      {
+        title: 'Compatible con PCIe 4.0',
+        description: 'La Board Asus ROG Strix B550-E Gaming WIFI incorpora dos ranuras M.2, una de las cuales es compatible con PCIe 4.0. El nuevo estándar proporciona la máxima flexibilidad de almacenamiento y las transferencias de datos más rápidas disponibles para la plataforma AMD Ryzen de 3ª Gen. Ambas ranuras soportan hasta unidades 22110 y configuraciones RAID NVM Express®.'
+      },
+      {
+        title: 'WiFi 6 (802.11 ax)',
+        description: 'Wi-Fi 6 (802.11ax) ofrece conexiones inalámbricas de alta velocidad, una capacidad mejorada y más rendimiento en entornos inalámbricos saturados, lo que resulta en una experiencia gaming online excepcional. Conecta tu tarjeta madre a los routers ASUS Wi-Fi 6 y podrás aprovechar todo el potencial de Wi-Fi 6. Más información sobre las soluciones de Wi-Fi 6 de ASUS.'
+      },
+      {
+        title: 'Intel 2,5 Gb Ethernet',
+        description: 'La tecnología Intel 2,5 Gb Ethernet es hasta hasta 2,5 veces más rápida que las conexiones por cable estándar. Disfruta de transferencias de archivos más rápidas, una experiencia gaming sin retardo y streaming de vídeo en alta resolución.'
+      },
+      {
+        title: 'SupremeFX',
+        description: 'La tecnología de audio integrada ROG SupremeFX ofrece una respuesta en frecuencia plana y un sonido transparente, neutro y detallado. El panel frontal presenta dos salidas con amplificadores operacionales que ofrecen sonido de alta calidad para los auriculares de gaming.'
+      }
+
+    ],
+    specifications: [
+      {
+        group: '',
+        items: [
+          {
+            title: 'CPU',
+            description: 'Procesadores AMD AM4 Socket de tercera generación AMD Ryzen ™'
+          },
+          {
+            title: 'Chipset',
+            description: 'AMD B550'
+          },
+          {
+            title: 'Memoria',
+            description: '4 x DIMM, máx. 128 GB, DDR4 4600 (OC) / 4400 (OC) / 4266 (OC) / 4133 (OC) / 4000 (OC) / 3866 (OC) / 3600 (OC) / 3466 (OC) / 3200/3000/2800/2666 / Memoria sin búfer de 2400/2133 MHz \n\nProcesadores AMD Ryzen PRO de próxima generación. \n\n4 x DIMM, máx. 128 GB, DDR4 5100 (OC) / 4800 (OC) / 4600 (OC) / 4400 (OC) / 4266 (OC) / 4133 (OC) / 4000 (OC) / 3866 (OC) / 3600 (OC) / 3466 ( OC) / 3200/3000/2800/2666/2400/2133 MHz Memoria sin búfer \n\nOptiMem II \n\nProcesadores AMD Ryzen ™ de 3.ª generación \n\nArquitectura de memoria de doble canal \n\nLa compatibilidad con la memoria ECC (modo ECC) varía según la CPU.'
+          },
+          {
+            title: 'Gráficos',
+            description: '1 x DisplayPort 1.2\n\n1 x HDMI 2.1 (4K a 60 HZ)\n\nSoporte Multi GPU\n\nAdmite la tecnología NVIDIA 2-Way SLI®\n\nAdmite la tecnología AMD 3-Way CrossFireX ™'
+          },
+          {
+            title: 'Slots de Expansión',
+            description: 'Conjunto de chips AMD B550\n\n1 x PCIe 3.0 x16 (modo x4) *\n\n2 x PCIe 3.0 x1\n\n2 x PCIe 4.0 x16 (x16 o doble x8)'
+          },
+          {
+            title: 'Almacenamiento',
+            description: '1 x M.2_1 socket 3, con tecla M, compatible con dispositivos de almacenamiento tipo 2242/2260/2280/22110 (modo SATA y PCIe 4.0 x4)\n\nConjunto de chips AMD B550:\n\n1 x conector M.2_2 3, con tecla M, soporte para dispositivos de almacenamiento tipo 2242/2260/2280/22110 (modo SATA y PCIE 3.0 x 4) *\n\nTotal admite 2 ranuras M.2 y 6 puertos SATA 6Gb / s\n\n6 x puerto (s) SATA 6Gb / s\n\nProcesadores AMD Ryzen ™ de 3.ª generación:\n\nSoporte Raid 0, 1, 10'
+          },
+          {
+            title: 'LAN',
+            description: 'Ethernet Intel® I225-V de 2,5 Gb\n\nASUS LANGuard'
+          },
+          {
+            title: 'Accesorios',
+            description: '1 x cable USB Type-C® de audio ROG\n\n1 paquete (s) de tornillos SSD M.2\n\n1 x paquete (s) de goma M.2\n\n1 llavero ROG\n\n1 x antena móvil Wi-Fi\n\n1 x pegatinas ROG Strix\n\n1 x paquete (s) de bridas\n\n1 x Cable de extensión para tiras RGB (80 cm)\n\n1 x cable de extensión para LED direccionable\n\n1 x tarjeta de agradecimiento ROG\n\nUser´s manual\n\n4 x cable (s) SATA 6Gb / s\n\n1 x DVD de apoyo'
+          }
+
+        ]
+      }
+    ],
+    reviews: [
+      {
+        id: '64a65a6158b470c6e06959ee',
+        userId: '6475af156bad4917456e6e1e',
+        productId: '64a4ebe300900d44bb50628a',
+        rating: 4,
+        comment: 'Muy buen producto',
+        createdDate: '2023-07-06T06:08:33.067Z',
+        user: {
+          id: '6475af156bad4917456e6e1e',
+          name: 'John',
+          email: 'example2@gmail.com',
+          emailVerified: null,
+          image:
+            'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+          hashedPassword: null,
+          createdAt: '2023-05-30T08:08:53.979Z',
+          updatedAt: '2023-05-30T08:08:53.979Z',
+          role: 'USER'
+        }
+      },
+      {
+        id: '64a65a6158b470c6e06959ee',
+        userId: '6475af156bad4917456e6e1e',
+        productId: '64a4ebe300900d44bb50628a',
+        rating: 3,
+        comment: 'Buen producto',
+        createdDate: '2023-07-06T06:08:33.067Z',
+        user: {
+          id: '6475af156bad4917456e6e1e',
+          name: 'Jane',
+          email: 'example3@gmail.com',
+          emailVerified: null,
+          image:
+            'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+          hashedPassword: null,
+          createdAt: '2023-05-30T08:08:53.979Z',
+          updatedAt: '2023-05-30T08:08:53.979Z',
+          role: 'USER'
+        }
+      },
+      {
+        id: '64a65a6158b470c6e06959ee',
+        userId: '6475af156bad4917456e6e1e',
+        productId: '64a4ebe300900d44bb50628a',
+        rating: 2,
+        comment: 'Producto regular',
+        createdDate: '2023-07-06T06:08:33.067Z',
+        user: {
+          id: '6475af156bad4917456e6e1e',
+          name: 'Bob',
+          email: 'example4@gmail.com',
+          emailVerified: null,
+          image:
+            'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+          hashedPassword: null,
+          createdAt: '2023-05-30T08:08:53.979Z',
+          updatedAt: '2023-05-30T08:08:53.979Z',
+          role: 'USER'
+        }
+      }
+    ]
+  },
+  {
+    id: '64a4ebe300900d44bb50628b',
+    name: 'Board GIGABYTE B550 AORUS MASTER WIFI Ryzen DDR4 AM4',
+    price: 1959900,
+    brand: 'GIGABYTE',
+    category: 'Board',
+    inStock: true,
+    productVariant: [
+      {
+        color: 'Por defecto',
+        colorCode: '#000000',
+        images: [
+          'https://i.ibb.co/jVzmL8y/Board-GIGABYTE-B550-AORUS-MASTER-WIFI-Ryzen-DDR4-AM4.webp',
+          'https://i.ibb.co/N2F0WwL/Board-GIGABYTE-B550-AORUS-MASTER-WIFI-Ryzen-DDR4-AM4-2.webp',
+          'https://i.ibb.co/7K10Mc2/Board-GIGABYTE-B550-AORUS-MASTER-WIFI-Ryzen-DDR4-AM4-3.webp'
+        ]
+      }
+    ],
+    description: [
+      {
+        title: 'Diseño de máxima potencia',
+        description: 'La Board GIGABYTE B550 AORUS MASTER WIFI Ryzen para admitir completamente los últimos procesadores AMD Ryzen ™ de tercera generación, las placas base B550 están equipadas con la solución de energía definitiva que es verdaderamente directa, digital y de múltiples fases. Después de innumerables experimentos y pruebas, GIGABYTE presenta las inmejorables placas base B550 para los entusiastas. Sin concesiones y nunca te detengas para lograr más.'
+      },
+      {
+        title: 'Rendimiento inigualable',
+        description: 'GIGABYTE se da cuenta de que el cliente no dejará de perseguir un mejor rendimiento informático. Lo cuidamos e implementamos en productos. La traza de memoria protectora y optimizada mejora el rendimiento. Se necesitan lecturas y escrituras más rápidas para ahorrar tiempo y mejorar la eficiencia. Ofrecemos una gran cantidad de almacenamiento M.2 con protectores térmicos para garantizar una lectura y escritura sin límites. De antemano, la adopción de componentes compatibles con PCIe 4.0 hace que las placas base B550 sean más fáciles de actualizar'
+      },
+      {
+        title: 'Soporte para DDR4 XMP hasta 5400Mhz y más allá',
+        description: 'AORUS ofrece una plataforma probada y comprobada que garantiza la compatibilidad adecuada con perfiles de hasta 5400MHz y más. Todo lo que los usuarios deben hacer para lograr este aumento de rendimiento es asegurarse de que su módulo de memoria sea compatible con XMP y que la función XMP esté activada y habilitada en su placa base AORUS.'
+      },
+      {
+        title: 'Solución térmica avanzada',
+        description: 'El rendimiento sin límites está garantizado por la solución térmica avanzada que incluye el disipador de calor Fins-Array, el tubo de calor de contacto directo, los protectores térmicos y la placa de base térmica. La Board GIGABYTE B550 AORUS MASTER WIFI Ryzen es genial con MOSFET y SSD M.2 incluso con carga completa. Proporciona temperaturas más bajas para entusiastas, overclockers y jugadores profesionales.'
+      },
+      {
+        title: 'Conectividad de próxima generación',
+        description: 'Un producto de alta gama debe estar preparado para el futuro para que su sistema se mantenga actualizado con la última tecnología. Las placas base B550 brindan toda la red de próxima generación, almacenamiento y conectividad WIFI para mantenerlo al día.'
+      }
+    ],
+    specifications: [
+      {
+        group: '',
+        items: [
+          {
+            title: 'Procesador',
+            description: 'AMD Socket AM4, compatible con: procesadores AMD Ryzen ™ serie 5000 / Ryzen 5000 serie G / procesadores AMD Ryzen ™ de tercera generación / AMD Ryzen ™ de tercera generación con procesadores gráficos Radeon ™'
+          },
+          {
+            title: 'Chipset',
+            description: 'AMD B550'
+          },
+          {
+            title: 'Memoria',
+            description: '4 x zócalos DDR4 DIMM que admiten hasta 128 GB (capacidad de un solo DIMM de 32 GB) de memoria del sistema\n\nProcesadores AMD Ryzen ™ serie 5000:\n\nSoporte para DDR4 5100 (OC) / 5000 (OC) / 4866 (OC) / 4600 (OC) / 4400 (OC) / 4000 (OC) / 3600 (OC) / 3333 (OC) / Módulos de memoria de 3200/2933/2667/2400/2133 MHz\n\nProcesadores AMD Ryzen ™ de 3.a generación:\n\ncompatibilidad con DDR4 5200 (OC) / 5000 (OC) / 4866 (OC) / 4600 (OC) / 4400 (OC) / 4000 (OC) / 3600 (OC) / 3333 (OC) / Módulos de memoria de 3200/2933/2667/2400/2133 MHz\n\nAMD Ryzen ™ de tercera generación con procesadores gráficos Radeon ™:\n\ncompatibilidad con DDR4 5400 (OC) / 5200 (OC) / 5000 (OC) / 4866 (OC) / 4600 (OC) / 4400 (OC) / 4000 (OC) / 3600 (OC) / 3333 (OC) / 3200/2933/2667/2400/2133 MHz módulos de memoria\n\nArquitectura de memoria de doble canal\n\nCompatibilidad con módulos de memoria DIMM 1Rx8 / 2Rx8 sin búfer ECC\n\nSoporte para módulos de memoria DIMM 1Rx8 / 2Rx8 / 1Rx16 sin búfer no ECC\n\nSoporte para módulos de memoria Extreme Memory Profile (XMP)'
+          },
+          {
+            title: 'Gráficos Integrados',
+            description: 'Integrado en la nueva generación AMD Ryzen ™ con procesadores gráficos Radeon ™:\n\n1 x puerto HDMI, que admite una resolución máxima de 4096×2160 a 60 Hz\n\n* Soporte para la versión HDMI 2.1, HDCP 2.3 y HDR.\n\nMemoria compartida máxima de 16 GB'
+          },
+          {
+            title: 'LAN',
+            description: 'Chip LAN Realtek ® de 2,5 GbE (2,5 Gbit / 1 Gbit / 100 Mbit)'
+          },
+          {
+            title: 'Puertos de Expansión',
+            description: '1 x ranura PCI Express x16 (PCIEX16), integrada en la CPU:\n\nLos procesadores AMD Ryzen ™ de tercera generación son compatibles con el modo PCIe 4.0 x16\n\nLos procesadores gráficos AMD Ryzen ™ de nueva generación con Radeon ™ son compatibles con el modo PCIe 3.0 x16\n\n* Para un rendimiento óptimo, si sólo se va a instalar una tarjeta gráfica PCI Express, asegúrese de instalarla en la ranura PCIEX16.\n\n* La ranura PCIEX16 comparte ancho de banda con los conectores M2B_CPU y M2C_CPU. La ranura PCIEX16 funciona hasta en modo x8 cuando se instala un dispositivo en el conector M2B_CPU o M2C_CPU.\n\n2 x ranuras PCI Express x16 (PCIEX4_1 / PCIEX4_2), integradas en el Chipset:\n\nCompatible con el modo PCIe 3.0 x4\n\n* La ranura PCIEX4_2 comparte el ancho de banda con los conectores SATA3 4, 5. La ranura PCIEX4_2 funciona hasta en modo x2 cuando se instala un dispositivo en el conector SATA3 4 o SATA3 5.'
+          },
+          {
+            title: 'Interfaz de Almacenamiento',
+            description: '1 x conector M.2 (M2A_CPU), integrado en la CPU, compatible con Socket 3, clave M, tipo 2242/2280/22110 SSD:\n\nLos procesadores AMD Ryzen ™ de tercera generación son compatibles con SSD SATA y PCIe 4.0 x4 / x2\n\nLos procesadores gráficos AMD Ryzen ™ de nueva generación con Radeon ™ son compatibles con SSD SATA y PCIe 3.0 x4 / x2\n\n2 x conectores M.2 (M2B_CPU / M2C_CPU), integrados en la CPU, compatibles con Socket 3, clave M, tipo 2242/2280/22110 SSD:\n\nLos procesadores AMD Ryzen ™ de tercera generación son compatibles con SSD PCIe 4.0 x4 / x2\n\nLos procesadores AMD Ryzen ™ de nueva generación con Radeon ™ Graphics son compatibles con SSD PCIe 3.0 x4 / x2\n\n6 x conectores SATA 6Gb / s, integrados en el Chipset:\n\nSoporte para RAID 0, RAID 1 y RAID 10'
+          },
+          {
+            title: 'USB',
+            description: 'UPC:\n\n4 puertos USB 3.2 Gen 2 Tipo A (rojo) en el panel posterior\n\nConjunto de chips:\n\n1 puerto USB Type-C ™ en el panel posterior, compatible con USB 3.2 Gen 2\n\n1 x puerto USB 3.2 Gen 2 tipo A (rojo) en el panel posterior\n\n2 puertos USB 3.2 Gen 1 disponibles a través del encabezado USB interno\n\n2 x puertos USB 2.0 / 1.1 en el panel posterior\n\nConjunto de chips + 2 concentradores USB 2.0:\n\n8 puertos USB 2.0 / 1.1 (4 puertos en el panel posterior, 4 puertos disponibles a través de los encabezados USB internos)'
+          }
+        ]
+      }
+    ],
+    reviews: [
+      {
+        id: '64a65a6158b470c6e06959ee',
+        userId: '6475af156bad4917456e6e1e',
+        productId: '64a4ebe300900d44bb50628a',
+        rating: 4,
+        comment: 'Muy buen producto',
+        createdDate: '2023-07-06T06:08:33.067Z',
+        user: {
+          id: '6475af156bad4917456e6e1e',
+          name: 'John',
+          email: 'example2@gmail.com',
+          emailVerified: null,
+          image:
+            'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+          hashedPassword: null,
+          createdAt: '2023-05-30T08:08:53.979Z',
+          updatedAt: '2023-05-30T08:08:53.979Z',
+          role: 'USER'
+        }
+      },
+      {
+        id: '64a65a6158b470c6e06959ee',
+        userId: '6475af156bad4917456e6e1e',
+        productId: '64a4ebe300900d44bb50628a',
+        rating: 3,
+        comment: 'Buen producto',
+        createdDate: '2023-07-06T06:08:33.067Z',
+        user: {
+          id: '6475af156bad4917456e6e1e',
+          name: 'Jane',
+          email: 'example3@gmail.com',
+          emailVerified: null,
+          image:
+            'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+          hashedPassword: null,
+          createdAt: '2023-05-30T08:08:53.979Z',
+          updatedAt: '2023-05-30T08:08:53.979Z',
+          role: 'USER'
+        }
+      }
+    ]
+  },
+  {
+    id: '64a4ebe300900d44bb50628c',
+    name: 'Procesador Intel Core i9 11900K – 3.5 GHz',
+    price: 3339900,
+    productVariant: [
+      {
+        color: 'Por defecto',
+        colorCode: '#000000',
+        images: [
+          'https://i.ibb.co/4PMN1Sp/Procesador-Intel-Core-i9-11900-K.webp'
+        ]
+      }
+    ],
+    description: [
+      {
+        title: 'Un desempeño de equipos de desktop integrado para gaming',
+        description: 'Con el Procesador Intel Core i9 11900K obtén un fantástico desempeño en el juego mientras lo transmites y lo grabas. Experimenta un juego fluido, alto nivel de FPSs y un realismo inmersivo con un procesador Intel® Core™ de 11a Generación para equipos desktop.'
+      },
+      {
+        title: 'Capacidades de creación y gaming potentes mejorada',
+        description: 'Asume el control y lleva tu Procesador Intel Core i9 11900K a un nivel superior con las funciones mejoradas de ajustes y overclocking. Y compatibilidad con Wi-Fi 6E dedicado con los procesadores Intel® Core™ de 11ᵃ Generación para equipos desktop.'
+      },
+      {
+        title: 'Creación de contenido de nivel más avanzado',
+        description: 'Con los procesadores Intel® Core™ de 11ᵃ Generación, como el Procesador Intel Core i9 11900K para equipos de desktop también puedes aprovechar la compatibilidad con pantallas HDR 5K para edición de fotografías y videos.'
+      },
+      {
+        title: 'Sorprendente desempeño móvil',
+        description: 'Los procesadores Intel® Core™ i9 desbloqueados para computadoras portátiles ofrecen el desempeño necesario para jugar, transmitir y grabar en simultáneo.'
+      },
+      {
+        title: 'Tecnología Thunderbolt™',
+        description: 'Los puertos Thunderbolt™ conectan las computadoras a datos, video y alimentación con un solo cable que ofrece una experiencia rápida y consistente para el trabajo y el juego. La tecnología Thunderbolt™, una solución versátil de E/S, permite una conexión de 40 Gb/s para datos y video en casa, en la oficina o en cualquier lugar.'
+      },
+      {
+        title: 'Tecnología Intel® Optane™',
+        description: 'La eliminación de los cuellos de botella requiere una mejor memoria de almacenamiento que sea rápida, económica y no volátil. Con la tecnología Intel® Optane™ podrás liberar la potencia de tu procesador en lugar de tenerlo funcionando a una fracción de la misma.'
+      }
+    ],
+    specifications: [
+      {
+        group: 'Elementos fundamentales',
+        items: [
+          {
+            title: 'Colección de productos',
+            description: 'Procesadores Intel® Core™ de 11ᵃ generación para equipos de escritorio'
+          },
+          {
+            title: 'Nombre de código',
+            description: 'Productos anteriormente Rocket Lake'
+          },
+          {
+            title: 'Segmento vertical',
+            description: 'Escritorio'
+          },
+          {
+            title: 'Número de procesador',
+            description: 'i9-11900K'
+          },
+          {
+            title: 'Estado',
+            description: 'Lanzado'
+          },
+          {
+            title: 'Fecha de lanzamiento',
+            description: 'Q1´21'
+          },
+          {
+            title: 'Litografía',
+            description: '14 nm'
+          },
+          {
+            title: 'Uso recomendado',
+            description: 'Juego, Desbloqueado'
+          }
+        ]
+      },
+      {
+        group: 'Desempeño',
+        items: [
+          {
+            title: 'Cantidad de núcleos',
+            description: '8'
+          },
+          {
+            title: 'Cantidad de subprocesos',
+            description: '16'
+          },
+          {
+            title: 'Frecuencia básica del procesador',
+            description: '3.50 GHz'
+          },
+          {
+            title: 'Frecuencia turbo máxima',
+            description: '5.30 GHz'
+          },
+          {
+            title: 'Caché',
+            description: '16 MB Intel® Smart Cache'
+          },
+          {
+            title: 'Velocidad del bus',
+            description: '8 GT/s'
+          },
+          {
+            title: 'TDP',
+            description: '125 W'
+          },
+          {
+            title: 'Tecnología Intel® Turbo Boost Max 3.0',
+            description: 'Sí'
+          },
+          {
+            title: 'Tecnología Intel® Turbo Boost',
+            description: '2.0'
+          },
+          {
+            title: 'Frecuencia turbo máxima (Intel® Turbo Boost 2.0)',
+            description: '5.10 GHz'
+          },
+          {
+            title: 'Tecnología Intel® Hyper-Threading',
+            description: 'Sí'
+          },
+          {
+            title: 'Tecnología de virtualización Intel® (VT-x)',
+            description: 'Sí'
+          }
+        ]
+      },
+      {
+        group: 'Opciones de expansión',
+        items: [
+          {
+            title: 'Escalabilidad',
+            description: '1S Only'
+          },
+          {
+            title: 'Revisión de PCI Express',
+            description: '4.0'
+          },
+          {
+            title: 'Configuraciones de PCI Express',
+            description: 'Up to 1x16, 2x8, 1x8+2x4'
+          },
+          {
+            title: 'Cantidad máxima de líneas PCI Express',
+            description: '20'
+          }
+        ]
+      },
+      {
+        group: 'Especificaciones de memoria',
+        items: [
+          {
+            title: 'Tamaño máximo de memoria (depende del tipo de memoria)',
+            description: '128 GB'
+          },
+          {
+            title: 'Tipos de memoria',
+            description: 'DDR4-3200'
+          },
+          {
+            title: 'Cantidad máxima de canales de memoria',
+            description: '2'
+          },
+          {
+            title: 'Ancho de banda máximo de memoria',
+            description: '50 GB/s'
+          },
+          {
+            title: 'Compatibilidad con memoria ECC',
+            description: 'No'
+          }
+        ]
+      },
+      {
+        group: 'Gráficos de procesador',
+        items: [
+          {
+            title: 'Gráficos del procesador',
+            description: 'Gráficos UHD Intel® 750'
+          },
+          {
+            title: 'Frecuencia de base de gráficos',
+            description: '350 MHz'
+          },
+          {
+            title: 'Frecuencia dinámica máxima de gráficos',
+            description: '1.30 GHz'
+          },
+          {
+            title: 'Memoria máxima de video de gráficos',
+            description: '64 GB'
+          },
+          {
+            title: 'Salida de gráficos',
+            description: 'eDP/DP/HDMI/DVI'
+          },
+          {
+            title: 'Compatibilidad con 4K',
+            description: 'Yes, at 60Hz'
+          },
+          {
+            title: 'Resolución máxima (HDMI 1.4)',
+            description: '4096x2160@30Hz'
+          },
+          {
+            title: 'Resolución máxima (DP)',
+            description: '5120x3200@60Hz'
+          },
+          {
+            title: 'Resolución máxima (eDP - panel plano integrado)',
+            description: '4096x2304@60Hz'
+          },
+          {
+            title: 'Compatibilidad con DirectX*',
+            description: '12'
+          },
+          {
+            title: 'Compatibilidad con OpenGL*',
+            description: '4.5'
+          },
+          {
+            title: 'Número de pantallas admitidas',
+            description: '3'
+          }
+        ]
+      },
+      {
+        group: 'Tecnologías avanzadas',
+        items: [
+          {
+            title: 'Memoria Intel® Optane™ compatible',
+            description: 'Sí'
+          },
+          {
+            title: 'Tecnología Intel® Thermal Velocity Boost',
+            description: 'Sí'
+          },
+          {
+            title: 'Tecnología Intel® Turbo Boost Max 3.0',
+            description: 'Sí'
+          },
+          {
+            title: 'Tecnología Intel® Turbo Boost',
+            description: '2.0'
+          },
+          {
+            title: 'Tecnología Intel® Hyper-Threading',
+            description: 'Sí'
+          },
+          {
+            title: 'Tecnología de virtualización Intel® (VT-x)',
+            description: 'Sí'
+          },
+          {
+            title: 'Tecnología de virtualización Intel® para E/S dirigida (VT-d)',
+            description: 'Sí'
+          },
+          {
+            title: 'Intel® VT-x con tablas de páginas extendidas (EPT)',
+            description: 'Sí'
+          },
+          {
+            title: 'Intel® Transactional Synchronization Extensions',
+            description: 'Sí'
+          }
+        ]
+      }
+    ],
+    reviews: [
+      {
+        id: '64a65a6158b470c6e06959ee',
+        userId: '6475af156bad4917456e6e1e',
+        productId: '64a4ebe300900d44bb50628a',
+        rating: 5,
+        comment: 'Este procesador es muy bueno',
+        createdDate: '2023-07-06T06:08:33.067Z',
+        user: {
+          id: '6475af156bad4917456e6e1e',
+          name: 'John',
+          email: 'example2@gmail.com',
+          emailVerified: null,
+          image:
+            'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+          hashedPassword: null,
+          createdAt: '2023-05-30T08:08:53.979Z',
+          updatedAt: '2023-05-30T08:08:53.979Z',
+          role: 'USER'
+        }
+      },
+      {
+        id: '64a65a6158b470c6e06959ee',
+        userId: '6475af156bad4917456e6e1e',
+        productId: '64a4ebe300900d44bb50628a',
+        rating: 5,
+        comment: 'Buen producto',
+        createdDate: '2023-07-06T06:08:33.067Z',
+        user: {
+          id: '6475af156bad4917456e6e1e',
+          name: 'Jane',
+          email: 'example3@gmail.com',
+          emailVerified: null,
+          image:
+            'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+          hashedPassword: null,
+          createdAt: '2023-05-30T08:08:53.979Z',
+          updatedAt: '2023-05-30T08:08:53.979Z',
+          role: 'USER'
+        }
+      }
+    ]
+  },
+  {
+    id: '64a4ebe300900d44bb50628d',
+    name: 'Procesador Intel Core i9 10900K – 3.7 GHz',
+    price: 2779900,
+    productVariant: [
+      {
+        color: 'Por defecto',
+        colorCode: '#000000',
+        images: [
+          'https://i.ibb.co/XxPgpz2/Procesador-Intel-Core-i9-10900.webp'
+        ]
+      }
+    ],
+    description: [
+      {
+        title: 'Un desempeño de equipos de desktop integrado para gaming',
+        description: 'Con el Procesador Intel Core i9 10900K obtén un fantástico desempeño en el juego mientras lo transmites y lo grabas. Experimenta un juego fluido, alto nivel de FPSs y un realismo inmersivo con un procesador Intel® Core™ de 10a Generación para equipos desktop.'
+      },
+      {
+        title: 'Capacidades de creación y gaming potentes mejorada',
+        description: 'Asume el control y lleva tu Procesador Intel Core i9 10900K a un nivel superior con las funciones mejoradas de ajustes y overclocking. Y compatibilidad con Wi-Fi 6 dedicado con los procesadores Intel® Core™ de 10ᵃ Generación para equipos desktop.'
+      },
+      {
+        title: 'Creación de contenido de nivel más avanzado',
+        description: 'Con los procesadores Intel® Core™ de 10ᵃ Generación, como el Procesador Intel Core i9 10900K para equipos de desktop también puedes aprovechar la compatibilidad con pantallas HDR 4K para edición de fotografías y videos.'
+      },
+      {
+        title: 'Sorprendente desempeño móvil',
+        description: 'Los procesadores Intel® Core™ i9 desbloqueados para computadoras portátiles ofrecen el desempeño necesario para jugar, transmitir y grabar en simultáneo.'
+      },
+      {
+        title: 'Tecnología Thunderbolt™',
+        description: 'Los puertos Thunderbolt™ conectan las computadoras a datos, video y alimentación con un solo cable que ofrece una experiencia rápida y consistente para el trabajo y el juego. La tecnología Thunderbolt™, una solución versátil de E/S, permite una conexión de 40 Gb/s para datos y video en casa, en la oficina o en cualquier lugar.'
+      },
+      {
+        title: 'Tecnología Intel® Optane™',
+        description: 'La eliminación de los cuellos de botella requiere una mejor memoria de almacenamiento que sea rápida, económica y no volátil. Con la tecnología Intel® Optane™ podrás liberar la potencia de tu procesador en lugar de tenerlo funcionando a una fracción de la misma.'
+      }
+    ],
+    specifications: [
+      {
+        group: 'Elementos fundamentales',
+        items: [
+          {
+            title: 'Colección de productos',
+            description: 'Procesadores Intel® Core™ de 10ᵃ generación para equipos de escritorio'
+          },
+          {
+            title: 'Nombre de código',
+            description: 'Productos anteriormente Comet Lake'
+          },
+          {
+            title: 'Segmento vertical',
+            description: 'Escritorio'
+          },
+          {
+            title: 'Número de procesador',
+            description: 'i9-10900K'
+          },
+          {
+            title: 'Estado',
+            description: 'Lanzado'
+          },
+          {
+            title: 'Fecha de lanzamiento',
+            description: 'Q2´20'
+          },
+          {
+            title: 'Litografía',
+            description: '14 nm'
+          },
+          {
+            title: 'Uso recomendado',
+            description: 'Juego, Desbloqueado'
+          }
+        ]
+      },
+      {
+        group: 'Desempeño',
+        items: [
+          {
+            title: 'Cantidad de núcleos',
+            description: '10'
+          },
+          {
+            title: 'Cantidad de subprocesos',
+            description: '20'
+          },
+          {
+            title: 'Frecuencia básica del procesador',
+            description: '3.70 GHz'
+          },
+          {
+            title: 'Frecuencia turbo máxima',
+            description: '5.30 GHz'
+          },
+          {
+            title: 'Caché',
+            description: '20 MB Intel® Smart Cache'
+          },
+          {
+            title: 'Velocidad del bus',
+            description: '8 GT/s'
+          },
+          {
+            title: 'TDP',
+            description: '125 W'
+          },
+          {
+            title: 'Tecnología Intel® Turbo Boost Max 3.0',
+            description: 'Sí'
+          },
+          {
+            title: 'Tecnología Intel® Turbo Boost',
+            description: '2.0'
+          },
+          {
+            title: 'Frecuencia turbo máxima (Intel® Turbo Boost 2.0)',
+            description: '5.20 GHz'
+          },
+          {
+            title: 'Tecnología Intel® Hyper-Threading',
+            description: 'Sí'
+          },
+          {
+            title: 'Tecnología de virtualización Intel® (VT-x)',
+            description: 'Sí'
+          }
+        ]
+      },
+      {
+        group: 'Opciones de expansión',
+        items: [
+          {
+            title: 'Escalabilidad',
+            description: '1S Only'
+          },
+          {
+            title: 'Revisión de PCI Express',
+            description: '3.0'
+          },
+          {
+            title: 'Configuraciones de PCI Express',
+            description: 'Up to 1x16, 2x8, 1x8+2x4'
+          },
+          {
+            title: 'Cantidad máxima de líneas PCI Express',
+            description: '16'
+          }
+        ]
+      },
+      {
+        group: 'Especificaciones de memoria',
+        items: [
+          {
+            title: 'Tamaño máximo de memoria (depende del tipo de memoria)',
+            description: '128 GB'
+          },
+          {
+            title: 'Tipos de memoria',
+            description: 'DDR4-2933'
+          },
+          {
+            title: 'Cantidad máxima de canales de memoria',
+            description: '2'
+          },
+          {
+            title: 'Ancho de banda máximo de memoria',
+            description: '45.8 GB/s'
+          },
+          {
+            title: 'Compatibilidad con memoria ECC',
+            description: 'No'
+          }
+        ]
+      },
+      {
+        group: 'Gráficos de procesador',
+        items: [
+          {
+            title: 'Gráficos del procesador',
+            description: 'Gráficos UHD Intel® 630'
+          },
+          {
+            title: 'Frecuencia de base de gráficos',
+            description: '350 MHz'
+          },
+          {
+            title: 'Frecuencia dinámica máxima de gráficos',
+            description: '1.20 GHz'
+          },
+          {
+            title: 'Memoria máxima de video de gráficos',
+            description: '64 GB'
+          },
+          {
+            title: 'Salida de gráficos',
+            description: 'eDP/DP/HDMI/DVI'
+          },
+          {
+            title: 'Compatibilidad con 4K',
+            description: 'Yes, at 60Hz'
+          },
+          {
+            title: 'Resolución máxima (HDMI 1.4)',
+            description: '4096x2160@30Hz'
+          },
+          {
+            title: 'Resolución máxima (DP)',
+            description: '4096x2304@60Hz'
+          },
+          {
+            title: 'Resolución máxima (eDP - panel plano integrado)',
+            description: '4096x2304@60Hz'
+          },
+          {
+            title: 'Compatibilidad con DirectX*',
+            description: '12'
+          },
+          {
+            title: 'Compatibilidad con OpenGL*',
+            description: '4.5'
+          },
+          {
+            title: 'Número de pantallas admitidas',
+            description: '3'
+          }
+        ]
+      },
+      {
+        group: 'Tecnologías avanzadas',
+        items: [
+          {
+            title: 'Memoria Intel® Optane™ compatible',
+            description: 'Sí'
+          },
+          {
+            title: 'Tecnología Intel® Thermal Velocity Boost',
+            description: 'Sí'
+          },
+          {
+            title: 'Tecnología Intel® Turbo Boost Max 3.0',
+            description: 'Sí'
+          },
+          {
+            title: 'Tecnología Intel® Turbo Boost',
+            description: '2.0'
+          },
+          {
+            title: 'Tecnología Intel® Hyper-Threading',
+            description: 'Sí'
+          },
+          {
+            title: 'Tecnología de virtualización Intel® (VT-x)',
+            description: 'Sí'
+          },
+          {
+            title: 'Tecnología de virtualización Intel® para E/S dirigida (VT-d)',
+            description: 'Sí'
+          },
+          {
+            title: 'Intel® VT-x con tablas de páginas extendidas (EPT)',
+            description: 'Sí'
+          },
+          {
+            title: 'Intel® Transactional Synchronization Extensions',
+            description: 'Sí'
+          }
+        ]
+      }
+    ],
+    reviews: [
+      {
+        id: '64a65a6158b470c6e06959ee',
+        userId: '6475af156bad4917456e6e1e',
+        productId: '64a4ebe300900d44bb50628a',
+        rating: 5,
+        comment: 'Este procesador es muy bueno',
+        createdDate: '2023-07-06T06:08:33.067Z',
+        user: {
+          id: '6475af156bad4917456e6e1e',
+          name: 'John',
+          email: 'example2@gmail.com',
+          emailVerified: null,
+          image:
+            'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+          hashedPassword: null,
+          createdAt: '2023-05-30T08:08:53.979Z',
+          updatedAt: '2023-05-30T08:08:53.979Z',
+          role: 'USER'
+        }
+      },
+      {
+        id: '64a65a6158b470c6e06959ee',
+        userId: '6475af156bad4917456e6e1e',
+        productId: '64a4ebe300900d44bb50628a',
+        rating: 5,
+        comment: 'Buen producto',
+        createdDate: '2023-07-06T06:08:33.067Z',
+        user: {
+          id: '6475af156bad4917456e6e1e',
+          name: 'Jane',
+          email: 'example3@gmail.com',
+          emailVerified: null,
+          image:
+            'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+          hashedPassword: null,
+          createdAt: '2023-05-30T08:08:53.979Z',
+          updatedAt: '2023-05-30T08:08:53.979Z',
+          role: 'USER'
+        }
+      }
+    ]
+  },
+  {
+    id: '64a4ebe300900d44bb50628e',
+    name: 'Procesador AMD Ryzen 7 5800X – 3.8GHz',
+    price: 2609900,
+    productVariant: [
+      {
+        color: 'Por defecto',
+        colorCode: '#000000',
+        images: [
+          'https://i.ibb.co/fkLmqhC/Procesador-AMD-Ryzen-7-5800-X-3-8-GHz.webp'
+        ]
+      }
+    ],
+    description: [
+      {
+        title: 'El procesador definitivo para gaming y creación de contenidos',
+        description: 'Los procesadores AMD Ryzen™ Serie 5000 para equipos de escritorio son los más avanzados del mundo en términos de gaming en serio y rendimiento de multitarea para creadores de contenidos. Con una tecnología de proceso de vanguardia de 7 nm, un diseño de núcleo líder en la industria, un increíble rendimiento y la nueva arquitectura “Zen 3” de AMD, los procesadores Ryzen™ Serie 5000 para equipos de escritorio ofrecen un rendimiento sin concesiones y una verdadera ventaja competitiva.'
+      },
+      {
+        title: 'El procesador definitivo para gaming',
+        description: 'Los procesadores AMD Ryzen™ Serie 5000 para equipos de escritorio ofrecen un rendimiento ganador en gaming. Más de 100 galardones y menciones de la prensa internacional especializada, así como la confianza de los mejores jugadores de eSports de todo el mundo, avalan el rendimiento y la eficiencia de los procesadores AMD Ryzen™.'
+      },
+      {
+        title: 'El procesador definitivo para creadores de contenidos',
+        description: 'Los procesadores AMD Ryzen™ Serie 5000 para equipos de escritorio ofrecen un rendimiento ganador en gaming. Más de 100 galardones y menciones de la prensa internacional especializada, así como la confianza de los mejores jugadores de eSports de todo el mundo, avalan el rendimiento y la eficiencia de los procesadores AMD Ryzen™.'
+      },
+      {
+        title: 'Tecnología AMD StoreMI',
+        description: 'La tecnología AMD StoreMI combina la velocidad de tu SSD con la gran capacidad de tu disco duro en una unidad rápida y fácil de administrar, para que puedas disfrutar de una experiencia informática rápida y fluida. La tecnología AMD StoreMI está incluida en todos los procesadores AMD Ryzen™ de 3ra generación. '
+      },
+      {
+        title: 'Tecnología AMD SenseMI',
+        description: 'Con la tecnología AMD SenseMI, los procesadores Ryzen™ usan inteligencia artificial verdadera para acelerar el rendimiento.'
+      },
+      {
+        title: 'Tecnología AMD Ryzen™ Master',
+        description: 'La sencilla y potente aplicación de software AMD Ryzen™ Master te permite personalizar y ajustar prácticamente todos los parámetros de rendimiento de tu PC, incluidos los tiempos de reloj, el voltaje y la frecuencia de la memoria.'
+      }
+    ],
+    specifications: [
+      {
+        group: 'Información básica',
+        items: [
+          {
+            title: 'Número de modelo',
+            description: '100-100000063WOF'
+          },
+          {
+            title: 'Número de núcleos de CPU',
+            description: '8'
+          },
+          {
+            title: 'Número de subprocesos',
+            description: '16'
+          },
+          {
+            title: 'Reloj base',
+            description: '3.8GHz'
+          },
+          {
+            title: 'Reloj de aumento máx.',
+            description: 'Hasta 4.7GHz'
+          },
+          {
+            title: 'Caché L2 total',
+            description: '4MB'
+          },
+          {
+            title: 'Caché L3 total',
+            description: '32MB'
+          },
+          {
+            title: 'Desbloqueado',
+            description: 'Sí'
+          },
+          {
+            title: 'CMOS',
+            description: 'TSMC 7nm FinFET'
+          },
+          {
+            title: 'Socket',
+            description: 'AM4'
+          },
+          {
+            title: 'Versión de PCI Express',
+            description: 'PCIe 4.0'
+          },
+          {
+            title: 'Solución térmica',
+            description: 'Wraith Stealth'
+          },
+          {
+            title: 'TDP / TDP predeterminado',
+            description: '105W'
+          }
+        ]
+      },
+      {
+        group: 'Memoria',
+        items: [
+          {
+            title: 'Velocidad máxima de memoria',
+            description: '3200MHz'
+          },
+          {
+            title: 'Tipo de memoria',
+            description: 'DDR4'
+          },
+          {
+            title: 'Canales de memoria',
+            description: '2'
+          }
+        ]
+      },
+      {
+        group: 'Especificaciones de gráficos',
+        items: [
+          {
+            title: 'Gráficos del procesador',
+            description: 'Gráficos Radeon™'
+          },
+          {
+            title: 'Frecuencia gráfica',
+            description: '2000 MHz'
+          },
+          {
+            title: 'Modelo de gráficos',
+            description: 'Gráficos Radeon™  Vega 7'
+          },
+          {
+            title: 'Cuenta de núcleos de GPU',
+            description: '7'
+          },
+          {
+            title: 'Reloj de GPU',
+            description: '1600 MHz'
+          },
+          {
+            title: 'Velocidad de reloj',
+            description: '2100 MHz'
+          },
+          {
+            title: 'TDP',
+            description: '65W'
+          }
+        ]
+      }
+    ],
+    reviews: [
+      {
+        id: '64a65a6158b470c6e06959ee',
+        userId: '6475af156bad4917456e6e1e',
+        productId: '64a4ebe300900d44bb50628a',
+        rating: 5,
+        comment: 'Este procesador es muy bueno',
+        createdDate: '2023-07-06T06:08:33.067Z',
+        user: {
+          id: '6475af156bad4917456e6e1e',
+          name: 'John',
+          email: 'example2@gmail.com',
+          emailVerified: null,
+          image:
+            'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+          hashedPassword: null,
+          createdAt: '2023-05-30T08:08:53.979Z',
+          updatedAt: '2023-05-30T08:08:53.979Z',
+          role: 'USER'
+        }
+      },
+      {
+        id: '64a65a6158b470c6e06959ee',
+        userId: '6475af156bad4917456e6e1e',
+        productId: '64a4ebe300900d44bb50628a',
+        rating: 5,
+        comment: 'Buen producto',
+        createdDate: '2023-07-06T06:08:33.067Z',
+        user: {
+          id: '6475af156bad4917456e6e1e',
+          name: 'Jane',
+          email: 'example3@gmail.com',
+          emailVerified: null,
+          image:
+            'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+          hashedPassword: null,
+          createdAt: '2023-05-30T08:08:53.979Z',
+          updatedAt: '2023-05-30T08:08:53.979Z',
+          role: 'USER'
+        }
+      }
+    ]
+  }
+]

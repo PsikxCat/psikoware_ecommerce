@@ -13,10 +13,12 @@ export default function SetQuantity({
   cartCounter, cartProduct, handleDecrease, handleIncrease
 }: SetQuantityProps) {
   return (
-    <div className='flex items-center gap-8'>
-      {cartCounter
-        ? null
-        : <div className='font-semibold'>CANTIDAD:</div>}
+    <div className='flex items-center gap-5'>
+      {
+        cartCounter
+          ? null
+          : <div className='font-semibold'>CANTIDAD:</div>
+      }
 
       <div className='flex items-center gap-2'>
         <button className='h-6 w-6 border border-secondary rounded-md flex_center'

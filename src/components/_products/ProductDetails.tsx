@@ -1,11 +1,12 @@
 'use client'
 
-import { productRating } from '@/utils'
 import { Rating } from '@mui/material'
 import { useCallback, useState } from 'react'
 
-import type { CartProductType, SelectedImgType } from '@/types'
-import { Button, SetColor, SetQuantity } from '@/components'
+import type { CartProductType, ProductVariantType } from '@/types'
+
+import { Button, ProductImage, SetVariant, SetQuantity } from '@/components'
+import { formatPrice, productRating } from '@/utils'
 
 interface ProductDetailsProps {
   product: any //! TODO: define product type with Prisma
@@ -23,17 +24,17 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     category: product.category,
     brand: product.brand,
     stock: product.inStock,
-    selectedImg: { ...product.images[0] },
+    productVariant: { ...product.productVariant[0] },
     quantity: 1,
     price: product.price
   })
 
-  const handleColorSelect = useCallback((selectedImgVal: SelectedImgType) => {
+  const handleVariantSelect = useCallback((currentProductVariant: ProductVariantType) => {
     setCartProduct((prev) => ({
       ...prev,
-      selectedImg: { ...selectedImgVal }
+      productVariant: { ...currentProductVariant }
     }))
-  }, [cartProduct.selectedImg])
+  }, [cartProduct.productVariant])
 
   const handleQuantityIncrease = useCallback(() => {
     setCartProduct((prev) => ({
@@ -52,30 +53,33 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   }, [cartProduct.quantity])
 
   return (
-    <main className="rounded-md p-2 bg-stone-900 max-w-[1200px] z-10">
-      <div className='text-muted flex_center_column md:flex-row w-full h-[650px] border border-stone-700 rounded-md'>
+    <main className="flex_center_column rounded-md p-2 bg-stone-900 md:w-[80%] max-w-[1400px] xl:h-[650px] z-10 xl:max-h-[800px]">
+      <div className='text-muted flex_center_column xl:flex-row w-full h-full border border-stone-700 rounded-md'>
         {/* imagen */}
-        <section className="flex_center text-primary w-full md:w-1/2 h-full bg-stone-950">
-          imagen
+        <section className="flex_center text-primary h-full min-h-[50%] w-full xl:w-1/2 bg-stone-950">
+          <ProductImage
+            cartProduct={cartProduct}
+            product={product}
+          />
         </section>
 
         {/* detalles */}
-        <section className="p-6 w-full md:w-1/2 h-full bg-stone-900">
+        <section className="relative p-6 w-full h-full xl:w-1/2 bg-stone-900">
           {/* nombre y rating */}
           <div>
-            <h2 className='text-3xl text-primary font-bold'>{product.name}</h2>
+            <h2>{product.name}</h2>
 
-            <div className='flex items-center gap-3'>
+            <div className='flex max-[300px]:flex-col items-center gap-3'>
               <Rating value={productRating(product)} precision={0.5} readOnly/>
-              <div className='mt-1'>{product.reviews.length === 1 ? '1 review' : `${product.reviews.length} reviews`}</div>
+              <div className='mt-1 max-[300px]:mb-4'>{product.reviews.length === 1 ? '1 review' : `${product.reviews.length} reviews`}</div>
             </div>
           </div>
           <HorizontalLine/>
 
           {/* descripcion */}
-          <div className='text-justify pr-2 max-h-[45%] overflow-y-scroll'>
-            {product.description}
-          </div>
+          <p className='text-justify px-1 py-2 overflow-y-scroll leading-5'>
+            {product.shortDescription}
+          </p>
           <HorizontalLine/>
 
           {/* categoria, marca y stock */}
@@ -92,8 +96,8 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           </div>
           <HorizontalLine/>
 
-          {/* color. al cambiar el color cambia la imagen */}
-          <SetColor cartProduct={cartProduct} images={product.images} handleColorSelect={handleColorSelect} />
+          {/* color. al cambiar el color cambia el set de imagenes. */}
+          <SetVariant cartProduct={cartProduct} productVariant={product.productVariant} handleVariantSelect={handleVariantSelect} />
           <HorizontalLine/>
 
           {/* cantidad */}
@@ -105,8 +109,13 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           />
           <HorizontalLine/>
 
+          {/* precio */}
+          <div className='text-3xl text-primary font-bold my-3'>
+            {formatPrice(cartProduct.price * cartProduct.quantity)}
+          </div>
+
           {/* Boton add to cart */}
-          <div className='max-w-[300px]'>
+          <div className='max-w-[300px] place-items-end'>
             <Button label='Agregar al Carrito' onClick={() => { console.log('click') }} />
           </div>
         </section>
