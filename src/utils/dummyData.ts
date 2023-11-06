@@ -11,103 +11,61 @@ export const product = {
   description: [
     {
       title: 'Primera controladora PCIe 4.0×4 del mundo',
-      description:
+      content:
         'El SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 es el primer controlador PCIe 4.0×4 del mundo, el controlador Phison PS5016-E16, fabricado con tecnología de fabricación de 28 nm. El proceso de fabricación avanzado garantiza que PS5016-E16 tenga suficiente potencia de cálculo para el procesamiento ECC cuando se adopta el último flash 3D TLC NAND. PS5016-E16 también cuenta con ocho canales NAND con 32 destinos CE, almacenamiento en caché DDR4 DRAM y una interfaz PCIe 4.0×4. En cuanto a las características, el chip admite el protocolo NVMe 1.3, la corrección de errores LDPC y las tecnologías Wear Leveling, Over-Provision para mejorar la confiabilidad y durabilidad de los SSD.'
     },
     {
       title: 'Velocidad de lectura secuencial de hasta 5000 MB/s',
-      description:
+      content:
         'El SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 utiliza la interfaz PCIe 4.0×4 y admite el protocolo NVMe 1.3, lo que permite que la secuencia de lectura / escritura alcance hasta 5000 / 4400MB / s, 10 veces más rápido que el SSD SATA tradicional y 50 veces más rápido que el HDD tradicional. El rendimiento de lectura / escritura aleatoria IOPS alcanza hasta 750k / 700k, lo que mejora enormemente la capacidad de respuesta del sistema y acelera el tiempo de arranque del sistema operativo.'
     },
     {
       title: 'TOSHIBA BiCS4 96 capas 3D TLC (800MT / s)',
-      description: 'Toshiba BiCS4 NAND Flash optimiza los circuitos y la arquitectura aumentando a 96 capas para un mayor espacio de almacenamiento por unidad de área. El rendimiento de 800MT / s en el SSD AORUS NVMe Gen 4 supera con creces el de los dispositivos PCIe 3.0×4 para un rendimiento de almacenamiento superior.'
+      content: 'Toshiba BiCS4 NAND Flash optimiza los circuitos y la arquitectura aumentando a 96 capas para un mayor espacio de almacenamiento por unidad de área. El rendimiento de 800MT / s en el SSD AORUS NVMe Gen 4 supera con creces el de los dispositivos PCIe 3.0×4 para un rendimiento de almacenamiento superior.'
     },
     {
       title: 'Rendimiento de almacenamiento Xtreme',
-      description: 'Con el nuevo controlador PCIe 4.0, el SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 ofrece velocidades asombrosas: hasta 5,000 MB / s para lectura secuencial y hasta 4,400 MB / s escritura secuencial. El rendimiento de lectura secuencial de las SSD PCIe 4.0 es hasta un 40% más rápido que las SSD PCIe 3.0. Prepárese para ingresar a la próxima generación de computación con un renderizado intensivo de gráficos, streaming y juegos más rápido y fluido.'
+      content: 'Con el nuevo controlador PCIe 4.0, el SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 ofrece velocidades asombrosas: hasta 5,000 MB / s para lectura secuencial y hasta 4,400 MB / s escritura secuencial. El rendimiento de lectura secuencial de las SSD PCIe 4.0 es hasta un 40% más rápido que las SSD PCIe 3.0. Prepárese para ingresar a la próxima generación de computación con un renderizado intensivo de gráficos, streaming y juegos más rápido y fluido.'
     }
   ],
   specifications: [
     {
-      title: 'Interfaz',
-      description: 'PCI-Express 4.0 x4, NVMe 1.3'
-    },
-    {
-      title: 'Factor de forma',
-      description: 'M.2 2280'
-    },
-    {
-      title: 'Capacidad',
-      description: '1 TB'
-    },
-    {
-      title: 'Flash NAND',
-      description: 'TLC 3D de 96 capas'
-    },
-    {
-      title: 'Dimensiones (L x W x H)',
-      description: '80 x 23 x 11 mm'
-    },
-    {
-      title: 'Peso',
-      description: '9g'
-    },
-    {
-      title: 'Controlador',
-      description: 'Phison PS5016-E16'
-    },
-    {
-      title: 'DRAM',
-      description: 'DDR4 1 GB'
-    },
-    {
-      title: 'Secuencia de lectura secuencial',
-      description: 'Hasta 5000 MB / s'
-    },
-    {
-      title: 'Secuencia de escritura secuencial',
-      description: 'Hasta 4400 MB / s'
-    },
-    {
-      title: 'Lectura aleatoria 4K',
-      description: 'Hasta 750k IOPS'
-    },
-    {
-      title: 'Escritura aleatoria 4K',
-      description: 'Hasta 700k IOPS'
-    },
-    {
-      title: 'Temperatura de funcionamiento',
-      description: '0 ° C a 70 ° C'
-    },
-    {
-      title: 'Temperatura de almacenamiento',
-      description: '-40 ° C a 85 ° C'
-    },
-    {
-      title: 'Resistencia',
-      description: '1.800 TBW'
-    },
-    {
-      title: 'MTBF',
-      description: '1,800,000 horas'
-    },
-    {
-      title: 'Garantía',
-      description: '5 años'
-    },
-    {
-      title: 'Consumo de energía (activo)',
-      description: 'Promedio: R: 6.5W; W: 5.0W'
-    },
-    {
-      title: 'Consumo de energía (inactivo)',
-      description: '0.14W'
-    },
-    {
-      title: 'Choque',
-      description: '1500G / 0.5ms'
+      group: 'General',
+      items: [
+        {
+          title: 'CPU',
+          content: 'Procesadores AMD AM4 Socket de tercera generación AMD Ryzen ™'
+        },
+        {
+          title: 'Chipset',
+          content: 'AMD B550'
+        },
+        {
+          title: 'Memoria',
+          content: '4 x DIMM, máx. 128 GB, DDR4 4600 (OC) / 4400 (OC) / 4266 (OC) / 4133 (OC) / 4000 (OC) / 3866 (OC) / 3600 (OC) / 3466 (OC) / 3200/3000/2800/2666 / Memoria sin búfer de 2400/2133 MHz \nProcesadores AMD Ryzen PRO de próxima generación. \n4 x DIMM, máx. 128 GB, DDR4 5100 (OC) / 4800 (OC) / 4600 (OC) / 4400 (OC) / 4266 (OC) / 4133 (OC) / 4000 (OC) / 3866 (OC) / 3600 (OC) / 3466 ( OC) / 3200/3000/2800/2666/2400/2133 MHz Memoria sin búfer \nOptiMem II \nProcesadores AMD Ryzen ™ de 3.ª generación \nArquitectura de memoria de doble canal \nLa compatibilidad con la memoria ECC (modo ECC) varía según la CPU.'
+        },
+        {
+          title: 'Gráficos',
+          content: '1 x DisplayPort 1.2\n1 x HDMI 2.1 (4K a 60 HZ)\nSoporte Multi GPU\nAdmite la tecnología NVIDIA 2-Way SLI®\nAdmite la tecnología AMD 3-Way CrossFireX ™'
+        },
+        {
+          title: 'Slots de Expansión',
+          content: 'Conjunto de chips AMD B550\n1 x PCIe 3.0 x16 (modo x4) *\n2 x PCIe 3.0 x1\n2 x PCIe 4.0 x16 (x16 o doble x8)'
+        },
+        {
+          title: 'Almacenamiento',
+          content: '1 x M.2_1 socket 3, con tecla M, compatible con dispositivos de almacenamiento tipo 2242/2260/2280/22110 (modo SATA y PCIe 4.0 x4)\nConjunto de chips AMD B550:\n1 x conector M.2_2 3, con tecla M, soporte para dispositivos de almacenamiento tipo 2242/2260/2280/22110 (modo SATA y PCIE 3.0 x 4) *\nTotal admite 2 ranuras M.2 y 6 puertos SATA 6Gb / s\n6 x puerto (s) SATA 6Gb / s\nProcesadores AMD Ryzen ™ de 3.ª generación:\nSoporte Raid 0, 1, 10'
+        },
+        {
+          title: 'LAN',
+          content: 'Ethernet Intel® I225-V de 2,5 Gb\nASUS LANGuard'
+        },
+        {
+          title: 'Accesorios',
+          content: '1 x cable USB Type-C® de audio ROG\n1 paquete (s) de tornillos SSD M.2\n1 x paquete (s) de goma M.2\n1 llavero ROG\n1 x antena móvil Wi-Fi\n1 x pegatinas ROG Strix\n1 x paquete (s) de bridas\n1 x Cable de extensión para tiras RGB (80 cm)\n1 x cable de extensión para LED direccionable\n1 x tarjeta de agradecimiento ROG\nUser´s manual\n4 x cable (s) SATA 6Gb / s\n1 x DVD de apoyo'
+        }
+
+      ]
     }
   ],
   productVariant: [
@@ -127,7 +85,6 @@ export const product = {
         'https://i.ibb.co/QP54NL8/Board-Asus-ROG-Strix-B550-E-Gaming-WIFI-Ryzen-DDR4-2.webp'
       ]
     }
-
   ],
 
   reviews: [
@@ -135,16 +92,16 @@ export const product = {
       id: '64a65a6158b470c6e06959ee',
       userId: '6475af156bad4917456e6e1e',
       productId: '64a4ebe300900d44bb50628a',
-      rating: 5,
-      comment: 'good',
-      createdDate: '2023-07-06T06:08:33.067Z',
+      rating: 4.5,
+      comment: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque exercitationem at corrupti. Ad deleniti illum culpa, corporis omnis similique repellendus eum numquam quas, accusamus illo libero obcaecati ipsa vitae qui.',
+      createdDate: '2023-11-05T17:00:00.067Z',
       user: {
         id: '6475af156bad4917456e6e1e',
         name: 'Charles',
         email: 'example@gmail.com',
         emailVerified: null,
-        image:
-          'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+        image: // # se asignara un avatar aleatorio al crear el usuario /////////// PENDIENTE
+          'https://api.dicebear.com/7.x/bottts-neutral/svg?seed=Molly',
         hashedPassword: null,
         createdAt: '2023-05-30T08:08:53.979Z',
         updatedAt: '2023-05-30T08:08:53.979Z',
@@ -155,16 +112,16 @@ export const product = {
       id: '64a65a6158b470c6e06959e2',
       userId: '6475af156bad4917456e6e1e',
       productId: '64a4ebe300900d44bb50628a',
-      rating: 4,
-      comment: 'good item',
+      rating: 5,
+      comment: 'Este disco es de lo mejor, lo recomiendo',
       createdDate: '2023-07-06T06:08:33.067Z',
       user: {
         id: '6475af156bad4917456e6e1e',
-        name: 'Charles',
+        name: 'Richard',
         email: 'example@gmail.com',
         emailVerified: null,
         image:
-          'https://lh3.googleusercontent.com/a/AAcHTteOiCtILLBWiAoolIW9PJH-r5825pBDl824_8LD=s96-c',
+          'https://api.dicebear.com/7.x/bottts-neutral/svg?seed=Gizmo',
         hashedPassword: null,
         createdAt: '2023-05-30T08:08:53.979Z',
         updatedAt: '2023-05-30T08:08:53.979Z',
@@ -230,27 +187,27 @@ export const products = [
           },
           {
             title: 'Memoria',
-            description: '4 x DIMM, máx. 128 GB, DDR4 4600 (OC) / 4400 (OC) / 4266 (OC) / 4133 (OC) / 4000 (OC) / 3866 (OC) / 3600 (OC) / 3466 (OC) / 3200/3000/2800/2666 / Memoria sin búfer de 2400/2133 MHz \n\nProcesadores AMD Ryzen PRO de próxima generación. \n\n4 x DIMM, máx. 128 GB, DDR4 5100 (OC) / 4800 (OC) / 4600 (OC) / 4400 (OC) / 4266 (OC) / 4133 (OC) / 4000 (OC) / 3866 (OC) / 3600 (OC) / 3466 ( OC) / 3200/3000/2800/2666/2400/2133 MHz Memoria sin búfer \n\nOptiMem II \n\nProcesadores AMD Ryzen ™ de 3.ª generación \n\nArquitectura de memoria de doble canal \n\nLa compatibilidad con la memoria ECC (modo ECC) varía según la CPU.'
+            description: '4 x DIMM, máx. 128 GB, DDR4 4600 (OC) / 4400 (OC) / 4266 (OC) / 4133 (OC) / 4000 (OC) / 3866 (OC) / 3600 (OC) / 3466 (OC) / 3200/3000/2800/2666 / Memoria sin búfer de 2400/2133 MHz \nProcesadores AMD Ryzen PRO de próxima generación. \n4 x DIMM, máx. 128 GB, DDR4 5100 (OC) / 4800 (OC) / 4600 (OC) / 4400 (OC) / 4266 (OC) / 4133 (OC) / 4000 (OC) / 3866 (OC) / 3600 (OC) / 3466 ( OC) / 3200/3000/2800/2666/2400/2133 MHz Memoria sin búfer \nOptiMem II \nProcesadores AMD Ryzen ™ de 3.ª generación \nArquitectura de memoria de doble canal \nLa compatibilidad con la memoria ECC (modo ECC) varía según la CPU.'
           },
           {
             title: 'Gráficos',
-            description: '1 x DisplayPort 1.2\n\n1 x HDMI 2.1 (4K a 60 HZ)\n\nSoporte Multi GPU\n\nAdmite la tecnología NVIDIA 2-Way SLI®\n\nAdmite la tecnología AMD 3-Way CrossFireX ™'
+            description: '1 x DisplayPort 1.2\n1 x HDMI 2.1 (4K a 60 HZ)\nSoporte Multi GPU\nAdmite la tecnología NVIDIA 2-Way SLI®\nAdmite la tecnología AMD 3-Way CrossFireX ™'
           },
           {
             title: 'Slots de Expansión',
-            description: 'Conjunto de chips AMD B550\n\n1 x PCIe 3.0 x16 (modo x4) *\n\n2 x PCIe 3.0 x1\n\n2 x PCIe 4.0 x16 (x16 o doble x8)'
+            description: 'Conjunto de chips AMD B550\n1 x PCIe 3.0 x16 (modo x4) *\n2 x PCIe 3.0 x1\n2 x PCIe 4.0 x16 (x16 o doble x8)'
           },
           {
             title: 'Almacenamiento',
-            description: '1 x M.2_1 socket 3, con tecla M, compatible con dispositivos de almacenamiento tipo 2242/2260/2280/22110 (modo SATA y PCIe 4.0 x4)\n\nConjunto de chips AMD B550:\n\n1 x conector M.2_2 3, con tecla M, soporte para dispositivos de almacenamiento tipo 2242/2260/2280/22110 (modo SATA y PCIE 3.0 x 4) *\n\nTotal admite 2 ranuras M.2 y 6 puertos SATA 6Gb / s\n\n6 x puerto (s) SATA 6Gb / s\n\nProcesadores AMD Ryzen ™ de 3.ª generación:\n\nSoporte Raid 0, 1, 10'
+            description: '1 x M.2_1 socket 3, con tecla M, compatible con dispositivos de almacenamiento tipo 2242/2260/2280/22110 (modo SATA y PCIe 4.0 x4)\nConjunto de chips AMD B550:\n1 x conector M.2_2 3, con tecla M, soporte para dispositivos de almacenamiento tipo 2242/2260/2280/22110 (modo SATA y PCIE 3.0 x 4) *\nTotal admite 2 ranuras M.2 y 6 puertos SATA 6Gb / s\n6 x puerto (s) SATA 6Gb / s\nProcesadores AMD Ryzen ™ de 3.ª generación:\nSoporte Raid 0, 1, 10'
           },
           {
             title: 'LAN',
-            description: 'Ethernet Intel® I225-V de 2,5 Gb\n\nASUS LANGuard'
+            description: 'Ethernet Intel® I225-V de 2,5 Gb\nASUS LANGuard'
           },
           {
             title: 'Accesorios',
-            description: '1 x cable USB Type-C® de audio ROG\n\n1 paquete (s) de tornillos SSD M.2\n\n1 x paquete (s) de goma M.2\n\n1 llavero ROG\n\n1 x antena móvil Wi-Fi\n\n1 x pegatinas ROG Strix\n\n1 x paquete (s) de bridas\n\n1 x Cable de extensión para tiras RGB (80 cm)\n\n1 x cable de extensión para LED direccionable\n\n1 x tarjeta de agradecimiento ROG\n\nUser´s manual\n\n4 x cable (s) SATA 6Gb / s\n\n1 x DVD de apoyo'
+            description: '1 x cable USB Type-C® de audio ROG\n1 paquete (s) de tornillos SSD M.2\n1 x paquete (s) de goma M.2\n1 llavero ROG\n1 x antena móvil Wi-Fi\n1 x pegatinas ROG Strix\n1 x paquete (s) de bridas\n1 x Cable de extensión para tiras RGB (80 cm)\n1 x cable de extensión para LED direccionable\n1 x tarjeta de agradecimiento ROG\nUser´s manual\n4 x cable (s) SATA 6Gb / s\n1 x DVD de apoyo'
           }
 
         ]
@@ -373,11 +330,11 @@ export const products = [
           },
           {
             title: 'Memoria',
-            description: '4 x zócalos DDR4 DIMM que admiten hasta 128 GB (capacidad de un solo DIMM de 32 GB) de memoria del sistema\n\nProcesadores AMD Ryzen ™ serie 5000:\n\nSoporte para DDR4 5100 (OC) / 5000 (OC) / 4866 (OC) / 4600 (OC) / 4400 (OC) / 4000 (OC) / 3600 (OC) / 3333 (OC) / Módulos de memoria de 3200/2933/2667/2400/2133 MHz\n\nProcesadores AMD Ryzen ™ de 3.a generación:\n\ncompatibilidad con DDR4 5200 (OC) / 5000 (OC) / 4866 (OC) / 4600 (OC) / 4400 (OC) / 4000 (OC) / 3600 (OC) / 3333 (OC) / Módulos de memoria de 3200/2933/2667/2400/2133 MHz\n\nAMD Ryzen ™ de tercera generación con procesadores gráficos Radeon ™:\n\ncompatibilidad con DDR4 5400 (OC) / 5200 (OC) / 5000 (OC) / 4866 (OC) / 4600 (OC) / 4400 (OC) / 4000 (OC) / 3600 (OC) / 3333 (OC) / 3200/2933/2667/2400/2133 MHz módulos de memoria\n\nArquitectura de memoria de doble canal\n\nCompatibilidad con módulos de memoria DIMM 1Rx8 / 2Rx8 sin búfer ECC\n\nSoporte para módulos de memoria DIMM 1Rx8 / 2Rx8 / 1Rx16 sin búfer no ECC\n\nSoporte para módulos de memoria Extreme Memory Profile (XMP)'
+            description: '4 x zócalos DDR4 DIMM que admiten hasta 128 GB (capacidad de un solo DIMM de 32 GB) de memoria del sistema\nProcesadores AMD Ryzen ™ serie 5000:\nSoporte para DDR4 5100 (OC) / 5000 (OC) / 4866 (OC) / 4600 (OC) / 4400 (OC) / 4000 (OC) / 3600 (OC) / 3333 (OC) / Módulos de memoria de 3200/2933/2667/2400/2133 MHz\nProcesadores AMD Ryzen ™ de 3.a generación:\ncompatibilidad con DDR4 5200 (OC) / 5000 (OC) / 4866 (OC) / 4600 (OC) / 4400 (OC) / 4000 (OC) / 3600 (OC) / 3333 (OC) / Módulos de memoria de 3200/2933/2667/2400/2133 MHz\nAMD Ryzen ™ de tercera generación con procesadores gráficos Radeon ™:\ncompatibilidad con DDR4 5400 (OC) / 5200 (OC) / 5000 (OC) / 4866 (OC) / 4600 (OC) / 4400 (OC) / 4000 (OC) / 3600 (OC) / 3333 (OC) / 3200/2933/2667/2400/2133 MHz módulos de memoria\nArquitectura de memoria de doble canal\nCompatibilidad con módulos de memoria DIMM 1Rx8 / 2Rx8 sin búfer ECC\nSoporte para módulos de memoria DIMM 1Rx8 / 2Rx8 / 1Rx16 sin búfer no ECC\nSoporte para módulos de memoria Extreme Memory Profile (XMP)'
           },
           {
             title: 'Gráficos Integrados',
-            description: 'Integrado en la nueva generación AMD Ryzen ™ con procesadores gráficos Radeon ™:\n\n1 x puerto HDMI, que admite una resolución máxima de 4096×2160 a 60 Hz\n\n* Soporte para la versión HDMI 2.1, HDCP 2.3 y HDR.\n\nMemoria compartida máxima de 16 GB'
+            description: 'Integrado en la nueva generación AMD Ryzen ™ con procesadores gráficos Radeon ™:\n1 x puerto HDMI, que admite una resolución máxima de 4096×2160 a 60 Hz\n* Soporte para la versión HDMI 2.1, HDCP 2.3 y HDR.\nMemoria compartida máxima de 16 GB'
           },
           {
             title: 'LAN',
@@ -385,15 +342,15 @@ export const products = [
           },
           {
             title: 'Puertos de Expansión',
-            description: '1 x ranura PCI Express x16 (PCIEX16), integrada en la CPU:\n\nLos procesadores AMD Ryzen ™ de tercera generación son compatibles con el modo PCIe 4.0 x16\n\nLos procesadores gráficos AMD Ryzen ™ de nueva generación con Radeon ™ son compatibles con el modo PCIe 3.0 x16\n\n* Para un rendimiento óptimo, si sólo se va a instalar una tarjeta gráfica PCI Express, asegúrese de instalarla en la ranura PCIEX16.\n\n* La ranura PCIEX16 comparte ancho de banda con los conectores M2B_CPU y M2C_CPU. La ranura PCIEX16 funciona hasta en modo x8 cuando se instala un dispositivo en el conector M2B_CPU o M2C_CPU.\n\n2 x ranuras PCI Express x16 (PCIEX4_1 / PCIEX4_2), integradas en el Chipset:\n\nCompatible con el modo PCIe 3.0 x4\n\n* La ranura PCIEX4_2 comparte el ancho de banda con los conectores SATA3 4, 5. La ranura PCIEX4_2 funciona hasta en modo x2 cuando se instala un dispositivo en el conector SATA3 4 o SATA3 5.'
+            description: '1 x ranura PCI Express x16 (PCIEX16), integrada en la CPU:\nLos procesadores AMD Ryzen ™ de tercera generación son compatibles con el modo PCIe 4.0 x16\nLos procesadores gráficos AMD Ryzen ™ de nueva generación con Radeon ™ son compatibles con el modo PCIe 3.0 x16\n* Para un rendimiento óptimo, si sólo se va a instalar una tarjeta gráfica PCI Express, asegúrese de instalarla en la ranura PCIEX16.\n* La ranura PCIEX16 comparte ancho de banda con los conectores M2B_CPU y M2C_CPU. La ranura PCIEX16 funciona hasta en modo x8 cuando se instala un dispositivo en el conector M2B_CPU o M2C_CPU.\n2 x ranuras PCI Express x16 (PCIEX4_1 / PCIEX4_2), integradas en el Chipset:\nCompatible con el modo PCIe 3.0 x4\n* La ranura PCIEX4_2 comparte el ancho de banda con los conectores SATA3 4, 5. La ranura PCIEX4_2 funciona hasta en modo x2 cuando se instala un dispositivo en el conector SATA3 4 o SATA3 5.'
           },
           {
             title: 'Interfaz de Almacenamiento',
-            description: '1 x conector M.2 (M2A_CPU), integrado en la CPU, compatible con Socket 3, clave M, tipo 2242/2280/22110 SSD:\n\nLos procesadores AMD Ryzen ™ de tercera generación son compatibles con SSD SATA y PCIe 4.0 x4 / x2\n\nLos procesadores gráficos AMD Ryzen ™ de nueva generación con Radeon ™ son compatibles con SSD SATA y PCIe 3.0 x4 / x2\n\n2 x conectores M.2 (M2B_CPU / M2C_CPU), integrados en la CPU, compatibles con Socket 3, clave M, tipo 2242/2280/22110 SSD:\n\nLos procesadores AMD Ryzen ™ de tercera generación son compatibles con SSD PCIe 4.0 x4 / x2\n\nLos procesadores AMD Ryzen ™ de nueva generación con Radeon ™ Graphics son compatibles con SSD PCIe 3.0 x4 / x2\n\n6 x conectores SATA 6Gb / s, integrados en el Chipset:\n\nSoporte para RAID 0, RAID 1 y RAID 10'
+            description: '1 x conector M.2 (M2A_CPU), integrado en la CPU, compatible con Socket 3, clave M, tipo 2242/2280/22110 SSD:\nLos procesadores AMD Ryzen ™ de tercera generación son compatibles con SSD SATA y PCIe 4.0 x4 / x2\nLos procesadores gráficos AMD Ryzen ™ de nueva generación con Radeon ™ son compatibles con SSD SATA y PCIe 3.0 x4 / x2\n2 x conectores M.2 (M2B_CPU / M2C_CPU), integrados en la CPU, compatibles con Socket 3, clave M, tipo 2242/2280/22110 SSD:\nLos procesadores AMD Ryzen ™ de tercera generación son compatibles con SSD PCIe 4.0 x4 / x2\nLos procesadores AMD Ryzen ™ de nueva generación con Radeon ™ Graphics son compatibles con SSD PCIe 3.0 x4 / x2\n6 x conectores SATA 6Gb / s, integrados en el Chipset:\nSoporte para RAID 0, RAID 1 y RAID 10'
           },
           {
             title: 'USB',
-            description: 'UPC:\n\n4 puertos USB 3.2 Gen 2 Tipo A (rojo) en el panel posterior\n\nConjunto de chips:\n\n1 puerto USB Type-C ™ en el panel posterior, compatible con USB 3.2 Gen 2\n\n1 x puerto USB 3.2 Gen 2 tipo A (rojo) en el panel posterior\n\n2 puertos USB 3.2 Gen 1 disponibles a través del encabezado USB interno\n\n2 x puertos USB 2.0 / 1.1 en el panel posterior\n\nConjunto de chips + 2 concentradores USB 2.0:\n\n8 puertos USB 2.0 / 1.1 (4 puertos en el panel posterior, 4 puertos disponibles a través de los encabezados USB internos)'
+            description: 'UPC:\n4 puertos USB 3.2 Gen 2 Tipo A (rojo) en el panel posterior\nConjunto de chips:\n1 puerto USB Type-C ™ en el panel posterior, compatible con USB 3.2 Gen 2\n1 x puerto USB 3.2 Gen 2 tipo A (rojo) en el panel posterior\n2 puertos USB 3.2 Gen 1 disponibles a través del encabezado USB interno\n2 x puertos USB 2.0 / 1.1 en el panel posterior\nConjunto de chips + 2 concentradores USB 2.0:\n8 puertos USB 2.0 / 1.1 (4 puertos en el panel posterior, 4 puertos disponibles a través de los encabezados USB internos)'
           }
         ]
       }

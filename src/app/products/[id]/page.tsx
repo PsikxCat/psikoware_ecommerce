@@ -7,10 +7,10 @@ interface IParams {
 
 export default function ProductPage({ params }: { params: IParams }) {
   return (
-    <section className="container bg-dark">
-      <div className="section bg-secondary flex_center">
+    <div className="flex_center_column gap-8 container bg-dark">
+      <section className="section bg-secondary flex_center">
         <ProductDetails product={product} />
-      </div>
-    </section>
+      </section>
+    </div>
   )
 }

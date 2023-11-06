@@ -24,7 +24,7 @@ export default function ProductImage({ cartProduct, product }: ProductImageProps
   return (
     <div className='flex_center_column w-full h-full overflow-hidden'>
       {/* main image */}
-      <div className='relative flex-1 flex_center min-w-[200px] min-h-[200px] md:min-w-[300px] md:min-h-[300px] h-full w-full'>
+      <div className='relative flex-1 flex_center aspect-square min-w-[200px] min-h-[200px] md:min-w-[300px] md:min-h-[300px] max-w-[450px] h-full w-full'>
         <Image
           className='rounded-md object-contain'
           src={selectedImage}
@@ -34,7 +34,7 @@ export default function ProductImage({ cartProduct, product }: ProductImageProps
       </div>
 
       {/* images */}
-      <div className='flex_center gap-2 h-[20%] w-full border-t border-stone-700'>
+      <div className='flex_center gap-2 h-[15%] w-full border-t border-stone-700'>
         {product.productVariant.map((variant: ProductVariantType) => (
           variant.images.map((image: string) => (
             <div className={`relative h-[90%] aspect-square border-accent rounded-sm cursor-pointer
@@ -44,7 +44,7 @@ export default function ProductImage({ cartProduct, product }: ProductImageProps
               key={image}
             >
               <Image
-                className='rounded-md h-full w-full object-contain'
+                className='rounded-md object-contain w-[60px] h-[60px]'
                 src={image}
                 alt={variant.color}
                 width={80}
