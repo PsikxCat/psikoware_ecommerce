@@ -1,12 +1,13 @@
 'use client'
 
 import { Rating } from '@mui/material'
-import { useCallback, useState } from 'react'
+import { useCallback, useContext, useState } from 'react'
 
 import type { CartProductType, ProductVariantType } from '@/types'
 
 import { Button, ProductImage, SetVariant, SetQuantity, Tabs } from '@/components'
 import { formatPrice, productRating } from '@/utils'
+import { GlobalContext, type GlobalContextType } from '@/context'
 
 interface ProductDetailsProps {
   product: any //! TODO: define product type with Prisma
@@ -18,6 +19,9 @@ function HorizontalLine() {
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
+  const { cartTotalQuantity } = useContext(GlobalContext as React.Context<GlobalContextType>)
+  console.log(cartTotalQuantity)
+
   const [cartProduct, setCartProduct] = useState<CartProductType>({
     id: product.id,
     name: product.name,
@@ -58,7 +62,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     <div className='flex_center_column gap-5 z-10'>
       {/* producto */}
       <main className="flex_center_column rounded-md p-2 bg-stone-900 w-full md:w-[80%] max-w-[1400px] xl:h-[650px] xl:max-h-[800px]">
-        <div className='text-muted flex_center_column xl:flex-row w-full h-full border border-stone-700 rounded-md'>
+        <div className='text-muted flex_center_column xl:flex-row w-full h-full border border-stone-700 rounded-md overflow-hidden'>
           {/* imagen producto */}
           <section className="flex_center text-primary h-full min-h-[50%] w-full xl:w-1/2 bg-stone-950">
             <ProductImage
@@ -68,7 +72,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           </section>
 
           {/* info general producto */}
-          <section className="relative p-6 border-t lg:border-l border-stone-700 w-full h-full xl:w-1/2 bg-stone-900">
+          <section className="relative p-6 max-lg:border-t lg:border-l border-stone-700 w-full h-full xl:w-1/2 bg-stone-900">
             {/* nombre y rating */}
             <div>
               <h2>{product.name}</h2>

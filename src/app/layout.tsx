@@ -3,6 +3,7 @@ import { Space_Grotesk } from 'next/font/google'
 
 import './globals.css'
 import { Navbar, Footer, ScreenShadow } from '@/components'
+import { GlobalState } from '@/context'
 
 const space = Space_Grotesk({
   subsets: ['latin'],
@@ -18,16 +19,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <body className={`${space.className} bg-dark text-primary`}>
-        <div className='flex_center_column min-h-[100svh] w-full'>
-          <Navbar />
+        <GlobalState>
+          <div className='flex_center_column min-h-[100svh] w-full'>
+            <Navbar />
 
-          <div className='flex_center flex-1 w-full'>
-            {children}
+            <div className='flex_center flex-1 w-full'>
+              {children}
+            </div>
+
+            <Footer />
+            <ScreenShadow />
           </div>
-
-          <Footer />
-          <ScreenShadow />
-        </div>
+        </GlobalState>
       </body>
     </html>
   )

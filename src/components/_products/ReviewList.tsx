@@ -19,7 +19,7 @@ const ReviewList: React.FC<ReviewListProps> = ({ product }) => {
     <div className='flex_center'>
       <div className="text-sm flex flex-col gap-4">
         {product.reviews.length > 0 && product.reviews.map((review: any) => ( //! any por ahora ////////////
-          <div key={review._id} className="flex flex-col gap-1 bg-white/10 rounded-md p-4 max-w-lg">
+          <div key={review.id} className="flex flex-col gap-1 bg-white/10 rounded-md p-4 max-w-lg">
             {/* user avatar/name & time ago */}
             <section className='flex items-center gap-2'>
               <Avatar src={review.user.image} />
