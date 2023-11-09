@@ -1,17 +1,18 @@
 export interface ProductVariantType {
-  color: string
+  id: string
+  price: number
+  inStock: boolean
+  color?: string
+  capacity?: string
+  quantity: number
   colorCode: string
   images: string[]
 }
 
 export interface CartProductType {
   id: string
-  name: string
-  description: string
-  category: number
-  brand: string
-  price: number
-  stock: number
   productVariant: ProductVariantType
-  quantity: number
+  name: string
+  brand: string
+  category: string
 }

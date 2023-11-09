@@ -1,23 +1,206 @@
 // ! this is dummy data while we make the user interface, eventually we will fetch data from the database
 
+// export const product = {
+//   id: '64a654593e91b8e73a351e9b',
+//   name: 'SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4',
+//   price: 1089900,
+//   brand: 'GIGABYTE',
+//   category: 'Almacenamiento',
+//   inStock: true,
+//   shortDescription: 'El SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 ofrece un almacenamiento de 1 TB y un rendimiento excepcional gracias a la interfaz NVMe 4.0, proporcionando velocidades ultrarrápidas para aplicaciones y archivos. Ideal para mejorar la eficiencia y velocidad de tu computadora.',
+//   description: [
+//     {
+//       title: 'Primera controladora PCIe 4.0×4 del mundo',
+//       content:
+//         'El SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 es el primer controlador PCIe 4.0×4 del mundo, el controlador Phison PS5016-E16, fabricado con tecnología de fabricación de 28 nm. El proceso de fabricación avanzado garantiza que PS5016-E16 tenga suficiente potencia de cálculo para el procesamiento ECC cuando se adopta el último flash 3D TLC NAND. PS5016-E16 también cuenta con ocho canales NAND con 32 destinos CE, almacenamiento en caché DDR4 DRAM y una interfaz PCIe 4.0×4. En cuanto a las características, el chip admite el protocolo NVMe 1.3, la corrección de errores LDPC y las tecnologías Wear Leveling, Over-Provision para mejorar la confiabilidad y durabilidad de los SSD.'
+//     },
+//     {
+//       title: 'Velocidad de lectura secuencial de hasta 5000 MB/s',
+//       content:
+//         'El SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 utiliza la interfaz PCIe 4.0×4 y admite el protocolo NVMe 1.3, lo que permite que la secuencia de lectura / escritura alcance hasta 5000 / 4400MB / s, 10 veces más rápido que el SSD SATA tradicional y 50 veces más rápido que el HDD tradicional. El rendimiento de lectura / escritura aleatoria IOPS alcanza hasta 750k / 700k, lo que mejora enormemente la capacidad de respuesta del sistema y acelera el tiempo de arranque del sistema operativo.'
+//     },
+//     {
+//       title: 'TOSHIBA BiCS4 96 capas 3D TLC (800MT / s)',
+//       content: 'Toshiba BiCS4 NAND Flash optimiza los circuitos y la arquitectura aumentando a 96 capas para un mayor espacio de almacenamiento por unidad de área. El rendimiento de 800MT / s en el SSD AORUS NVMe Gen 4 supera con creces el de los dispositivos PCIe 3.0×4 para un rendimiento de almacenamiento superior.'
+//     },
+//     {
+//       title: 'Rendimiento de almacenamiento Xtreme',
+//       content: 'Con el nuevo controlador PCIe 4.0, el SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 ofrece velocidades asombrosas: hasta 5,000 MB / s para lectura secuencial y hasta 4,400 MB / s escritura secuencial. El rendimiento de lectura secuencial de las SSD PCIe 4.0 es hasta un 40% más rápido que las SSD PCIe 3.0. Prepárese para ingresar a la próxima generación de computación con un renderizado intensivo de gráficos, streaming y juegos más rápido y fluido.'
+//     }
+//   ],
+//   specifications: [
+//     {
+//       group: 'General',
+//       items: [
+//         {
+//           title: 'CPU',
+//           content: 'Procesadores AMD AM4 Socket de tercera generación AMD Ryzen ™'
+//         },
+//         {
+//           title: 'Chipset',
+//           content: 'AMD B550'
+//         },
+//         {
+//           title: 'Memoria',
+//           content: '4 x DIMM, máx. 128 GB, DDR4 4600 (OC) / 4400 (OC) / 4266 (OC) / 4133 (OC) / 4000 (OC) / 3866 (OC) / 3600 (OC) / 3466 (OC) / 3200/3000/2800/2666 / Memoria sin búfer de 2400/2133 MHz \nProcesadores AMD Ryzen PRO de próxima generación. \n4 x DIMM, máx. 128 GB, DDR4 5100 (OC) / 4800 (OC) / 4600 (OC) / 4400 (OC) / 4266 (OC) / 4133 (OC) / 4000 (OC) / 3866 (OC) / 3600 (OC) / 3466 ( OC) / 3200/3000/2800/2666/2400/2133 MHz Memoria sin búfer \nOptiMem II \nProcesadores AMD Ryzen ™ de 3.ª generación \nArquitectura de memoria de doble canal \nLa compatibilidad con la memoria ECC (modo ECC) varía según la CPU.'
+//         },
+//         {
+//           title: 'Gráficos',
+//           content: '1 x DisplayPort 1.2\n1 x HDMI 2.1 (4K a 60 HZ)\nSoporte Multi GPU\nAdmite la tecnología NVIDIA 2-Way SLI®\nAdmite la tecnología AMD 3-Way CrossFireX ™'
+//         },
+//         {
+//           title: 'Slots de Expansión',
+//           content: 'Conjunto de chips AMD B550\n1 x PCIe 3.0 x16 (modo x4) *\n2 x PCIe 3.0 x1\n2 x PCIe 4.0 x16 (x16 o doble x8)'
+//         },
+//         {
+//           title: 'Almacenamiento',
+//           content: '1 x M.2_1 socket 3, con tecla M, compatible con dispositivos de almacenamiento tipo 2242/2260/2280/22110 (modo SATA y PCIe 4.0 x4)\nConjunto de chips AMD B550:\n1 x conector M.2_2 3, con tecla M, soporte para dispositivos de almacenamiento tipo 2242/2260/2280/22110 (modo SATA y PCIE 3.0 x 4) *\nTotal admite 2 ranuras M.2 y 6 puertos SATA 6Gb / s\n6 x puerto (s) SATA 6Gb / s\nProcesadores AMD Ryzen ™ de 3.ª generación:\nSoporte Raid 0, 1, 10'
+//         },
+//         {
+//           title: 'LAN',
+//           content: 'Ethernet Intel® I225-V de 2,5 Gb\nASUS LANGuard'
+//         },
+//         {
+//           title: 'Accesorios',
+//           content: '1 x cable USB Type-C® de audio ROG\n1 paquete (s) de tornillos SSD M.2\n1 x paquete (s) de goma M.2\n1 llavero ROG\n1 x antena móvil Wi-Fi\n1 x pegatinas ROG Strix\n1 x paquete (s) de bridas\n1 x Cable de extensión para tiras RGB (80 cm)\n1 x cable de extensión para LED direccionable\n1 x tarjeta de agradecimiento ROG\nUser´s manual\n4 x cable (s) SATA 6Gb / s\n1 x DVD de apoyo'
+//         }
+
+//       ]
+//     }
+//   ],
+//   productVariant: [
+//     {
+//       color: 'Por defecto',
+//       colorCode: '#000000',
+//       images: [
+//         'https://i.ibb.co/XxPgpz2/Procesador-Intel-Core-i9-10900.webp',
+//         'https://i.ibb.co/4tFcc5J/SSD-M-2-2280-GIGABYTE-AORUS-NVMe4-2.webp'
+//       ]
+//     },
+//     {
+//       color: 'White',
+//       colorCode: '#ffffff',
+//       images: [
+//         'https://i.ibb.co/z7VzKwX/Board-Asus-ROG-Strix-B550-E-Gaming-WIFI-Ryzen-DDR4.webp',
+//         'https://i.ibb.co/QP54NL8/Board-Asus-ROG-Strix-B550-E-Gaming-WIFI-Ryzen-DDR4-2.webp'
+//       ]
+//     }
+//   ],
+
+//   reviews: [
+//     {
+//       id: '64a65a6158b470c6e06959ee',
+//       userId: '6475af156bad4917456e6e1e',
+//       productId: '64a4ebe300900d44bb50628a',
+//       rating: 4.5,
+//       comment: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque exercitationem at corrupti. Ad deleniti illum culpa, corporis omnis similique repellendus eum numquam quas, accusamus illo libero obcaecati ipsa vitae qui.',
+//       createdDate: '2023-11-05T17:00:00.067Z',
+//       user: {
+//         id: '6475af156bad4917456e6e1e',
+//         name: 'Charles',
+//         email: 'example@gmail.com',
+//         emailVerified: null,
+//         image: // # se asignara un avatar aleatorio al crear el usuario /////////// PENDIENTE
+//           'https://api.dicebear.com/7.x/bottts-neutral/svg?seed=Molly',
+//         hashedPassword: null,
+//         createdAt: '2023-05-30T08:08:53.979Z',
+//         updatedAt: '2023-05-30T08:08:53.979Z',
+//         role: 'ADMIN'
+//       }
+//     },
+//     {
+//       id: '64a65a6158b470c6e06959e2',
+//       userId: '6475af156bad4917456e6e1e',
+//       productId: '64a4ebe300900d44bb50628a',
+//       rating: 5,
+//       comment: 'Este disco es de lo mejor, lo recomiendo',
+//       createdDate: '2023-07-06T06:08:33.067Z',
+//       user: {
+//         id: '6475af156bad4917456e6e1e',
+//         name: 'Richard',
+//         email: 'example@gmail.com',
+//         emailVerified: null,
+//         image:
+//           'https://api.dicebear.com/7.x/bottts-neutral/svg?seed=Gizmo',
+//         hashedPassword: null,
+//         createdAt: '2023-05-30T08:08:53.979Z',
+//         updatedAt: '2023-05-30T08:08:53.979Z',
+//         role: 'ADMIN'
+//       }
+//     }
+//   ]
+// }
+
 export const product = {
   id: '64a654593e91b8e73a351e9b',
-  name: 'SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4',
-  price: 1089900,
+  productVariant: [
+    {
+      id: '64a654593e91b8e73a351e9bblack1tb',
+      price: 1089900,
+      inStock: true,
+      color: 'black',
+      capacity: '1TB',
+      quantity: 1,
+      colorCode: '#000000',
+      images: [
+        'https://i.ibb.co/XxPgpz2/Procesador-Intel-Core-i9-10900.webp',
+        'https://i.ibb.co/4tFcc5J/SSD-M-2-2280-GIGABYTE-AORUS-NVMe4-2.webp'
+      ]
+    },
+    {
+      id: '64a654593e91b8e73a351e9bwhite1tb',
+      price: 1189900,
+      inStock: true,
+      color: 'white',
+      capacity: '1TB',
+      quantity: 1,
+      colorCode: '#ffffff',
+      images: [
+        'https://i.ibb.co/z7VzKwX/Board-Asus-ROG-Strix-B550-E-Gaming-WIFI-Ryzen-DDR4.webp',
+        'https://i.ibb.co/QP54NL8/Board-Asus-ROG-Strix-B550-E-Gaming-WIFI-Ryzen-DDR4-2.webp'
+      ]
+    },
+    {
+      id: '64a654593e91b8e73a351e9bblack2tb',
+      price: 1289900,
+      inStock: true,
+      color: 'black',
+      capacity: '2TB',
+      quantity: 1,
+      colorCode: '#000000',
+      images: [
+        'https://i.ibb.co/XxPgpz2/Procesador-Intel-Core-i9-10900.webp',
+        'https://i.ibb.co/4tFcc5J/SSD-M-2-2280-GIGABYTE-AORUS-NVMe4-2.webp'
+      ]
+    },
+    {
+      id: '64a654593e91b8e73a351e9bwhite2tb',
+      price: 1389900,
+      inStock: false,
+      color: 'white',
+      capacity: '2TB',
+      quantity: 1,
+      colorCode: '#ffffff',
+      images: [
+        'https://i.ibb.co/z7VzKwX/Board-Asus-ROG-Strix-B550-E-Gaming-WIFI-Ryzen-DDR4.webp',
+        'https://i.ibb.co/QP54NL8/Board-Asus-ROG-Strix-B550-E-Gaming-WIFI-Ryzen-DDR4-2.webp'
+      ]
+    }
+  ],
+  name: 'SSD M.2 2280 GIGABYTE AORUS NVMe4',
   brand: 'GIGABYTE',
   category: 'Almacenamiento',
-  inStock: true,
-  shortDescription: 'El SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 ofrece un almacenamiento de 1 TB y un rendimiento excepcional gracias a la interfaz NVMe 4.0, proporcionando velocidades ultrarrápidas para aplicaciones y archivos. Ideal para mejorar la eficiencia y velocidad de tu computadora.',
+  shortDescription: 'El SSD M.2 2280 GIGABYTE AORUS NVMe4 un rendimiento excepcional gracias a la interfaz NVMe 4.0, proporcionando velocidades ultrarrápidas para aplicaciones y archivos. Ideal para mejorar la eficiencia y velocidad de tu computadora.',
   description: [
     {
       title: 'Primera controladora PCIe 4.0×4 del mundo',
       content:
-        'El SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 es el primer controlador PCIe 4.0×4 del mundo, el controlador Phison PS5016-E16, fabricado con tecnología de fabricación de 28 nm. El proceso de fabricación avanzado garantiza que PS5016-E16 tenga suficiente potencia de cálculo para el procesamiento ECC cuando se adopta el último flash 3D TLC NAND. PS5016-E16 también cuenta con ocho canales NAND con 32 destinos CE, almacenamiento en caché DDR4 DRAM y una interfaz PCIe 4.0×4. En cuanto a las características, el chip admite el protocolo NVMe 1.3, la corrección de errores LDPC y las tecnologías Wear Leveling, Over-Provision para mejorar la confiabilidad y durabilidad de los SSD.'
+        'El SSD M.2 2280 GIGABYTE AORUS NVMe4 es el primer controlador PCIe 4.0×4 del mundo, el controlador Phison PS5016-E16, fabricado con tecnología de fabricación de 28 nm. El proceso de fabricación avanzado garantiza que PS5016-E16 tenga suficiente potencia de cálculo para el procesamiento ECC cuando se adopta el último flash 3D TLC NAND. PS5016-E16 también cuenta con ocho canales NAND con 32 destinos CE, almacenamiento en caché DDR4 DRAM y una interfaz PCIe 4.0×4. En cuanto a las características, el chip admite el protocolo NVMe 1.3, la corrección de errores LDPC y las tecnologías Wear Leveling, Over-Provision para mejorar la confiabilidad y durabilidad de los SSD.'
     },
     {
       title: 'Velocidad de lectura secuencial de hasta 5000 MB/s',
       content:
-        'El SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 utiliza la interfaz PCIe 4.0×4 y admite el protocolo NVMe 1.3, lo que permite que la secuencia de lectura / escritura alcance hasta 5000 / 4400MB / s, 10 veces más rápido que el SSD SATA tradicional y 50 veces más rápido que el HDD tradicional. El rendimiento de lectura / escritura aleatoria IOPS alcanza hasta 750k / 700k, lo que mejora enormemente la capacidad de respuesta del sistema y acelera el tiempo de arranque del sistema operativo.'
+        'El SSD M.2 2280 GIGABYTE AORUS NVMe4 utiliza la interfaz PCIe 4.0×4 y admite el protocolo NVMe 1.3, lo que permite que la secuencia de lectura / escritura alcance hasta 5000 / 4400MB / s, 10 veces más rápido que el SSD SATA tradicional y 50 veces más rápido que el HDD tradicional. El rendimiento de lectura / escritura aleatoria IOPS alcanza hasta 750k / 700k, lo que mejora enormemente la capacidad de respuesta del sistema y acelera el tiempo de arranque del sistema operativo.'
     },
     {
       title: 'TOSHIBA BiCS4 96 capas 3D TLC (800MT / s)',
@@ -25,7 +208,7 @@ export const product = {
     },
     {
       title: 'Rendimiento de almacenamiento Xtreme',
-      content: 'Con el nuevo controlador PCIe 4.0, el SSD M.2 2280 GIGABYTE 1 TB AORUS NVMe4 ofrece velocidades asombrosas: hasta 5,000 MB / s para lectura secuencial y hasta 4,400 MB / s escritura secuencial. El rendimiento de lectura secuencial de las SSD PCIe 4.0 es hasta un 40% más rápido que las SSD PCIe 3.0. Prepárese para ingresar a la próxima generación de computación con un renderizado intensivo de gráficos, streaming y juegos más rápido y fluido.'
+      content: 'Con el nuevo controlador PCIe 4.0, el SSD M.2 2280 GIGABYTE AORUS NVMe4 ofrece velocidades asombrosas: hasta 5,000 MB / s para lectura secuencial y hasta 4,400 MB / s escritura secuencial. El rendimiento de lectura secuencial de las SSD PCIe 4.0 es hasta un 40% más rápido que las SSD PCIe 3.0. Prepárese para ingresar a la próxima generación de computación con un renderizado intensivo de gráficos, streaming y juegos más rápido y fluido.'
     }
   ],
   specifications: [
@@ -68,25 +251,6 @@ export const product = {
       ]
     }
   ],
-  productVariant: [
-    {
-      color: 'Por defecto',
-      colorCode: '#000000',
-      images: [
-        'https://i.ibb.co/XxPgpz2/Procesador-Intel-Core-i9-10900.webp',
-        'https://i.ibb.co/4tFcc5J/SSD-M-2-2280-GIGABYTE-AORUS-NVMe4-2.webp'
-      ]
-    },
-    {
-      color: 'White',
-      colorCode: '#ffffff',
-      images: [
-        'https://i.ibb.co/z7VzKwX/Board-Asus-ROG-Strix-B550-E-Gaming-WIFI-Ryzen-DDR4.webp',
-        'https://i.ibb.co/QP54NL8/Board-Asus-ROG-Strix-B550-E-Gaming-WIFI-Ryzen-DDR4-2.webp'
-      ]
-    }
-  ],
-
   reviews: [
     {
       id: '64a65a6158b470c6e06959ee',

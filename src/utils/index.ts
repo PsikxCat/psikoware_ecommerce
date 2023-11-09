@@ -13,7 +13,7 @@ export const formatPrice = (price: number) => {
   }).format(price)
 }
 
-export const productRating = (data: any) => { // ! corregir any //////////////////////////////////
+export const productRating = (data: any) => { // ! corregir anys (plural]) //////////////////////////////////
   return data.reviews.reduce((acc: number, review: any) => acc + review.rating, 0) / data.reviews.length
 }
 

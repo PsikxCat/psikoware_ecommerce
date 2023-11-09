@@ -2,15 +2,14 @@
 
 import { useEffect, useState } from 'react'
 
-import type { CartProductType, ProductVariantType } from '@/types'
+import type { CartProductType } from '@/types'
 import Image from 'next/image'
 
 interface ProductImageProps {
   cartProduct: CartProductType
-  product: any //! TODO: define product type with Prisma
 }
 
-export default function ProductImage({ cartProduct, product }: ProductImageProps) {
+export default function ProductImage({ cartProduct }: ProductImageProps) {
   const [selectedImage, setSelectedImage] = useState<string>(cartProduct.productVariant.images[0])
 
   useEffect(() => {
@@ -28,31 +27,27 @@ export default function ProductImage({ cartProduct, product }: ProductImageProps
         <Image
           className='rounded-md object-contain'
           src={selectedImage}
-          alt={cartProduct.productVariant.color}
+          alt={cartProduct.name}
           fill
+          sizes='(min-width: 1024px) 450px, 300px'
         />
       </div>
 
       {/* images */}
       <div className='flex_center gap-2 h-[15%] w-full border-t border-stone-700'>
-        {product.productVariant.map((variant: ProductVariantType) => (
-          variant.images.map((image: string) => (
-            <div className={`relative h-[90%] aspect-square border-accent rounded-sm cursor-pointer
-                ${variant.color !== cartProduct.productVariant.color && 'hidden'}
-                ${variant.color === cartProduct.productVariant.color && 'flex_center'}
-                ${image === selectedImage && 'border-[3px]'} `}
+        {cartProduct.productVariant.images.map((image: string) => (
+            <div className={`relative h-[90%] flex_center aspect-square border-accent rounded-sm cursor-pointer ${image === selectedImage && 'border-[3px]'} `}
               key={image}
             >
               <Image
                 className='rounded-md object-contain w-[60px] h-[60px]'
                 src={image}
-                alt={variant.color}
+                alt={image}
                 width={80}
                 height={80}
                 onClick={() => { handleImageSelect(image) }}
               />
             </div>
-          ))
         ))}
       </div>
     </div>
