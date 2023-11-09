@@ -24,7 +24,7 @@ export default function ProductCard({ data }: ProductCardProps) {
           <div className='absolute top-[40%] left-0 w-full h-[25%] bg-accent hidden group-hover:block'/>
           <Image
             className='w-full h-full object-contain z-20'
-            src={data.productVariant[0].images[0]}
+            src={data.productVariants[0].images[0]}
             alt={data.name}
             fill
             sizes='(max-width: 768px) 100vw, 400px'

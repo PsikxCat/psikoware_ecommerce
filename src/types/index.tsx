@@ -1,17 +1,17 @@
-export interface ProductVariantType {
+export interface productVariantsType {
   id: string
   price: number
-  inStock: boolean
+  inStock: number
   color?: string
   capacity?: string
   quantity: number
-  colorCode: string
+  colorCode: string // ! cambiar tipado a hex
   images: string[]
 }
 
 export interface CartProductType {
   id: string
-  productVariant: ProductVariantType
+  productVariants: productVariantsType
   name: string
   brand: string
   category: string

@@ -68,7 +68,7 @@
 //       ]
 //     }
 //   ],
-//   productVariant: [
+//   productVariants: [
 //     {
 //       color: 'Por defecto',
 //       colorCode: '#000000',
@@ -133,11 +133,11 @@
 
 export const product = {
   id: '64a654593e91b8e73a351e9b',
-  productVariant: [
+  productVariants: [
     {
       id: '64a654593e91b8e73a351e9bblack1tb',
       price: 1089900,
-      inStock: true,
+      inStock: 10,
       color: 'black',
       capacity: '1TB',
       quantity: 1,
@@ -150,7 +150,7 @@ export const product = {
     {
       id: '64a654593e91b8e73a351e9bwhite1tb',
       price: 1189900,
-      inStock: true,
+      inStock: 7,
       color: 'white',
       capacity: '1TB',
       quantity: 1,
@@ -163,7 +163,7 @@ export const product = {
     {
       id: '64a654593e91b8e73a351e9bblack2tb',
       price: 1289900,
-      inStock: true,
+      inStock: 4,
       color: 'black',
       capacity: '2TB',
       quantity: 1,
@@ -176,7 +176,7 @@ export const product = {
     {
       id: '64a654593e91b8e73a351e9bwhite2tb',
       price: 1389900,
-      inStock: false,
+      inStock: 0,
       color: 'white',
       capacity: '2TB',
       quantity: 1,
@@ -303,7 +303,7 @@ export const products = [
     brand: 'Asus',
     category: 'Board',
     inStock: true,
-    productVariant: [
+    productVariants: [
       {
         color: 'Por defecto',
         colorCode: '#000000',
@@ -447,7 +447,7 @@ export const products = [
     brand: 'GIGABYTE',
     category: 'Board',
     inStock: true,
-    productVariant: [
+    productVariants: [
       {
         color: 'Por defecto',
         colorCode: '#000000',
@@ -566,7 +566,7 @@ export const products = [
     id: '64a4ebe300900d44bb50628c',
     name: 'Procesador Intel Core i9 11900K – 3.5 GHz',
     price: 3339900,
-    productVariant: [
+    productVariants: [
       {
         color: 'Por defecto',
         colorCode: '#000000',
@@ -880,7 +880,7 @@ export const products = [
     id: '64a4ebe300900d44bb50628d',
     name: 'Procesador Intel Core i9 10900K – 3.7 GHz',
     price: 2779900,
-    productVariant: [
+    productVariants: [
       {
         color: 'Por defecto',
         colorCode: '#000000',
@@ -1194,7 +1194,7 @@ export const products = [
     id: '64a4ebe300900d44bb50628e',
     name: 'Procesador AMD Ryzen 7 5800X – 3.8GHz',
     price: 2609900,
-    productVariant: [
+    productVariants: [
       {
         color: 'Por defecto',
         colorCode: '#000000',

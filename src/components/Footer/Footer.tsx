@@ -5,7 +5,7 @@ import { FooterList } from '@/components'
 
 export default function Footer() {
   return (
-    <section className="bg-[#050505] w-full flex_center py-4">
+    <section className="bg-[#050505] w-full flex_center py-4 z-10">
       <div className='container flex_center'>
         <footer className="flex_center_column md:flex-row md:items-start text-[13px] gap-x-3 gap-y-5 py-8">
           <FooterList>

@@ -30,7 +30,7 @@ export default function SetQuantity({
         </button>
 
         <span className='h-6 w-6 flex_center'>
-          {cartProduct.productVariant.quantity}
+          {cartProduct.productVariants.quantity}
         </span>
 
         <button className='h-6 w-6 border border-secondary rounded-md flex_center'

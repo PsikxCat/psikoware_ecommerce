@@ -25,7 +25,7 @@ export function GlobalState({ children }: GlobalStateProps) {
 
       if (itemExists) { // : por aqui estabamos antes de tocar la dummydata
         return prev.map((p) => {
-          if (p.id === item.id && p.productVariant.color === item.productVariant.color) {
+          if (p.id === item.id && p.productVariants.color === item.productVariants.color) {
             return {
               ...p,
               quantity: p.quantity + 1
