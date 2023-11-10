@@ -1,6 +1,6 @@
 'use client'
 
-import { type CartProductType } from '@/types'
+import type { CartProductType } from '@/types'
 import { createContext, useCallback, useState } from 'react'
 
 interface GlobalStateProps {
@@ -21,32 +21,16 @@ export function GlobalState({ children }: GlobalStateProps) {
 
   const handleAddItemToCart = useCallback((item: CartProductType) => {
     setCartItems((prev) => {
-      const itemExists = prev.find((p) => p.id === item.id)
+      let updatedCart = [...prev]
 
-      if (itemExists) { // : por aqui estabamos antes de tocar la dummydata
-        return prev.map((p) => {
-          if (p.id === item.id && p.productVariants.color === item.productVariants.color) {
-            return {
-              ...p,
-              quantity: p.quantity + 1
-            }
-          }
-          return p
-        })
+      if (updatedCart.length > 0) {
+        updatedCart = [...updatedCart, item]
+      } else {
+        updatedCart = [item]
       }
-      return [...prev, { ...item, quantity: 1 }]
+
+      return updatedCart
     })
-    // setCartItems((prev) => {
-    //   let updatedCart = [...prev]
-
-    //   if (updatedCart.length > 0) {
-    //     updatedCart = [...updatedCart, item]
-    //   } else {
-    //     updatedCart = [item]
-    //   }
-
-    //   return updatedCart
-    // })
   }, [])
 
   return (

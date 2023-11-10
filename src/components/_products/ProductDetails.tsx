@@ -1,7 +1,9 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Rating } from '@mui/material'
+import { MdCheckCircle } from 'react-icons/md'
 
 import type { CartProductType, productVariantsType } from '@/types'
 
@@ -20,6 +22,8 @@ function HorizontalLine() {
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
+  const router = useRouter()
+
   // | Contexto | //
   const {
     cartTotalQuantity,
@@ -35,6 +39,23 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     brand: product.brand,
     category: product.category
   })
+  const [isInStock, setisInStock] = useState(true)
+  const [isProductInCart, setIsProductInCart] = useState(false)
+
+  // | Efectos | //
+  useEffect(() => {
+    setIsProductInCart(false)
+
+    const items = [...cartItems]
+
+    items.length && items.forEach((item: CartProductType) => {
+      if (item.productVariants.id === cartProduct.productVariants.id) {
+        setIsProductInCart(true)
+      }
+    })
+
+    setisInStock(cartProduct.productVariants.inStock > 0)
+  }, [cartItems, cartProduct])
 
   // | Funciones | //
   const handleColorSelect = (color: string) => {
@@ -50,7 +71,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       }))
     }
   }
-
   const handleCapacitySelect = (capacity: string) => {
     const findVariant = product.productVariants
       .find((variant: productVariantsType) => variant.color === cartProduct.productVariants.color && variant.capacity === capacity)
@@ -62,7 +82,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       }))
     }
   }
-
   const handleQuantityIncrease = () => {
     if (cartProduct.productVariants.inStock === cartProduct.productVariants.quantity) return
 
@@ -74,7 +93,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       }
     }))
   }
-
   const handleQuantityDecrease = () => {
     if (cartProduct.productVariants.quantity === 1) return
 
@@ -87,13 +105,10 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     }))
   }
 
-  // | Variables | //
-  const isInStock = cartProduct.productVariants.inStock
-
   return (
     <div className='flex_center_column gap-5 z-10'>
       {/* producto */}
-      <main className="flex_center_column rounded-md p-2 bg-stone-900 w-full md:w-[80%] max-w-[1400px] xl:h-[650px] xl:max-h-[800px]">
+      <main className="flex_center_column rounded-md p-2 bg-stone-900 w-full md:w-[80%] max-w-[1400px] xl:h-[660px] xl:max-h-[800px]">
         <div className='text-muted flex_center_column xl:flex-row w-full h-full border border-stone-700 rounded-md overflow-hidden'>
           {/* imagen producto */}
           <section className="relative flex_center text-primary h-full min-h-[50%] w-full xl:w-1/2 bg-stone-950">
@@ -151,7 +166,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               <SetQuantity
                 cartCounter={false}
                 cartProduct={cartProduct}
-                disabled={!isInStock}
+                disabled={!isInStock || isProductInCart}
                 handleDecrease={handleQuantityDecrease}
                 handleIncrease={handleQuantityIncrease}
               />
@@ -163,13 +178,29 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               {formatPrice(cartProduct.productVariants.price * cartProduct.productVariants.quantity)}
             </div>
 
-            {/* Boton add to cart */}
-            <div className='max-w-[300px] place-items-end'>
-              <Button
-                onClick={() => { handleAddItemToCart(cartProduct) } }
-                label='Agregar al Carrito'
-                disabled={!isInStock}
-              />
+            {/* Boton y mensaje */}
+            <div className='max-w-[300px]'>
+              {isProductInCart
+                ? (<>
+                <Button
+                  onClick={() => { router.push('/cart') } }
+                  accent
+                  label='Ver Carrito'
+                />
+
+                <div className='text-secondary font-bold w-full flex_center text-center mt-1'>
+                  <MdCheckCircle className='text-accent inline-block mr-1'/>
+                  <span>Producto agregado</span>
+                </div>
+              </>)
+                : (
+                <Button
+                  onClick={() => { handleAddItemToCart(cartProduct) } }
+                  label='Agregar al Carrito'
+                  disabled={!isInStock}
+                />
+                  )
+              }
             </div>
           </section>
         </div>

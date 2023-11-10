@@ -65,12 +65,18 @@ export default function Tabs({ product }: TabsProps) {
         {activeTab === 'specifications' && (
           <div className='flex_center_column gap-5'>
             {product.specifications.map((item: { group: string, items: Array<{ title: string, content: string }> }) => (
-              <div key={item.group} className='flex_center_column gap-5 md:px-4 pb-4 pt-6'>
-                <h3 className='text-secondary place-items-start font-bold text-xl border-b'>{item.group}</h3>
+              <div key={item.group} className='flex_center_column gap-5 md:px-4 mb-4 pt-6'>
+                {/* titulo grupo */}
+                <div className='border-b border-secondary w-[90%] flex_center'>
+                  <h3 className='text-secondary place-items-start font-bold text-xl'>{item.group}</h3>
+                </div>
 
+                {/* contenido grupo */}
                 {item.items.map((item) => (
                   <div key={item.title} className='flex flex-col md:flex-row w-full mb-3 overflow-hidden'>
+                    {/* titulo */}
                     <h4 className='text-primary font-bold text-lg md:w-[30%] px-[9%]'>{item.title}</h4>
+                    {/* contenido */}
                     <div className='text-muted text-base md:w-[70%] px-[9%]'>
                       {renderContentWithLineBreaks(item.content)}
                     </div>

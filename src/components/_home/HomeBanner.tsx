@@ -22,8 +22,8 @@ export default function HomeBanner() {
             <span className='max-md:hidden'>y lleva tu equipo al siguiente nivel.</span>
           </p>
 
-          <Link href='#' className='max-md:hidden w-full flex_center'>
-            <Button outlined label='VER PRODUCTOS' onClick={handleClick}/>
+          <Link href='#' className='max-md:hidden w-full flex_center mt-3'>
+            <Button accent label='VER PRODUCTOS' onClick={handleClick}/>
           </Link>
         </div>
 
@@ -34,7 +34,7 @@ export default function HomeBanner() {
 
         {/* link */}
         <Link href='#' className='md:hidden'>
-          <Button outlined label='VER PRODUCTOS' onClick={handleClick}/>
+          <Button accent label='VER PRODUCTOS' onClick={handleClick}/>
         </Link>
       </div>
     </section>
