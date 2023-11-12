@@ -1,7 +1,8 @@
 'use client'
 
 import type { CartProductType } from '@/types'
-import { createContext, useCallback, useState } from 'react'
+import { createContext, useCallback, useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
 interface GlobalStateProps {
   children: React.ReactNode
@@ -29,9 +30,19 @@ export function GlobalState({ children }: GlobalStateProps) {
         updatedCart = [item]
       }
 
+      setCartTotalQuantity(updatedCart.length)
+
+      // persistencia de datos para usuarios no registrados
+      localStorage.setItem('cart', JSON.stringify(updatedCart))
+
       return updatedCart
     })
+
+    toast.success('Producto añadido al carrito')
   }, [])
+
+  // se usa la data en localStorage para setear el estado cartItems
+  useEffect(() => { setCartItems(JSON.parse(localStorage.getItem('cart') ?? '[]')) }, [])
 
   return (
     <GlobalContext.Provider value={{

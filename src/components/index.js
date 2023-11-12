@@ -14,3 +14,5 @@ export { default as SetQuantity } from './_products/SetQuantity.tsx'
 export { default as ProductImage } from './_products/ProductImage.tsx'
 export { default as Tabs } from './_products/Tabs.tsx'
 export { default as ReviewList } from './_products/ReviewList.tsx'
+
+export { default as UserCart } from './_cart/UserCart.tsx'

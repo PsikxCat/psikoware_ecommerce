@@ -7,8 +7,8 @@ interface IParams {
 
 export default function ProductPage({ params }: { params: IParams }) {
   return (
-    <div className="flex_center_column gap-8 container bg-dark">
-      <section className="section bg-secondary flex_center">
+    <div className="container bg-dark">
+      <section className="section bg-secondary">
         <ProductDetails product={product} />
       </section>
     </div>

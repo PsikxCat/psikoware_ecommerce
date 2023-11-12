@@ -31,6 +31,8 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     handleAddItemToCart
   } = useContext(GlobalContext as React.Context<GlobalContextType>)
 
+  console.log(cartItems) // # BORRAR CONSOLE.LOG !!!
+
   // | Estados | //
   const [cartProduct, setCartProduct] = useState<CartProductType>({
     id: product.id,
@@ -53,9 +55,11 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         setIsProductInCart(true)
       }
     })
-
-    setisInStock(cartProduct.productVariants.inStock > 0)
   }, [cartItems, cartProduct])
+
+  useEffect(() => {
+    setisInStock(cartProduct.productVariants.inStock > 0)
+  }, [cartProduct])
 
   // | Funciones | //
   const handleColorSelect = (color: string) => {

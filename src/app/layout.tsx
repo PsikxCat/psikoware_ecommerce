@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk } from 'next/font/google'
+import { Toaster } from 'react-hot-toast'
 
 import './globals.css'
 import { Navbar, Footer, ScreenShadow } from '@/components'
@@ -19,6 +20,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <body className={`${space.className} bg-dark text-primary`}>
+        <Toaster
+          toastOptions={{
+            style: {
+              background: 'var(--clr-dark)',
+              border: '1px solid var(--clr-accent)',
+              color: '#fff'
+            }
+          }}
+        />
+
         <GlobalState>
           <div className='flex_center_column min-h-[100svh] w-full'>
             <Navbar />
