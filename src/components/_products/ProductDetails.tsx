@@ -26,7 +26,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
   // | Contexto | //
   const {
-    cartTotalQuantity,
     cartItems,
     handleAddItemToCart
   } = useContext(GlobalContext as React.Context<GlobalContextType>)

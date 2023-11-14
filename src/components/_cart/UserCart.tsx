@@ -11,6 +11,7 @@ import { GlobalContext, type GlobalContextType } from '@/context'
 export default function UserCart() {
   const {
     cartItems,
+    cartTotalAmount,
     handleRemoveItemFromCart,
     handleItemCartQtyDecrease,
     handleItemCartQtyIncrease,
@@ -81,8 +82,7 @@ export default function UserCart() {
             <div className='flex justify-between font-bold text-xl'>
               <span>Subtotal:</span>
               <span>
-                {formatPrice(cartItems.reduce((acc, item) =>
-                  acc + item.productVariants.price * item.productVariants.quantity, 0))}
+                {formatPrice(cartTotalAmount)}
               </span>
             </div>
 

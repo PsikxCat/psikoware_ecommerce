@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { CartCount } from '@/components'
+
 export default function Navbar() {
   return (
     <section className="sticky top-0 w-full h-[calc(30px+2vw)] z-50 flex_center bg-[#050505be] shadow-md py-4 border-b-[1px] border-secondary">
@@ -23,7 +25,7 @@ export default function Navbar() {
           <div className='max-md:hidden'>Search</div>
 
           <div className='flex_center gap-8 md:gap-12'>
-            <div>CartCount</div>
+            <CartCount />
             <div>UserMenu</div>
           </div>
         </nav>

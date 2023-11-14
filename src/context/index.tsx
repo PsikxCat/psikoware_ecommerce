@@ -10,6 +10,7 @@ interface GlobalStateProps {
 // # estos tipados son temporales, y se deberan definir conforme se vayan usando los contextos y la entrada de datos desde la db
 export interface GlobalContextType {
   cartTotalQuantity: number
+  cartTotalAmount: number
   cartItems: CartProductType[] | [] // ? null instead of [] ?
   handleAddItemToCart: (product: CartProductType) => void
   handleRemoveItemFromCart: (id: string) => void
@@ -22,6 +23,7 @@ export const GlobalContext = createContext<GlobalContextType | null>(null)
 
 export function GlobalState({ children }: GlobalStateProps) {
   const [cartTotalQuantity, setCartTotalQuantity] = useState<number>(0)
+  const [cartTotalAmount, setCartTotalAmount] = useState<number>(0)
   const [cartItems, setCartItems] = useState<CartProductType[] | []>([])
 
   const handleAddItemToCart = useCallback((item: CartProductType) => {
@@ -98,6 +100,19 @@ export function GlobalState({ children }: GlobalStateProps) {
     localStorage.setItem('cart', JSON.stringify([]))
   }, [])
 
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      const totalQuantity = cartItems.reduce((acc, item) => acc + item.productVariants.quantity, 0)
+      const totalPrice = cartItems.reduce((acc, item) => acc + item.productVariants.price * item.productVariants.quantity, 0)
+
+      setCartTotalQuantity(totalQuantity)
+      setCartTotalAmount(totalPrice)
+    } else {
+      setCartTotalQuantity(0)
+      setCartTotalAmount(0)
+    }
+  }, [cartItems])
+
   // se usa la data en localStorage para setear el estado cartItems para usuarios no registrados
   useEffect(() => {
     // aplicar la condicional para usuarios no registrados
@@ -108,6 +123,7 @@ export function GlobalState({ children }: GlobalStateProps) {
   return (
     <GlobalContext.Provider value={{
       cartTotalQuantity,
+      cartTotalAmount,
       cartItems,
       handleAddItemToCart,
       handleRemoveItemFromCart,
