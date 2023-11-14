@@ -31,8 +31,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     handleAddItemToCart
   } = useContext(GlobalContext as React.Context<GlobalContextType>)
 
-  console.log(cartItems) // # BORRAR CONSOLE.LOG !!!
-
   // | Estados | //
   const [cartProduct, setCartProduct] = useState<CartProductType>({
     id: product.id,
@@ -46,26 +44,20 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
   // | Efectos | //
   useEffect(() => {
-    setIsProductInCart(false)
-
-    const items = [...cartItems]
-
-    items.length && items.forEach((item: CartProductType) => {
-      if (item.productVariants.id === cartProduct.productVariants.id) {
-        setIsProductInCart(true)
-      }
-    })
-  }, [cartItems, cartProduct])
-
-  useEffect(() => {
     setisInStock(cartProduct.productVariants.inStock > 0)
-  }, [cartProduct])
+
+    setIsProductInCart(
+      cartItems.some((item: CartProductType) =>
+        item.productVariants.id === cartProduct.productVariants.id)
+    )
+  }, [cartItems, cartProduct])
 
   // | Funciones | //
   const handleColorSelect = (color: string) => {
     // busca variante con color seleccionado y capacidad guardada en cartProduct
     const findVariant = product.productVariants
-      .find((variant: productVariantsType) => variant.color === color && variant.capacity === cartProduct.productVariants.capacity)
+      .find((variant: productVariantsType) =>
+        variant.color === color && variant.capacity === cartProduct.productVariants.capacity)
 
     // si encuentra variante, setea cartProduct con la variante encontrada
     if (findVariant) {
@@ -77,7 +69,8 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   }
   const handleCapacitySelect = (capacity: string) => {
     const findVariant = product.productVariants
-      .find((variant: productVariantsType) => variant.color === cartProduct.productVariants.color && variant.capacity === capacity)
+      .find((variant: productVariantsType) =>
+        variant.color === cartProduct.productVariants.color && variant.capacity === capacity)
 
     if (findVariant) {
       setCartProduct((prev) => ({
@@ -85,17 +78,6 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         productVariants: { ...findVariant }
       }))
     }
-  }
-  const handleQuantityIncrease = () => {
-    if (cartProduct.productVariants.inStock === cartProduct.productVariants.quantity) return
-
-    setCartProduct((prev) => ({
-      ...prev,
-      productVariants: {
-        ...prev.productVariants,
-        quantity: prev.productVariants.quantity + 1
-      }
-    }))
   }
   const handleQuantityDecrease = () => {
     if (cartProduct.productVariants.quantity === 1) return
@@ -108,11 +90,22 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       }
     }))
   }
+  const handleQuantityIncrease = () => {
+    if (cartProduct.productVariants.inStock === cartProduct.productVariants.quantity) return
+
+    setCartProduct((prev) => ({
+      ...prev,
+      productVariants: {
+        ...prev.productVariants,
+        quantity: prev.productVariants.quantity + 1
+      }
+    }))
+  }
 
   return (
-    <div className='flex_center_column gap-5 z-10'>
+    <div className='flex_center_column gap-5'>
       {/* producto */}
-      <main className="flex_center_column rounded-md p-2 bg-stone-900 w-full md:w-[80%] max-w-[1400px] xl:h-[660px] xl:max-h-[800px]">
+      <main className="flex_center_column rounded-md p-2 bg-stone-900 w-full md:w-[80%] max-w-[1400px] xl:h-[660px] xl:max-h-[800px] z-10">
         <div className='text-muted flex_center_column xl:flex-row w-full h-full border border-stone-700 rounded-md overflow-hidden'>
           {/* imagen producto */}
           <section className="relative flex_center text-primary h-full min-h-[50%] w-full xl:w-1/2 bg-stone-950">
@@ -161,7 +154,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             </div>
             <HorizontalLine/>
 
-            {/*  stock y cantidad */}
+            {/* stock y cantidad */}
             <div>
               <div className={`${isInStock ? 'text-accent' : 'text-red-500'} font-bold`}>
                 {isInStock ? 'En stock' : 'Sin stock'}
@@ -171,6 +164,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                 cartCounter={false}
                 cartProduct={cartProduct}
                 disabled={!isInStock || isProductInCart}
+                customBtnClass='h-6 w-6 rounded-md border border-secondary'
                 handleDecrease={handleQuantityDecrease}
                 handleIncrease={handleQuantityIncrease}
               />

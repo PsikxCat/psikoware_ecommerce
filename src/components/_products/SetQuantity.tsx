@@ -5,26 +5,27 @@ import { type CartProductType } from '@/types'
 interface SetQuantityProps {
   cartCounter: boolean
   cartProduct: CartProductType
-  disabled: boolean
+  disabled?: boolean
+  customBtnClass?: string
   handleDecrease: () => void
   handleIncrease: () => void
 }
 
 export default function SetQuantity({
-  cartCounter, cartProduct, disabled, handleDecrease, handleIncrease
+  cartCounter, cartProduct, disabled, customBtnClass, handleDecrease, handleIncrease
 }: SetQuantityProps) {
   return (
     <div className='flex items-center gap-5'>
       {
-        cartCounter // ! utilidad?
+        cartCounter
           ? null
           : <div className='font-semibold'>CANTIDAD:</div>
       }
 
-      <div className='flex items-center gap-2'>
-        <button className='h-6 w-6 border border-secondary rounded-md flex_center'
+      <div className='flex items-center gap-1'>
+        <button className={`flex_center cursor-pointer ${customBtnClass}`}
           disabled={disabled}
-          onClick={handleDecrease}
+          onClick={() => { handleDecrease() }}
         >
           -
         </button>
@@ -33,9 +34,9 @@ export default function SetQuantity({
           {cartProduct.productVariants.quantity}
         </span>
 
-        <button className='h-6 w-6 border border-secondary rounded-md flex_center'
+        <button className={`flex_center cursor-pointer ${customBtnClass}`}
           disabled={disabled}
-          onClick={handleIncrease}
+          onClick={() => { handleIncrease() }}
         >
           +
         </button>

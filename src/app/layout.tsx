@@ -20,16 +20,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <body className={`${space.className} bg-dark text-primary`}>
-        <Toaster
-          toastOptions={{
-            style: {
-              background: 'var(--clr-dark)',
-              border: '1px solid var(--clr-accent)',
-              color: '#fff'
-            }
-          }}
-        />
-
         <GlobalState>
           <div className='flex_center_column min-h-[100svh] w-full'>
             <Navbar />
@@ -42,6 +32,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ScreenShadow />
           </div>
         </GlobalState>
+
+        <Toaster toastOptions={{
+          style: {
+            background: 'var(--clr-dark)',
+            border: '1px solid var(--clr-accent)',
+            color: '#fff'
+          }
+        }} />
       </body>
     </html>
   )

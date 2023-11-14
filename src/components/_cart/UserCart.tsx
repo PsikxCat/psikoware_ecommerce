@@ -4,14 +4,20 @@ import { useContext } from 'react'
 import { MdArrowBack } from 'react-icons/md'
 import Link from 'next/link'
 
-import { Button } from '@/components'
+import { Button, CartItem } from '@/components'
 import { formatPrice } from '@/utils'
 import { GlobalContext, type GlobalContextType } from '@/context'
 
-export default function ClientCart() {
-  const { cartItems } = useContext(GlobalContext as React.Context<GlobalContextType>)
+export default function UserCart() {
+  const {
+    cartItems,
+    handleRemoveItemFromCart,
+    handleItemCartQtyDecrease,
+    handleItemCartQtyIncrease,
+    handleClearCart
+  } = useContext(GlobalContext as React.Context<GlobalContextType>)
 
-  // carro vacio
+  // carro sin items
   if (!cartItems.length) {
     return (
       <section className='flex_center_column'>
@@ -28,73 +34,50 @@ export default function ClientCart() {
     )
   }
 
-  // carro con productos
+  // carro con items
   return (
-    <section className='flex_center_column'>
+    <section className='flex_center_column lg:w-[90%] mx-auto'>
       {/* titulo */}
       <h2 className='text-accent px-2 w-full'>Carrito de compras</h2>
 
       {/* carrito */}
       <div className='flex flex-col gap-2 w-full mt-6'>
         {/* titulos */}
-        <section className='grid grid-cols-5 text-xs uppercase px-3 border-b border-secondary pb-1'>
-          <span className='justify-self-start col-span-2'>Producto</span>
-          <span className='justify-self-center'>Precio</span>
+        <section className='grid grid-cols-5 max-[450px]:grid-cols-3 max-[700px]:grid-cols-4 text-xs uppercase px-3 border-b border-secondary pb-1'>
+          <span className='justify-self-start col-span-2 max-[450px]:col-span-1'>Producto</span>
+          <span className='justify-self-center max-[700px]:hidden'>Precio</span>
           <span className='justify-self-center'>Cantidad</span>
           <span className='justify-self-end'>Total</span>
         </section>
 
         {/* productos */}
-        {/* esto pasara a ser un componente */}
         <section className='flex flex-col gap-2 px-1 z-10'>
           {cartItems.map((item) => (
-            <section
+            <CartItem
               key={item.productVariants.id}
-              className='bg-secondary rounded-md text-dark grid grid-cols-5 uppercase px-2 min-h-[100px]'
-            >
-              <div className='flex items-center col-span-2 gap-2'>
-                <img
-                  className='w-16 h-16 object-contain'
-                  src={item.productVariants.images[0]}
-                  alt={item.name}
-                />
-                <div className='flex_center_column'>
-                  <span>{item.name}</span>
-                  <span className='text-darker'>
-                  {item.productVariants.color} {item.productVariants.capacity}
-                  </span>
-                </div>
-              </div>
-
-              <span className='justify-self-center flex_center'>
-                {formatPrice(item.productVariants.price)}
-              </span>
-
-              <span className='justify-self-center flex_center'>
-                {item.productVariants.quantity}
-              </span>
-
-              <span className='justify-self-end flex_center font-bold'>
-                {formatPrice(item.productVariants.price * item.productVariants.quantity)}
-              </span>
-            </section>
+              item={item}
+              handleRemoveItemFromCart={handleRemoveItemFromCart}
+              handleItemCartQtyDecrease={handleItemCartQtyDecrease}
+              handleItemCartQtyIncrease={handleItemCartQtyIncrease}
+            />
           ))}
         </section>
 
         {/* clear y subtotal */}
-        <section className='flex justify-between border-t border-secondary pt-2 px-2 z-10'>
+        <section className='flex justify-between max-[450px]:flex-col border-t border-secondary pt-2 px-2 z-10'>
           {/* clear */}
-          <div className='w-[110px]'>
+          <div className='w-[110px] mb-6'>
             <Button
               label='Vaciar carrito'
               small
               accent
-              onClick={() => { console.log('limpiar carrito') }}
+              onClick={handleClearCart}
             />
           </div>
 
           {/* subtotal y checkout */}
           <div className='flex flex-col gap-1 w-[240px]'>
+            {/* subtotal */}
             <div className='flex justify-between font-bold text-xl'>
               <span>Subtotal:</span>
               <span>
@@ -105,19 +88,22 @@ export default function ClientCart() {
 
             <p className='text-xs text-muted mb-2'>El precio del envio se calcula al finalizar la compra.</p>
 
-            <Button
-              label='Finalizar compra'
-              accent
-              onClick={() => { console.log('finalizar compra') }}
-            />
+            {/* checkout */}
+            <div className='flex flex-col gap-2'>
+              <Button
+                label='Finalizar compra'
+                accent
+                onClick={() => { console.log('finalizar compra') }}
+              />
 
-            <Link
-              className='text-muted text-sm tracking-wide mt-1 flex_center gap-1'
-              href='/'
-            >
-              <MdArrowBack />
-              <span>Seguir comprando</span>
-            </Link>
+              <Link
+                className='text-muted text-sm tracking-wide flex_center gap-1 hover:text-secondary transition-all duration-200'
+                href='/'
+              >
+                <MdArrowBack />
+                <span>Seguir comprando</span>
+              </Link>
+            </div>
           </div>
         </section>
       </div>

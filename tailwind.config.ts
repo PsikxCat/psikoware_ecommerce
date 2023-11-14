@@ -33,12 +33,14 @@ const config: Config = {
       },
       borderColor: {
         secondary: 'var(--clr-secondary)',
-        accent: 'var(--clr-accent)'
+        accent: 'var(--clr-accent)',
+        dark: 'var(--clr-dark)'
       },
       backgroundColor: {
         secondary: 'var(--clr-secondary)',
         accent: 'var(--clr-accent)',
-        dark: 'var(--clr-dark)'
+        dark: 'var(--clr-dark)',
+        muted: 'var(--clr-muted)'
       },
       maxWidth: {
         '3xl': '2000px'

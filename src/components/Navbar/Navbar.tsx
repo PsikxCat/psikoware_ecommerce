@@ -15,6 +15,7 @@ export default function Navbar() {
               alt="Sushi Logo"
               width={200}
               height={100}
+              priority
             />
           </Link>
 
