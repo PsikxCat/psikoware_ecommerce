@@ -11,12 +11,12 @@ export default function CartCount() {
 
   return (
     <Link
-      className='relative cursor-pointer text-[26px]'
+      className='relative cursor-pointer text-xl md:text-[26px]'
       href='/cart'
     >
       <PiShoppingCartSimpleBold />
 
-      <span className='absolute -top-2 -right-2 text-xs bg-accent text-dark rounded-full w-4 h-4 flex_center'>
+      <span className='absolute -top-1 -right-2 text-xs bg-accent text-dark rounded-full w-4 h-4 flex_center'>
         {cartTotalQuantity}
       </span>
     </Link>

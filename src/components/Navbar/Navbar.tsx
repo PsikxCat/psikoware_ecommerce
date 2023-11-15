@@ -24,7 +24,7 @@ export default function Navbar() {
           {/* // # to-dos... */}
           <div className='max-md:hidden'>Search</div>
 
-          <div className='flex_center gap-8 md:gap-12'>
+          <div className='flex_center gap-8 md:gap-12 pr-4'>
             <CartCount />
             <div>UserMenu</div>
           </div>

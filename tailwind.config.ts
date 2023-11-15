@@ -34,7 +34,8 @@ const config: Config = {
       borderColor: {
         secondary: 'var(--clr-secondary)',
         accent: 'var(--clr-accent)',
-        dark: 'var(--clr-dark)'
+        dark: 'var(--clr-dark)',
+        muted: 'var(--clr-muted)'
       },
       backgroundColor: {
         secondary: 'var(--clr-secondary)',

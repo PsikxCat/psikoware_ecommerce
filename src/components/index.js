@@ -6,6 +6,8 @@ export { default as ScreenShadow } from './ScreenShadow/ScreenShadow.tsx'
 export { default as ProductCard } from './ProductCard/ProductCard.tsx'
 export { default as Button } from './Button/Button.tsx'
 export { default as Avatar } from './Avatar/Avatar.tsx'
+export { default as FormWrap } from './Form/FormWrap.tsx'
+export { default as Input } from './Form/Input.tsx'
 
 export { default as HomeBanner } from './_home/HomeBanner.tsx'
 
@@ -18,3 +20,6 @@ export { default as ReviewList } from './_products/ReviewList.tsx'
 
 export { default as UserCart } from './_cart/UserCart.tsx'
 export { default as CartItem } from './_cart/CartItem.tsx'
+
+export { default as RegisterForm } from './_register/RegisterForm.tsx'
+export { default as LoginForm } from './_login/LoginForm.tsx'
