@@ -1,12 +1,19 @@
 'use client'
+
+import { useState } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
+import Link from 'next/link'
 import { type FieldValues, type SubmitHandler, useForm } from 'react-hook-form'
 import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
+import toast from 'react-hot-toast'
+import { signIn } from 'next-auth/react'
 
 import { Input, Button } from '@/components'
-import { useState } from 'react'
-import Link from 'next/link'
 
 export default function LoginForm() {
+  const router = useRouter()
+  const pathname = usePathname()
+
   const [isLoading, setIsLoading] = useState(false)
   const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>({
     defaultValues: {
@@ -16,9 +23,30 @@ export default function LoginForm() {
   })
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    setIsLoading(true)
-    console.log(data)
-    setIsLoading(false)
+    try {
+      setIsLoading(true)
+
+      signIn('credentials', {
+        redirect: false,
+        email: data.email,
+        password: data.password
+      }).then(() => {
+        toast.success('Inicio de sesión correcto')
+        // si el usuario este en /auth/login y se loguea, lo redirecciona a /
+        if (pathname === '/auth/login') {
+          router.push('/')
+        } else {
+          router.refresh()
+        }
+      }).catch((error) => {
+        console.error(error)
+      })
+    } catch (error) {
+      toast.error('Error al iniciar sesión')
+      console.error(error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (<>

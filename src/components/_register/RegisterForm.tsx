@@ -1,12 +1,17 @@
 'use client'
+
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { type FieldValues, type SubmitHandler, useForm } from 'react-hook-form'
 import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
+import Link from 'next/link'
+import toast from 'react-hot-toast'
+import { signIn } from 'next-auth/react'
 
 import { Input, Button } from '@/components'
-import { useState } from 'react'
-import Link from 'next/link'
 
 export default function RegisterForm() {
+  const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>({
     defaultValues: {
@@ -16,10 +21,42 @@ export default function RegisterForm() {
     }
   })
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    setIsLoading(true)
-    console.log(data)
-    setIsLoading(false)
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      setIsLoading(true)
+
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      console.log(res)
+
+      const json = await res.json()
+      console.log(json)
+
+      if (!json.ok) {
+        toast.error(json.message)
+      } else {
+        await signIn('credentials', {
+          redirect: false,
+          email: data.email,
+          password: data.password
+        }).then(() => {
+          toast.success('Usuario registrado correctamente')
+          router.push('/')
+        }).catch((error) => {
+          console.error(error)
+        })
+      }
+    } catch (error) {
+      toast.error('Error al registrar el usuario')
+      console.error(error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (<>
