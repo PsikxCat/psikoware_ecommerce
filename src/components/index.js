@@ -1,5 +1,7 @@
 export { default as Navbar } from './Navbar/Navbar.tsx'
 export { default as CartCount } from './Navbar/CartCount.tsx'
+export { default as UserMenu } from './Navbar/UserMenu.tsx'
+export { default as MenuItem } from './Navbar/MenuItem.tsx'
 export { default as Footer } from './Footer/Footer.tsx'
 export { default as FooterList } from './Footer/FooterList.tsx'
 export { default as ScreenShadow } from './ScreenShadow/ScreenShadow.tsx'

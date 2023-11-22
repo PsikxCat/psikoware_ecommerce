@@ -1,13 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { CartCount } from '@/components'
+import { CartCount, UserMenu } from '@/components'
 
 export default function Navbar() {
   return (
     <section className="sticky top-0 w-full h-[calc(30px+2vw)] z-50 flex_center bg-[#050505be] shadow-md py-4 border-b-[1px] border-secondary">
       <div className='container flex_center'>
-        <nav className='flex items-center justify-between w-full gap-3 md:gap-0'>
+        <nav className='flex items-center justify-between w-full gap-3 md:gap-0 '>
           {/* logo */}
           <Link href="/">
             <Image
@@ -22,12 +22,12 @@ export default function Navbar() {
           </Link>
 
           {/* // # to-dos... */}
-          <div className='max-md:hidden'>Search</div>
+          <section className='max-md:hidden'>Search</section>
 
-          <div className='flex_center gap-8 md:gap-12 pr-4'>
+          <section className='flex_center gap-4 min-[400px]:gap-8 md:gap-12 pr-4 h-[calc(30px+2vw)]'>
             <CartCount />
-            <div>UserMenu</div>
-          </div>
+            <UserMenu />
+          </section>
         </nav>
       </div>
     </section>

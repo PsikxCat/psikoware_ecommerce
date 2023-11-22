@@ -9,7 +9,7 @@ export default function Avatar({ src }: AvatarProps) {
     return (
       <Image
         className="rounded-full"
-        src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed=Angel"
+        src="https://api.dicebear.com/7.x/thumbs/svg?seed=Pepper&flip=true&backgroundColor=transparent&backgroundType=gradientLinear,solid&translateX=-5"
         alt="avatar"
         height={28}
         width={28}

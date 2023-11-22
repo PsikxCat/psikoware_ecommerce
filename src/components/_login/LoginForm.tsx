@@ -25,7 +25,7 @@ export default function LoginForm() {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     try {
       setIsLoading(true)
-
+      // ! hay una mala configuracion en el login, loguea todo ////PENDIENTE///
       signIn('credentials', {
         redirect: false,
         email: data.email,
@@ -99,7 +99,7 @@ export default function LoginForm() {
 
       <p className='text-sm text-muted'>
         ¿No estás registrado? &nbsp;
-        <Link className='font-bold underline' href='/register'>Registrate</Link>
+        <Link className='font-bold underline' href='/auth/register'>Registrate</Link>
       </p>
     </div>
   </>)

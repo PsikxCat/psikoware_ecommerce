@@ -30,9 +30,12 @@ export async function POST(req: Request) {
       }
     })
     // console.log(newUser)
+    const { hashedPassword, ...userWithoutPassword } = newUser
+
     if (newUser) {
-      const { hashedPassword, ...userWithoutPassword } = newUser
       return NextResponse.json({ message: 'Usuario registrado', ok: true, user: userWithoutPassword })
+    } else {
+      return NextResponse.json({ message: 'No se pudo registrar el usuario', ok: false })
     }
   } catch (error: string | any) {
     throw new Error(error.message)

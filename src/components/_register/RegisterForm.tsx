@@ -6,7 +6,7 @@ import { type FieldValues, type SubmitHandler, useForm } from 'react-hook-form'
 import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
-import { signIn } from 'next-auth/react'
+// import { signIn } from 'next-auth/react'
 
 import { Input, Button } from '@/components'
 
@@ -32,24 +32,27 @@ export default function RegisterForm() {
         },
         body: JSON.stringify(data)
       })
-      console.log(res)
+      // console.log(res)
 
       const json = await res.json()
       console.log(json)
 
-      if (!json.ok) {
-        toast.error(json.message)
-      } else {
-        await signIn('credentials', {
-          redirect: false,
-          email: data.email,
-          password: data.password
-        }).then(() => {
-          toast.success('Usuario registrado correctamente')
-          router.push('/')
-        }).catch((error) => {
-          console.error(error)
-        })
+      if (!json.ok) toast.error(json.message)
+      else if (json.ok) {
+        toast.success('Usuario registrado correctamente')
+        router.push('/auth/login')
+        router.refresh()
+        // ! hay una mala configuracion en el login, loguea todo ////PENDIENTE///
+        // await signIn('credentials', {
+        //   redirect: false,
+        //   email: data.email,
+        //   password: data.password
+        // }).then(() => {
+        //   toast.success('Usuario registrado correctamente')
+        //   router.push('/')
+        // }).catch((error) => {
+        //   console.error(error)
+        // })
       }
     } catch (error) {
       toast.error('Error al registrar el usuario')
@@ -119,7 +122,7 @@ export default function RegisterForm() {
 
       <p className='text-sm text-muted'>
         ¿Estás registrado? &nbsp;
-        <Link className='font-bold underline' href='/login'>Inicia sesión</Link>
+        <Link className='font-bold underline' href='/auth/login'>Inicia sesión</Link>
       </p>
     </div>
   </>)
