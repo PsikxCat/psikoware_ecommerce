@@ -25,27 +25,29 @@ export default function LoginForm() {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     try {
       setIsLoading(true)
-      // ! hay una mala configuracion en el login, loguea todo ////PENDIENTE///
+
       signIn('credentials', {
         redirect: false,
         email: data.email,
         password: data.password
-      }).then(() => {
-        toast.success('Inicio de sesión correcto')
-        // si el usuario este en /auth/login y se loguea, lo redirecciona a /
-        if (pathname === '/auth/login') {
-          router.push('/')
-        } else {
-          router.refresh()
+      }).then((callback) => {
+        if (callback?.error) toast.error(callback?.error)
+        else if (callback?.ok) {
+          toast.success('Inicio de sesión correcto')
+
+          pathname === '/auth/login'
+            ? router.push('/')
+            : router.refresh()
         }
       }).catch((error) => {
         console.error(error)
+        toast.error('Error al iniciar sesión')
+      }).finally(() => {
+        setIsLoading(false)
       })
     } catch (error) {
       toast.error('Error al iniciar sesión')
       console.error(error)
-    } finally {
-      setIsLoading(false)
     }
   }
 

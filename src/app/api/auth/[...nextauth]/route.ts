@@ -35,7 +35,6 @@ export const authOptions = ({
   pages: {
     signIn: '/auth/login'
   },
-  debug: process.env.NODE_ENV === 'development',
   secret: process.env.NEXTAUTH_SECRET
 })
 
