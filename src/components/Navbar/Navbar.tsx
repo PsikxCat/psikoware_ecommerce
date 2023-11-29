@@ -21,7 +21,7 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* // # to-dos... */}
+          {/* // # to-do search bar */}
           <section className='max-md:hidden'>Search</section>
 
           <section className='flex_center gap-4 min-[400px]:gap-8 md:gap-12 pr-4 h-[calc(30px+2vw)]'>

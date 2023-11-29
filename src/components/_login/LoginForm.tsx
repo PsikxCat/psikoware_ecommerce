@@ -35,9 +35,10 @@ export default function LoginForm() {
         else if (callback?.ok) {
           toast.success('Inicio de sesión correcto')
 
-          pathname === '/auth/login'
-            ? router.push('/')
-            : router.refresh()
+          if (pathname === '/auth/login') {
+            router.push('/')
+            router.refresh()
+          } else router.refresh()
         }
       }).catch((error) => {
         console.error(error)

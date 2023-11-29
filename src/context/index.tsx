@@ -4,14 +4,27 @@ import type { CartProductType } from '@/types'
 import { createContext, useCallback, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
+interface CurrentUser {
+  id: string
+  name: string
+  email: string
+  emailVerified: string | null
+  image: string | null
+  createdAt: string
+  updatedAt: string
+  role: string
+}
+
 interface GlobalStateProps {
   children: React.ReactNode
+  currentUser: CurrentUser | null
 }
-// # estos tipados son temporales, y se deberan definir conforme se vayan usando los contextos y la entrada de datos desde la db
+
 export interface GlobalContextType {
   cartTotalQuantity: number
   cartTotalAmount: number
-  cartItems: CartProductType[] | [] // ? null instead of [] ?
+  cartItems: CartProductType[] | []
+  currentUser: CurrentUser | null
   handleAddItemToCart: (product: CartProductType) => void
   handleRemoveItemFromCart: (id: string) => void
   handleItemCartQtyDecrease: (item: CartProductType) => void
@@ -21,7 +34,7 @@ export interface GlobalContextType {
 
 export const GlobalContext = createContext<GlobalContextType | null>(null)
 
-export function GlobalState({ children }: GlobalStateProps) {
+export function GlobalState({ children, currentUser }: GlobalStateProps) {
   const [cartTotalQuantity, setCartTotalQuantity] = useState<number>(0)
   const [cartTotalAmount, setCartTotalAmount] = useState<number>(0)
   const [cartItems, setCartItems] = useState<CartProductType[] | []>([])
@@ -125,6 +138,7 @@ export function GlobalState({ children }: GlobalStateProps) {
       cartTotalQuantity,
       cartTotalAmount,
       cartItems,
+      currentUser,
       handleAddItemToCart,
       handleRemoveItemFromCart,
       handleItemCartQtyDecrease,

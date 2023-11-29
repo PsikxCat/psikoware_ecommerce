@@ -6,7 +6,6 @@ import { type FieldValues, type SubmitHandler, useForm } from 'react-hook-form'
 import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
-// import { signIn } from 'next-auth/react'
 
 import { Input, Button } from '@/components'
 
@@ -42,17 +41,6 @@ export default function RegisterForm() {
         toast.success('Usuario registrado correctamente')
         router.push('/auth/login')
         router.refresh()
-        // ! hay una mala configuracion en el login, loguea todo ////PENDIENTE///
-        // await signIn('credentials', {
-        //   redirect: false,
-        //   email: data.email,
-        //   password: data.password
-        // }).then(() => {
-        //   toast.success('Usuario registrado correctamente')
-        //   router.push('/')
-        // }).catch((error) => {
-        //   console.error(error)
-        // })
       }
     } catch (error) {
       toast.error('Error al registrar el usuario')

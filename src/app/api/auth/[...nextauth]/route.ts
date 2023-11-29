@@ -1,10 +1,10 @@
-import NextAuth from 'next-auth'
+import NextAuth, { type AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GoogleProvider from 'next-auth/providers/google'
 import db from '@/libs/prismadb'
 import bcrypt from 'bcrypt'
 
-export const authOptions = ({
+export const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -36,7 +36,7 @@ export const authOptions = ({
     signIn: '/auth/login'
   },
   secret: process.env.NEXTAUTH_SECRET
-})
+}
 
 const handler = NextAuth(authOptions)
 

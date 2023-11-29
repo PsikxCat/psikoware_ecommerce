@@ -1,13 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { AiFillCaretDown } from 'react-icons/ai'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 
+import { GlobalContext, type GlobalContextType } from '@/context'
 import { Avatar, MenuItem } from '@/components'
 
 export default function UserMenu() {
+  const { currentUser } = useContext(GlobalContext as React.Context<GlobalContextType>)
   const [isOpen, setIsOpen] = useState(false)
 
   const toogleOpen = () => {
@@ -17,7 +19,6 @@ export default function UserMenu() {
   const handleSignOut = async () => {
     toogleOpen()
     await signOut()
-    // ! posible error cuando se ejecute el signOut
   }
 
   return (<>
@@ -26,29 +27,32 @@ export default function UserMenu() {
       <div className='flex_center text-[12px] text-accent gap-1 rounded-full cursor-pointer transition'
         onClick={toogleOpen}
       >
-        <Avatar src={''} />
+        <Avatar
+          src={currentUser?.image === null
+            ? 'https://api.dicebear.com/7.x/bottts-neutral/svg?seed=Samantha'
+            : currentUser?.image }
+        />
         <AiFillCaretDown />
       </div>
 
       {/* menu */}
       {isOpen && (
         <div className='absolute w-[200px] top-[calc(30px+2vw)] right-0 z-30 bg-dark border-b border-x border-secondary rounded-b-md py-2 px-4 shadow-md shadow-white/10 text-sm'>
+          {currentUser
+            ? (<>
             <Link href={'/orders'}>
               <MenuItem onClick={toogleOpen}>
                 Tus Pedidos
               </MenuItem>
             </Link>
 
-            {/* <Link href={'/dashboard'}>
-              <MenuItem onClick={toogleOpen}>
-                Dashboard
-              </MenuItem>
-            </Link> */}
+            {/* // ! pendiente link de dashboard */}
 
             <MenuItem onClick={handleSignOut}>
               Cerrar Sesión
             </MenuItem>
-            {/* // # Pendiente condicionar renderizado a isLogged */}
+          </>)
+            : (<>
             <Link href={'/auth/login'}>
               <MenuItem onClick={toogleOpen}>
                 Ingresa
@@ -60,6 +64,8 @@ export default function UserMenu() {
                 Registrate
               </MenuItem>
             </Link>
+          </>)
+            }
         </div>
       )}
 
