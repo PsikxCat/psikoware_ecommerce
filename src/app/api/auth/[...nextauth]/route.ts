@@ -23,6 +23,7 @@ export const authOptions: AuthOptions = {
           }
         })
         if (!userFound) throw new Error('Usuario o contraseña incorrecta')
+        if (userFound && !userFound.hashedPassword) throw new Error('Credenciales no validas, intenta con Google o GitHub')
 
         const credentialsPassword = credentials?.password ?? ''
         const passwordMatch = await bcrypt.compare(credentialsPassword, userFound.hashedPassword as string)
@@ -32,10 +33,42 @@ export const authOptions: AuthOptions = {
       }
     })
   ],
+  callbacks: {
+    async signIn(user) {
+      // console.log('user', user)
+      if (user.account?.provider === 'google') {
+        const userEmail = user?.user?.email
+
+        if (!userEmail) {
+          throw new Error('Correo electrónico no disponible en la información del usuario.')
+        }
+
+        const existingUser = await db.user.findUnique({
+          where: {
+            email: userEmail
+          }
+        })
+        // console.log('existingUser', existingUser)
+        if (!existingUser) {
+          // console.log('Creando nuevo usuario...')
+          await db.user.create({
+            data: {
+              email: userEmail,
+              name: user?.user?.name,
+              image: user?.user?.image
+            }
+          })
+          // console.log('Nuevo usuario creado:', newUser)
+        }
+      }
+
+      return true
+    }
+  },
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: '/auth/login'
-  },
-  secret: process.env.NEXTAUTH_SECRET
+  }
 }
 
 const handler = NextAuth(authOptions)

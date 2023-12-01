@@ -8,6 +8,7 @@ export async function getSession() {
 
 export async function getCurrentUser() {
   const session = await getSession()
+  console.log('session desde actions', session)
   if (!session?.user?.email) return null
 
   const currentUser = await prisma.user.findUnique({
