@@ -1,14 +1,8 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components'
 
 export default function HomeBanner() {
-  const handleClick = () => {
-    console.log('clicked')
-  }
-
   return (
     <section className="w-[80%] relative mx-6">
       <div className="mx-auto min-[300px]:px-8 py-12 flex_center_column justify-evenly md:flex-row gap-x-5 gap-y-3 rounded-lg">
@@ -22,8 +16,8 @@ export default function HomeBanner() {
             <span className='max-md:hidden'>y lleva tu equipo al siguiente nivel.</span>
           </p>
 
-          <Link href='#' className='max-md:hidden w-full flex_center mt-3'>
-            <Button accent label='VER PRODUCTOS' onClick={handleClick}/>
+          <Link href='/products' className='max-md:hidden w-full flex_center mt-3'>
+            <Button accent label='VER PRODUCTOS'/>
           </Link>
         </div>
 
@@ -33,8 +27,8 @@ export default function HomeBanner() {
         </div>
 
         {/* link */}
-        <Link href='#' className='md:hidden'>
-          <Button accent label='VER PRODUCTOS' onClick={handleClick}/>
+        <Link href='/products' className='md:hidden'>
+          <Button accent label='VER PRODUCTOS'/>
         </Link>
       </div>
     </section>

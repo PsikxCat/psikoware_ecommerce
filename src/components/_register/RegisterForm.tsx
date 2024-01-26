@@ -34,8 +34,8 @@ export default function RegisterForm() {
   if (currentUser) {
     return (
       <div className='flex flex-col items-center justify-center gap-2'>
-        <h2 className='text-accent'>Ya estás registrado</h2>
-        <p>Redireccionando...</p>
+        <h2 className='text-accent'>Bienvenido {currentUser.name.split(' ')[0]}</h2>
+        <p>Te estamos redireccionando a la pagina de inicio...</p>
       </div>
     )
   }
@@ -54,7 +54,7 @@ export default function RegisterForm() {
       // console.log(res)
 
       const json = await res.json()
-      console.log(json)
+      // console.log(json)
 
       if (!json.ok) toast.error(json.message)
       else if (json.ok) {
@@ -71,8 +71,7 @@ export default function RegisterForm() {
   }
 
   const handleSignIn = async (provider: string) => {
-    const res = await signIn(provider)
-    console.log('respuesta signIn Google', res)
+    await signIn(provider)
   }
 
   return (<>
@@ -86,7 +85,7 @@ export default function RegisterForm() {
       </button>
 
       <button className='flex items-center justify-center gap-2 bg-[#333] text-white text-[16px] font-medium px-4 py-2 rounded-md transition duration-[.4s] hover:bg-[#555] z-10'
-        // onClick={() => handleSignIn('github')}
+        onClick={async () => { await handleSignIn('github') }}
       >
         <AiFillGithub size={24} /> <span className='max-[350px]:hidden'>Registrate con Github</span>
       </button>

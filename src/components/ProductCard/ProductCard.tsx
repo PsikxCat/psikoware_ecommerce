@@ -1,8 +1,6 @@
-'use client'
-
+import Link from 'next/link'
 import Image from 'next/image'
 import { Rating } from '@mui/material'
-import { useRouter } from 'next/navigation'
 
 import { truncate, formatPrice, productRating } from '@/utils'
 
@@ -11,12 +9,10 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ data }: ProductCardProps) {
-  const router = useRouter()
-
   return (
+    <Link href={`/products/${data.id}`}>
     <article
       className='box_shadow text-center text-sm col-span-1 cursor-pointer rounded-md p-2 transition-all hover:scale-105 duration-300 bg-stone-900 group z-10'
-      onClick={() => { router.push(`/products/${data.id}`) }}
     >
       <section className="flex_center_column gap-2 w-full border border-stone-700 group-hover:border-accent rounded-md">
         {/* imagen */}
@@ -32,7 +28,9 @@ export default function ProductCard({ data }: ProductCardProps) {
         </div>
 
         {/* nombre */}
-        <div className='flex_center uppercase tracking-tight h-[50px] px-3'>{truncate(data.name, 50)}</div>
+        <h4 className='flex_center uppercase tracking-tight h-[50px] px-3'>
+          {truncate(data.name, 50)}
+        </h4>
 
         {/* rating & reviews */}
         <div className='bg-stone-700 rounded-sm w-full'>
@@ -44,8 +42,11 @@ export default function ProductCard({ data }: ProductCardProps) {
         </div>
 
         {/* precio */}
-        <div className='font-bold tracking-widest mb-2'>{formatPrice(data.price)}</div>
+        <h5 className='font-bold tracking-widest mb-2'>
+          {formatPrice(data.price)}
+        </h5>
       </section>
     </article>
+    </Link>
   )
 }

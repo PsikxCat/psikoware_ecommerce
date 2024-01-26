@@ -6,6 +6,7 @@ interface IParams {
 }
 
 export default function ProductPage({ params }: { params: IParams }) {
+  console.log(params)
   return (
     <div className="container bg-dark">
       <section className="section bg-secondary">

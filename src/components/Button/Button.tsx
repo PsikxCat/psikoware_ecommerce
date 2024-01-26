@@ -9,7 +9,7 @@ interface ButtonProps {
   small?: boolean
   customClass?: string
   icon?: IconType
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export default function Button({ label, disabled, accent, small, customClass, icon: Icon, onClick }: ButtonProps) {
