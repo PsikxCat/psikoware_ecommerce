@@ -16,7 +16,6 @@ export default function Home() {
             {products.map((product) => (
               <ProductCard key={product.id} data={product} />
             ))}
-
           </section>
         </main>
       </div>

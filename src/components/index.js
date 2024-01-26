@@ -22,6 +22,8 @@ export { default as ReviewList } from './_products/ReviewList.tsx'
 
 export { default as UserCart } from './_cart/UserCart.tsx'
 export { default as CartItem } from './_cart/CartItem.tsx'
+export { default as ProductsSection } from './_cart/ProductsSection.tsx'
+export { default as SubtotalSection } from './_cart/SubtotalSection.tsx'
 
 export { default as RegisterForm } from './_register/RegisterForm.tsx'
 export { default as LoginForm } from './_login/LoginForm.tsx'

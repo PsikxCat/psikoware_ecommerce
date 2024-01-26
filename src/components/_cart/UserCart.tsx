@@ -1,5 +1,4 @@
-import ProductsSection from './ProductsSection'
-import SubtotalSection from './SubtotalSection'
+import { ProductsSection, SubtotalSection } from '@/components'
 
 export default function UserCart() {
   return (
