@@ -39,6 +39,7 @@ module.exports = {
       asyncArrow: 'always'
     }],
     '@typescript-eslint/strict-boolean-expressions': 'off',
-    '@typescript-eslint/no-misused-promises': 'off'
+    '@typescript-eslint/no-misused-promises': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off'
   }
 }

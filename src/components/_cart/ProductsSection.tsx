@@ -15,6 +15,8 @@ export default function ProductsSection() {
     handleItemCartQtyIncrease
   } = useContext(GlobalContext as React.Context<GlobalContextType>)
 
+  console.log('items esn carro: ', cartItems)
+
   return (
     <>
       {

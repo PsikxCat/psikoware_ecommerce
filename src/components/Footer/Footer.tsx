@@ -31,7 +31,7 @@ export default function Footer() {
 
             <p>En nuestra tienda, nos especializamos en proporcionar los últimos y mejores componentes a nuestros clientes, siempre ofreciendo la mejor relación calidad-precio del mercado.</p>
             <br />
-            <p>🄯 {new Date().getFullYear()} PsikoWare. Creado por Psikocat.</p>
+            <p>🄯 {new Date().getFullYear()} PsikoWare. Creado por Psikocat. Ningún derecho reservado.</p>
           </div>
 
           <div className='w-full min-[350px]:w-[80%] md:w-[10%]'>

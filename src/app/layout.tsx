@@ -5,7 +5,7 @@ import { Toaster } from 'react-hot-toast'
 import './globals.css'
 import { Navbar, Footer, ScreenShadow } from '@/components'
 import { GlobalState } from '@/context'
-import { getCurrentUser } from '@/actions/getCurrentUser'
+import { getCurrentUser } from '@/libs/actions/getCurrentUser'
 
 const space = Space_Grotesk({
   subsets: ['latin'],

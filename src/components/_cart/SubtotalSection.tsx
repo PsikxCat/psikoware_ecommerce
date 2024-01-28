@@ -7,9 +7,11 @@ import { MdArrowBack } from 'react-icons/md'
 import { GlobalContext, type GlobalContextType } from '@/context'
 import { formatPrice } from '@/utils'
 import { Button } from '@/components'
+import createPayment from '@/libs/actions/createPayment'
 
 export default function SubtotalSection() {
   const {
+    cartItems,
     cartTotalAmount,
     handleClearCart
   } = useContext(GlobalContext as React.Context<GlobalContextType>)
@@ -43,7 +45,7 @@ export default function SubtotalSection() {
           <Button
             label='Finalizar compra'
             accent
-            onClick={() => { console.log('finalizar compra condicionada a valor') }}
+            onClick={async () => { await createPayment(cartTotalAmount, cartItems) }}
           />
 
           <Link
