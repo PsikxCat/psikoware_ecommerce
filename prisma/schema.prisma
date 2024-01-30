@@ -7,6 +7,35 @@ generator client {
   provider = "prisma-client-js"
 }
 
+type CartProductType {
+  id String
+  unitPrice Float
+  name String
+  category String
+  inStock Int
+  quantity Int
+  brand String
+  color String
+  colorCode String
+  capacity String?
+  selectedImg String
+}
+
+// type Image {
+//   color String
+//   colorCode String
+//   url String
+// }
+
+type Address {
+  name String
+  addressLine1 String
+  addressLine2 String?
+  city String
+  country String
+  postalCode String
+}
+
 model User {
   id              String  @id @default(auto()) @map("_id") @db.ObjectId
   name            String?
@@ -17,6 +46,22 @@ model User {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   role            Role @default(USER)
+
+  orders Order[]
+}
+
+model Order {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  amount Float
+  currency String
+  status String
+  deliveryStatus String
+  createDateTime DateTime @default(now())
+  paymentId String @unique
+  products CartProductType[]
+  address Address?
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 enum Role {
@@ -24,4 +69,4 @@ enum Role {
   ADMIN
 }
 
-
+// npx prisma db push para crear las tablas en la base de datos

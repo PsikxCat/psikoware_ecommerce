@@ -10,15 +10,12 @@ export async function getSession() {
 
 export async function getCurrentUser() {
   const session = await getSession()
-  // console.log('session desde actions', session)
   if (!session?.user?.email) return null
-
   const currentUser = await prisma.user.findUnique({
     where: {
       email: session?.user?.email
     }
   })
-
   if (!currentUser) return null
 
   // retornar sin el campo hashedPassword y con los campos createdAt y updatedAt en formato ISOString

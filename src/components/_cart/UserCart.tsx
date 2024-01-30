@@ -1,6 +1,6 @@
 import { ProductsSection, SubtotalSection } from '@/components'
 
-export default function UserCart() {
+export default async function UserCart() {
   return (
     <section className='flex_center_column lg:w-[90%] mx-auto'>
       {/* titulo */}

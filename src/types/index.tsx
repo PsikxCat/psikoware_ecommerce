@@ -2,17 +2,17 @@ export interface productVariantsType {
   id: string
   price: number
   inStock: number
-  color?: string
-  capacity?: string
   quantity: number
+  color: string
   colorCode: string // ! cambiar tipado a hex
+  capacity?: string
   images: string[]
 }
 
 export interface CartProductType {
   id: string
-  productVariants: productVariantsType
   name: string
-  brand: string
   category: string
+  brand: string
+  productVariants: productVariantsType
 }

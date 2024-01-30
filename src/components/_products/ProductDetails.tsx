@@ -178,9 +178,9 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             {/* Boton y mensaje */}
             <div className='max-w-[300px]'>
               {isProductInCart
-                ? (<>
-                <Button
-                  onClick={() => { router.push('/cart') } }
+                ? (
+              <>
+                <Button onClick={() => { router.push('/cart') } }
                   accent
                   label='Ver Carrito'
                 />
@@ -189,10 +189,10 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                   <MdCheckCircle className='text-accent inline-block mr-1'/>
                   <span>Producto agregado</span>
                 </div>
-              </>)
+              </>
+                  )
                 : (
-                <Button
-                  onClick={() => { handleAddItemToCart(cartProduct) } }
+                <Button onClick={() => { handleAddItemToCart(cartProduct) } }
                   label='Agregar al Carrito'
                   disabled={!isInStock}
                 />
