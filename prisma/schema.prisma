@@ -12,20 +12,14 @@ type CartProductType {
   unitPrice Float
   name String
   category String
-  inStock Int
+  // inStock Int
   quantity Int
-  brand String
-  color String
-  colorCode String
-  capacity String?
+  // brand String
+  // color String
+  // colorCode String
+  // capacity String?
   selectedImg String
 }
-
-// type Image {
-//   color String
-//   colorCode String
-//   url String
-// }
 
 type Address {
   name String
