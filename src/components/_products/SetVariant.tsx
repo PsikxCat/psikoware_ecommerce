@@ -1,10 +1,10 @@
 'use client'
 
-import type { CartProductType, productVariantsType } from '@/types'
+import type { CartProductType, ProductVariantsType } from '@/types'
 
 interface SetVariantsProps {
   cartProduct: CartProductType
-  productVariants: productVariantsType[]
+  productVariants: ProductVariantsType[]
   handleColorSelect: (color: string) => void
   handleCapacitySelect: (capacity: string) => void
 }

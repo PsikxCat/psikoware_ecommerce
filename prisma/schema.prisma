@@ -28,7 +28,7 @@ type Address {
   city String
   country String
   postalCode String
-}
+} // ! Pendiente de contrastar con la data recibida de MP
 
 type Description {
   title String
@@ -68,7 +68,22 @@ model Product {
   shortDescription String
   description Description[]
   specifications Specification[]
+  productVariants ProductVariant[]
   reviews Review[]
+}
+
+model ProductVariant {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  productId String @db.ObjectId
+  price Float
+  quantity Int?
+  inStock Int
+  color String
+  colorCode String
+  capacity String?
+  images String[]
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
 model Review {
@@ -103,4 +118,4 @@ enum Role {
   ADMIN
 }
 
-// npx prisma db push para crear las tablas en la base de datos
+// # recordar ---> npx prisma db push para crear las tablas en la base de datos

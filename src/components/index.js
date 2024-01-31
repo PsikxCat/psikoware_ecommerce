@@ -28,3 +28,6 @@ export { default as SubtotalSection } from './_cart/SubtotalSection.tsx'
 export { default as RegisterForm } from './_register/RegisterForm.tsx'
 export { default as LoginForm } from './_login/LoginForm.tsx'
 export { default as AdminNavbar } from './_admin/Navbar.tsx'
+
+export { default as ShoppedItems } from './_success/ShoppedItems.tsx'
+export { default as TotalSection } from './_success/TotalSection.tsx'

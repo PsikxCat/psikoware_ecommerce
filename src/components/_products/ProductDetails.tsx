@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Rating } from '@mui/material'
 import { MdCheckCircle } from 'react-icons/md'
 
-import type { CartProductType, productVariantsType } from '@/types'
+import type { CartProductType, ProductVariantsType } from '@/types'
 
 import { Button, ProductImage, SetVariant, SetQuantity, Tabs } from '@/components'
 import { formatPrice, productRating } from '@/utils'
@@ -55,7 +55,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   const handleColorSelect = (color: string) => {
     // busca variante con color seleccionado y capacidad guardada en cartProduct
     const findVariant = product.productVariants
-      .find((variant: productVariantsType) =>
+      .find((variant: ProductVariantsType) =>
         variant.color === color && variant.capacity === cartProduct.productVariants.capacity)
 
     // si encuentra variante, setea cartProduct con la variante encontrada
@@ -68,7 +68,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   }
   const handleCapacitySelect = (capacity: string) => {
     const findVariant = product.productVariants
-      .find((variant: productVariantsType) =>
+      .find((variant: ProductVariantsType) =>
         variant.color === cartProduct.productVariants.color && variant.capacity === capacity)
 
     if (findVariant) {

@@ -1,4 +1,4 @@
-export interface productVariantsType {
+export interface ProductVariantsType {
   id: string
   price: number
   inStock: number
@@ -14,5 +14,5 @@ export interface CartProductType {
   name: string
   category: string
   brand: string
-  productVariants: productVariantsType
+  productVariants: ProductVariantsType
 }

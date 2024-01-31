@@ -1,5 +1,4 @@
-import ShoppedItems from '@/components/_success/ShoppedItems'
-import TotalSection from '@/components/_success/TotalSection'
+import { ShoppedItems, TotalSection } from '@/components'
 
 export default async function PaymentSuccessPage() {
   return (
