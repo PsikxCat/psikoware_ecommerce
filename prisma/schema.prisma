@@ -30,6 +30,21 @@ type Address {
   postalCode String
 }
 
+type Description {
+  title String
+  content String
+}
+
+type Specification {
+  group String
+  content SpecificationGroup[]
+}
+
+type SpecificationGroup {
+  title String
+  content String
+}
+
 model User {
   id              String  @id @default(auto()) @map("_id") @db.ObjectId
   name            String?
@@ -42,6 +57,30 @@ model User {
   role            Role @default(USER)
 
   orders Order[]
+  reviews Review[]
+}
+
+model Product {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  brand String
+  category String
+  shortDescription String
+  description Description[]
+  specifications Specification[]
+  reviews Review[]
+}
+
+model Review {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  productId String @db.ObjectId
+  rating Int
+  comment String
+  createDateTime DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
 model Order {
@@ -55,6 +94,7 @@ model Order {
   paymentId String @unique
   products CartProductType[]
   address Address?
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
