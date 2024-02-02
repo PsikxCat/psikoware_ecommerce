@@ -10,6 +10,9 @@ export { default as Button } from './Button/Button.tsx'
 export { default as Avatar } from './Avatar/Avatar.tsx'
 export { default as FormWrap } from './Form/FormWrap.tsx'
 export { default as Input } from './Form/Input.tsx'
+export { default as TextArea } from './Form/TextArea.tsx'
+export { default as CategoryInput } from './Form/CategoryInput.tsx'
+export { default as NullData } from './NullData/NullData.tsx'
 
 export { default as HomeBanner } from './_home/HomeBanner.tsx'
 
@@ -25,9 +28,11 @@ export { default as CartItem } from './_cart/CartItem.tsx'
 export { default as ProductsSection } from './_cart/ProductsSection.tsx'
 export { default as SubtotalSection } from './_cart/SubtotalSection.tsx'
 
-export { default as RegisterForm } from './_register/RegisterForm.tsx'
-export { default as LoginForm } from './_login/LoginForm.tsx'
-export { default as AdminNavbar } from './_admin/Navbar.tsx'
+export { default as RegisterForm } from './_auth/register/RegisterForm.tsx'
+export { default as LoginForm } from './_auth/login/LoginForm.tsx'
 
-export { default as ShoppedItems } from './_success/ShoppedItems.tsx'
-export { default as TotalSection } from './_success/TotalSection.tsx'
+export { default as AdminNavbar } from './_admin/Navbar.tsx'
+export { default as AddProductForm } from './_admin/add-products/AddProductForm.tsx'
+
+export { default as ShoppedItems } from './_payment/success/ShoppedItems.tsx'
+export { default as TotalSection } from './_payment/success/TotalSection.tsx'

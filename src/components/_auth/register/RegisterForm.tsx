@@ -77,6 +77,7 @@ export default function RegisterForm() {
   return (<>
     <h2 className="text-accent">Registro</h2>
 
+    {/* Registro con Google y Github */}
     <div className='flex gap-2 max-[350px]:flex-row max-[630px]:flex-col'>
       <button className='flex items-center justify-center gap-2 bg-[#b0343b] text-white text-[16px] font-medium px-4 py-2 rounded-md transition duration-[.4s] hover:bg-[#c74040] z-10'
         onClick={async () => { await handleSignIn('google') }}

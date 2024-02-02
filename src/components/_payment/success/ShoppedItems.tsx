@@ -2,7 +2,7 @@
 
 import { useContext } from 'react'
 import { GlobalContext, type GlobalContextType } from '@/context'
-import { formatPrice } from '../../utils/index'
+import { formatPrice } from '../../../utils/index'
 
 export default function ShoppedItem() {
   const { cartItems } = useContext(GlobalContext as React.Context<GlobalContextType>)

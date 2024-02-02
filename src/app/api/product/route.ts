@@ -23,11 +23,11 @@ export async function POST(req: Request) {
       specifications,
       productVariants: productVariants as ProductVariantsType[]
     }
+    console.log('product --->', product)
 
-    return NextResponse.json({ message: 'Payment created', ok: true, status: 201 })
+    return NextResponse.json({ message: product, ok: true, status: 200 })
   } catch (error) {
     console.error('Error', error)
     return NextResponse.error()
-    // return NextResponse.json({ message: error, ok: false, status: 500 })
   }
 }

@@ -7,7 +7,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-type CartProductType {
+type OrderProductType {
   id String
   unitPrice Float
   name String
@@ -107,7 +107,7 @@ model Order {
   deliveryStatus String
   createDateTime DateTime @default(now())
   paymentId String @unique
-  products CartProductType[]
+  products OrderProductType[]
   address Address?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)

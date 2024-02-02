@@ -46,7 +46,11 @@ export default function UserMenu() {
               </MenuItem>
             </Link>
 
-            {/* // ! pendiente link de dashboard */}
+            <Link href={'/admin'}>
+              <MenuItem onClick={toogleOpen}>
+                Admin Dashboard
+              </MenuItem>
+            </Link>
 
             <MenuItem onClick={handleSignOut}>
               Cerrar Sesión
