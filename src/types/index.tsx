@@ -16,6 +16,11 @@ export interface CartProductType {
   brand: string
   productVariants: ProductVariantsType
 }
+// ! esto hay que ordenarlo !!!
+interface DescriptionType {
+  title: string
+  content: string
+}
 
 interface SpecificationType {
   group: string
@@ -28,7 +33,7 @@ export interface ProductType {
   brand: string
   category: string
   shortDescription: string
-  description: Array<{ title: string, content: string }>
+  description: DescriptionType[]
   specifications: SpecificationType[]
   productVariants: ProductVariantsType[]
 }

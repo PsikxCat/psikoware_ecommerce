@@ -11,8 +11,6 @@ export { default as Avatar } from './Avatar/Avatar.tsx'
 export { default as FormWrap } from './Form/FormWrap.tsx'
 export { default as Input } from './Form/Input.tsx'
 export { default as TextArea } from './Form/TextArea.tsx'
-export { default as CategoryInput } from './Form/CategoryInput.tsx'
-export { default as NullData } from './NullData/NullData.tsx'
 
 export { default as HomeBanner } from './_home/HomeBanner.tsx'
 
@@ -32,7 +30,12 @@ export { default as RegisterForm } from './_auth/register/RegisterForm.tsx'
 export { default as LoginForm } from './_auth/login/LoginForm.tsx'
 
 export { default as AdminNavbar } from './_admin/Navbar.tsx'
+export { default as NullData } from './_admin/NullData.tsx'
 export { default as AddProductForm } from './_admin/add-products/AddProductForm.tsx'
+export { default as CategoryInput } from './_admin/add-products/CategoryInput.tsx'
+export { default as DescriptionsSection } from './_admin/add-products/DescriptionsSection.tsx'
+export { default as SpecificationsSection } from './_admin/add-products/SpecificationsSection.tsx'
+export { default as CategoriesSection } from './_admin/add-products/CategoriesSection.tsx'
 
 export { default as ShoppedItems } from './_payment/success/ShoppedItems.tsx'
 export { default as TotalSection } from './_payment/success/TotalSection.tsx'

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { type FieldValues, type SubmitHandler, useForm } from 'react-hook-form'
 
-import { CategoryInput, Input, TextArea } from '@/components'
+import { CategoriesSection, CategoryInput, DescriptionsSection, Input, SpecificationsSection, TextArea } from '@/components'
 import { categories } from '@/utils/categories'
 
 export default function AddProductForm() {
@@ -12,16 +12,13 @@ export default function AddProductForm() {
     register, handleSubmit, setValue, watch, reset, formState: { errors }
   } = useForm<FieldValues>({
     defaultValues: {
-      // necesito un id explicito o el de mongo me vale?
+      id: '',
       name: '',
       brand: '',
       category: '',
       shortDescription: '',
-      descriptionTitle: '',
-      descriptionContent: '',
-      specificationsGroup: '',
-      specificationsTitle: '',
-      specificationsContent: '',
+      descriptions: [{ title: '', content: '' }],
+      specifications: [{ group: '', types: [{ type: '', details: '' }] }],
       productVariantId: '',
       productVariantPrice: '',
       productVariantInStock: '',
@@ -33,9 +30,26 @@ export default function AddProductForm() {
     }
   })
 
+  const setCustomValue = (id: string, value: string) => {
+    setValue(
+      id,
+      value,
+      { shouldValidate: true, shouldDirty: true, shouldTouch: true }
+    )
+  }
+
   return (
     <>
-      <h2 className="text-accent">Agregar producto</h2>
+      <h2 className="text-accent">Agregar producto a base de datos</h2>
+
+      <Input
+        id='id'
+        label="ID general del producto"
+        required
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+      />
 
       <Input
         id='name'
@@ -55,25 +69,6 @@ export default function AddProductForm() {
         errors={errors}
       />
 
-      <section className='w-full font-medium border'>
-        <span className='mb-2 font-semibold'>
-          Selecciona una Categoria
-        </span>
-
-        <div className='grid grid-cols-2 md:grid-cols-3 max-h-[30vh] overflow-y-auto'>
-          {categories.map((category, index) => {
-            if (category.label === 'Todos') return null
-
-            return (
-              <div key={category.label}>
-                {category.label}
-              </div>
-            )
-          })
-          }
-        </div>
-      </section>
-
       <TextArea
         id='shortDescription'
         label="Descripción corta"
@@ -83,50 +78,55 @@ export default function AddProductForm() {
         errors={errors}
       />
 
-      <Input
-        id='descriptionTitle'
-        label="Título de descripción"
-        required
-        disabled={isLoading}
-        register={register}
-        errors={errors}
+      {/* Categorias */}
+      {/* <section className='w-full flex flex-col gap-3 mb-3'>
+        <span className='text-xl font-semibold text-secondary'>
+          Selecciona una Categoria
+        </span>
+
+        <div className='grid grid-cols-2 md:grid-cols-3 gap-2 max-h-[30vh] overflow-y-auto'>
+          {categories.map((item) => {
+            if (item.label === 'Todos') return null
+
+            return (
+              <div key={item.label}>
+                <CategoryInput
+                  onClick={(category) => { setCustomValue('category', category) }}
+                  selected={category === item.label}
+                  label={item.label}
+                  icon={item.icon}
+                />
+              </div>
+            )
+          })
+          }
+        </div>
+      </section> */}
+      <CategoriesSection
+        categories={categories}
+        selectedCategory={watch('category')}
+        onSelectCategory={(category) => { setCustomValue('category', category) }}
       />
 
-      <TextArea
-        id='descriptionContent'
-        label="Contenido de descripción"
-        required
-        disabled={isLoading}
+      {/* Descripciones */}
+      <DescriptionsSection
         register={register}
+        setValue={setValue}
+        watch={watch}
         errors={errors}
+        isLoading={isLoading}
       />
 
-      <Input
-        id='specificationsGroup'
-        label="Grupo de especificaciones"
-        required
-        disabled={isLoading}
+      {/* Especificaciones */}
+      <SpecificationsSection
         register={register}
+        setValue={setValue}
+        watch={watch}
         errors={errors}
+        isLoading={isLoading}
       />
 
-      <Input
-        id='specificationsTitle'
-        label="Título de especificaciones"
-        required
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
-
-      <TextArea
-        id='specificationsContent'
-        label="Contenido de especificaciones"
-        required
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
+      <h2 className="text-accent">Variantes de producto</h2>
 
       <Input
         id='productVariantId'
@@ -134,8 +134,7 @@ export default function AddProductForm() {
         required
         disabled={isLoading}
         register={register}
-        errors={errors}
-      />
+        errors={errors} />
 
       <Input
         id='productVariantPrice'
@@ -148,7 +147,7 @@ export default function AddProductForm() {
 
       <Input
         id='productVariantInStock'
-        label="En stock"
+        label="Cantidad en stock"
         required
         disabled={isLoading}
         register={register}
