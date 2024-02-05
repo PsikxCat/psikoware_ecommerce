@@ -12,19 +12,19 @@ export default function AdminNavbar() {
   return (
     <nav className="flex items-center justify-between md:justify-center gap-8 md:gap-10 p-4 bg-secondary text-lg text-dark font-bold border-b-[3px] border-accent overflow-y-auto flex-nowrap">
       <Link href="/admin">
-        <AdminNavItem label="Summary" icon={MdDashboard} selected={pathname === '/admin'} />
+        <AdminNavItem label="Resumen" icon={MdDashboard} selected={pathname === '/admin'} />
       </Link>
 
       <Link href="/admin/add-products">
-        <AdminNavItem label="Add Products" icon={MdLibraryAdd} selected={pathname === '/admin/add-products'} />
+        <AdminNavItem label="Agregar Producto" icon={MdLibraryAdd} selected={pathname === '/admin/add-products'} />
       </Link>
 
       <Link href="/admin/manage-products">
-        <AdminNavItem label="Manage Products" icon={MdDns} selected={pathname === '/admin/manage-products'} />
+        <AdminNavItem label="Gestionar productos" icon={MdDns} selected={pathname === '/admin/manage-products'} />
       </Link>
 
       <Link href="/admin/orders">
-        <AdminNavItem label="Orders" icon={MdFormatListBulleted} selected={pathname === '/admin/orders'} />
+        <AdminNavItem label="Ordenes de compra" icon={MdFormatListBulleted} selected={pathname === '/admin/orders'} />
       </Link>
     </nav>
   )

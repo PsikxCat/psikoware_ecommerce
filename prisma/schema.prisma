@@ -35,14 +35,14 @@ type Description {
   content String
 }
 
-type Specification {
+type SpecificationsGroup {
   group String
-  content SpecificationGroup[]
+  content Specifications[]
 }
 
-type SpecificationGroup {
+type Specifications {
   title String
-  content String
+  details String
 }
 
 model User {
@@ -67,7 +67,7 @@ model Product {
   category String
   shortDescription String
   description Description[]
-  specifications Specification[]
+  specifications SpecificationsGroup[]
   productVariants ProductVariant[]
   reviews Review[]
 }

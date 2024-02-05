@@ -22,7 +22,7 @@ export default function DescriptionsSection({
         <div key={index} className='flex flex-col gap-2'>
           <Input
             id={`descriptionTitle[${index}]`}
-            label="Título de descripción"
+            label={`Título de descripción #${index + 1}`}
             required
             disabled={isLoading}
             register={register}
@@ -31,18 +31,17 @@ export default function DescriptionsSection({
 
           <TextArea
             id={`descriptionContent[${index}]`}
-            label="Contenido de descripción"
+            label={`Contenido de descripción #${index + 1}`}
             required
             disabled={isLoading}
             register={register}
             errors={errors}
           />
-
         </div>
       ))}
 
       {/* Botones Agregar/Eliminar Descripciones */}
-      <div className='flex justify-between'>
+      <div className='flex justify-around'>
         {/* Agregar */}
         <button
           type="button"

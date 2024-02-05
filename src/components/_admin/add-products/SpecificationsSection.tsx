@@ -18,21 +18,21 @@ export default function SpecificationsSection({
 
       {/* Inputs Grupo */}
       {watch('specifications')?.map((specGroup: any, groupIndex: any) => (
-        <div key={groupIndex} className='flex flex-col gap-3'>
+        <div key={groupIndex} className='flex flex-col gap-2'>
           <Input
             id={`specifications[${groupIndex}].group`}
-            label="Grupo de Especificaciones"
+            label={`Grupo de Especificaciones #${groupIndex + 1}`}
             required
             disabled={isLoading}
             register={register}
             errors={errors}
           />
           {/* Inputs Especificaciones */}
-          {specGroup.types.map((specTyp: any, typeIndex: any) => (
-            <div key={typeIndex} className='flex flex-col gap-3'>
+          {specGroup.content.map((specTyp: any, typeIndex: any) => (
+            <div key={typeIndex} className='flex flex-col gap-2'>
               <Input
-                id={`specifications[${groupIndex}].types[${typeIndex}].type`}
-                label="Tipo de Especificación"
+                id={`specifications[${groupIndex}].content[${typeIndex}].title`}
+                label={`Título de Especificación #${typeIndex + 1}`}
                 required
                 disabled={isLoading}
                 register={register}
@@ -40,8 +40,8 @@ export default function SpecificationsSection({
               />
 
               <TextArea
-                id={`specifications[${groupIndex}].types[${typeIndex}].details`}
-                label="Detalle de Especificación"
+                id={`specifications[${groupIndex}].content[${typeIndex}].details`}
+                label={`Detalles de Especificación #${typeIndex + 1}`}
                 required
                 disabled={isLoading}
                 register={register}
@@ -51,29 +51,29 @@ export default function SpecificationsSection({
           ))}
 
           {/* Botones Agregar/Eliminar Especificaciones */}
-          <div className='flex justify-between items-center mb-2'>
+          <div className='flex justify-around items-center mb-2'>
             <button
               type="button"
               onClick={() => {
                 const updatedSpecs = [...watch('specifications')]
-                updatedSpecs[groupIndex].types.push({ type: '', details: '' })
+                updatedSpecs[groupIndex].content.push({ title: '', details: '' })
                 setValue('specifications', updatedSpecs)
               }}
             >
-              Agregar Tipo de Especificación
+              Agregar Especificación
             </button>
 
-            {watch('specifications') && watch('specifications')[groupIndex].types.length > 1 && (
+            {watch('specifications') && watch('specifications')[groupIndex].content.length > 1 && (
               <button
                 className='text-red-500'
                 type="button"
                 onClick={() => {
                   const updatedSpecs = [...watch('specifications')]
-                  updatedSpecs[groupIndex].types.pop()
+                  updatedSpecs[groupIndex].content.pop()
                   setValue('specifications', updatedSpecs)
                 }}
               >
-                Eliminar Tipo de Especificación
+                Eliminar Especificación
               </button>
             )}
           </div>
@@ -81,13 +81,13 @@ export default function SpecificationsSection({
       ))}
 
       {/* Botones Agregar/Eliminar Grupo */}
-      <div className='flex justify-between items-center mb-2'>
+      <div className='flex justify-around items-center mb-2'>
         <button
           type="button"
           onClick={() => {
             setValue('specifications', [
               ...watch('specifications'),
-              { group: '', types: [{ type: '', details: '' }] }
+              { group: '', content: [{ title: '', details: '' }] }
             ])
           }}
         >

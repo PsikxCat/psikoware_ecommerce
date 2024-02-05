@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { type FieldValues, type SubmitHandler, useForm } from 'react-hook-form'
 
-import { CategoriesSection, CategoryInput, DescriptionsSection, Input, SpecificationsSection, TextArea } from '@/components'
+import { CategoriesSection, DescriptionsSection, Input, SpecificationsSection, TextArea, VariantsSection } from '@/components'
 import { categories } from '@/utils/categories'
 
 export default function AddProductForm() {
@@ -12,21 +12,32 @@ export default function AddProductForm() {
     register, handleSubmit, setValue, watch, reset, formState: { errors }
   } = useForm<FieldValues>({
     defaultValues: {
-      id: '',
-      name: '',
-      brand: '',
-      category: '',
-      shortDescription: '',
-      descriptions: [{ title: '', content: '' }],
-      specifications: [{ group: '', types: [{ type: '', details: '' }] }],
-      productVariantId: '',
-      productVariantPrice: '',
-      productVariantInStock: '',
-      productVariantQuantity: '',
-      productVariantColor: '',
-      productVariantColorCode: '',
-      productVariantCapacity: '',
-      productVariantImages: []
+      // id: '',
+      // name: '',
+      // brand: '',
+      // category: '',
+      // shortDescription: '',
+      descriptions: [{
+        title: '',
+        content: ''
+      }],
+      specifications: [{
+        group: '',
+        content: [{
+          title: '',
+          details: ''
+        }]
+      }],
+      productVariants: [{
+        id: '',
+        price: '',
+        inStock: '',
+        quantity: '',
+        color: '',
+        colorCode: '',
+        capacity: '',
+        images: []
+      }]
     }
   })
 
@@ -39,164 +50,99 @@ export default function AddProductForm() {
   }
 
   return (
-    <>
-      <h2 className="text-accent">Agregar producto a base de datos</h2>
+    <form className='w-full z-10 flex flex-col gap-4'
+      onSubmit={handleSubmit((data) => {
+        console.log(data)
+      })}
+    >
+      <h2 className="text-accent text-center mb-6">Agregar producto</h2>
 
-      <Input
-        id='id'
-        label="ID general del producto"
-        required
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
+      {/* Datos globales del producto */}
+      <section className='bg-stone-700 p-4 rounded-lg mb-4'>
+        <h4 className='text-accent text-center font-bold text-lg mb-4'>Datos globales del producto</h4>
 
-      <Input
-        id='name'
-        label="Nombre del producto"
-        required
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
+        <div className='flex flex-col gap-2'>
+          <Input
+            id='id'
+            label="ID general"
+            required
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+          />
 
-      <Input
-        id='brand'
-        label="Marca"
-        required
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
+          <Input
+            id='name'
+            label="Nombre del producto"
+            required
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+          />
 
-      <TextArea
-        id='shortDescription'
-        label="Descripción corta"
-        required
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
+          <Input
+            id='brand'
+            label="Marca"
+            required
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+          />
 
-      {/* Categorias */}
-      {/* <section className='w-full flex flex-col gap-3 mb-3'>
-        <span className='text-xl font-semibold text-secondary'>
-          Selecciona una Categoria
-        </span>
-
-        <div className='grid grid-cols-2 md:grid-cols-3 gap-2 max-h-[30vh] overflow-y-auto'>
-          {categories.map((item) => {
-            if (item.label === 'Todos') return null
-
-            return (
-              <div key={item.label}>
-                <CategoryInput
-                  onClick={(category) => { setCustomValue('category', category) }}
-                  selected={category === item.label}
-                  label={item.label}
-                  icon={item.icon}
-                />
-              </div>
-            )
-          })
-          }
+          <TextArea
+            id='shortDescription'
+            label="Descripción corta"
+            required
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+          />
         </div>
-      </section> */}
-      <CategoriesSection
-        categories={categories}
-        selectedCategory={watch('category')}
-        onSelectCategory={(category) => { setCustomValue('category', category) }}
-      />
 
-      {/* Descripciones */}
-      <DescriptionsSection
-        register={register}
-        setValue={setValue}
-        watch={watch}
-        errors={errors}
-        isLoading={isLoading}
-      />
+        <hr className='my-6' />
 
-      {/* Especificaciones */}
-      <SpecificationsSection
-        register={register}
-        setValue={setValue}
-        watch={watch}
-        errors={errors}
-        isLoading={isLoading}
-      />
+        {/* Categorias */}
+        <CategoriesSection
+          categories={categories}
+          selectedCategory={watch('category')}
+          onSelectCategory={(category) => { setCustomValue('category', category) }}
+        />
 
-      <h2 className="text-accent">Variantes de producto</h2>
+        <hr className='my-6' />
 
-      <Input
-        id='productVariantId'
-        label="ID de variante"
-        required
-        disabled={isLoading}
-        register={register}
-        errors={errors} />
+        {/* Descripciones */}
+        <DescriptionsSection
+          register={register}
+          setValue={setValue}
+          watch={watch}
+          errors={errors}
+          isLoading={isLoading}
+        />
 
-      <Input
-        id='productVariantPrice'
-        label="Precio de variante"
-        required
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
+        <hr className='my-6' />
 
-      <Input
-        id='productVariantInStock'
-        label="Cantidad en stock"
-        required
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
+        {/* Especificaciones */}
+        <SpecificationsSection
+          register={register}
+          setValue={setValue}
+          watch={watch}
+          errors={errors}
+          isLoading={isLoading}
+        />
+      </section>
 
-      <Input
-        id='productVariantQuantity'
-        label="Cantidad"
-        required
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
+      {/* Datos de variantes del producto */}
+      <section className='bg-stone-700 p-4 rounded-lg flex flex-col gap-2'>
+        <VariantsSection
+          register={register}
+          setValue={setValue}
+          watch={watch}
+          errors={errors}
+          isLoading={isLoading}
+        />
+      </section>
 
-      <Input
-        id='productVariantColor'
-        label="Color"
-        required
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
-
-      <Input
-        id='productVariantColorCode'
-        label="Código de color"
-        required
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
-
-      <Input
-        id='productVariantCapacity'
-        label="Capacidad"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
-
-      <Input
-        id='productVariantImages'
-        label="Imágenes"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-      />
-
-    </>
+      <button type='submit'>Enviar</button>
+    </form>
   )
 }

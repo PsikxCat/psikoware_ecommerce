@@ -36,6 +36,7 @@ export { default as CategoryInput } from './_admin/add-products/CategoryInput.ts
 export { default as DescriptionsSection } from './_admin/add-products/DescriptionsSection.tsx'
 export { default as SpecificationsSection } from './_admin/add-products/SpecificationsSection.tsx'
 export { default as CategoriesSection } from './_admin/add-products/CategoriesSection.tsx'
+export { default as VariantsSection } from './_admin/add-products/VariantsSection.tsx'
 
 export { default as ShoppedItems } from './_payment/success/ShoppedItems.tsx'
 export { default as TotalSection } from './_payment/success/TotalSection.tsx'
