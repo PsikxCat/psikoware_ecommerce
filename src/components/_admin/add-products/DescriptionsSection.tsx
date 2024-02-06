@@ -21,7 +21,7 @@ export default function DescriptionsSection({
       {watch('descriptions')?.map((_: any, index: any) => (
         <div key={index} className='flex flex-col gap-2'>
           <Input
-            id={`descriptionTitle[${index}]`}
+            id={`descriptions[${index}].title`}
             label={`Título de descripción #${index + 1}`}
             required
             disabled={isLoading}
@@ -30,7 +30,7 @@ export default function DescriptionsSection({
           />
 
           <TextArea
-            id={`descriptionContent[${index}]`}
+            id={`descriptions[${index}].content`}
             label={`Contenido de descripción #${index + 1}`}
             required
             disabled={isLoading}

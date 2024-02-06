@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { type FieldValues, type SubmitHandler, useForm } from 'react-hook-form'
 
-import { CategoriesSection, DescriptionsSection, Input, SpecificationsSection, TextArea, VariantsSection } from '@/components'
+import { Button, CategoriesSection, DescriptionsSection, Input, SpecificationsSection, TextArea, VariantsSection } from '@/components'
 import { categories } from '@/utils/categories'
 
 export default function AddProductForm() {
@@ -12,11 +12,6 @@ export default function AddProductForm() {
     register, handleSubmit, setValue, watch, reset, formState: { errors }
   } = useForm<FieldValues>({
     defaultValues: {
-      // id: '',
-      // name: '',
-      // brand: '',
-      // category: '',
-      // shortDescription: '',
       descriptions: [{
         title: '',
         content: ''
@@ -49,12 +44,15 @@ export default function AddProductForm() {
     )
   }
 
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    setIsLoading(true)
+    // almacena en db
+    console.log(data)
+    setIsLoading(false)
+  }
+
   return (
-    <form className='w-full z-10 flex flex-col gap-4'
-      onSubmit={handleSubmit((data) => {
-        console.log(data)
-      })}
-    >
+    <form className='w-full z-10 flex flex-col gap-4'>
       <h2 className="text-accent text-center mb-6">Agregar producto</h2>
 
       {/* Datos globales del producto */}
@@ -142,7 +140,10 @@ export default function AddProductForm() {
         />
       </section>
 
-      <button type='submit'>Enviar</button>
+      <Button
+        label={isLoading ? 'Guardando...' : 'Agregar producto'}
+        onClick={handleSubmit(onSubmit)}
+      />
     </form>
   )
 }

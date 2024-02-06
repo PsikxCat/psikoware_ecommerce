@@ -1,4 +1,5 @@
 import { Input } from '@/components'
+import ImageInput from './ImageInput'
 
 interface VariantsSectionProps {
   register: any
@@ -8,13 +9,11 @@ interface VariantsSectionProps {
   isLoading: boolean
 }
 
-export default function VariantsSection({
-  register,
-  setValue,
-  watch,
-  errors,
-  isLoading
-}: VariantsSectionProps) {
+export default function VariantsSection({ register, setValue, watch, errors, isLoading }: VariantsSectionProps) {
+  const onImagesSelected = (index: number, images: File[]) => {
+    setValue(`productVariants[${index}].images`, images)
+  }
+
   return (
     <section className='w-full flex flex-col gap-3 mb-3'>
       <h4 className="text-accent text-center font-bold text-lg mb-2">Datos de variante(s) del producto</h4>
@@ -75,9 +74,19 @@ export default function VariantsSection({
             errors={errors}
           />
 
-          <Input
+          {/* <Input
             id={`productVariants[${index}].images`}
             label="Imágenes"
+            disabled={isLoading}
+            register={register}
+            errors={errors}
+          /> */}
+
+          {/* Imágenes */}
+          <ImageInput
+            onImagesSelected={(images: File[]) => { onImagesSelected(index, images) }}
+            existingImages={watch(`productVariants[${index}].images`)}
+            required
             disabled={isLoading}
             register={register}
             errors={errors}
