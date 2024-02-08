@@ -1,16 +1,16 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { type FieldValues, type SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-// import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage'
 
-// import firebaseApp from '@/libs/firebase'
 import { categories } from '@/utils/categories'
 import { Button, CategoriesSection, DescriptionsSection, Input, SpecificationsSection, TextArea, VariantsSection } from '@/components'
 import handleImagesUpload from '@/libs/actions/handleImagesUpload'
 
 export default function AddProductForm() {
+  const router = useRouter()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isProductCreated, setIsProductCreated] = useState<boolean>(false)
 
@@ -38,12 +38,13 @@ export default function AddProductForm() {
         images: []
       }]
     }
-  }) // ! PENDIENTE DE REVISAR LOS VALORES POR DEFECTO
+  })
 
   useEffect(() => {
     if (isProductCreated) {
       reset()
       setIsProductCreated(false)
+      router.refresh()
     }
   }, [isProductCreated])
 
@@ -53,11 +54,12 @@ export default function AddProductForm() {
       value,
       { shouldValidate: true, shouldDirty: true, shouldTouch: true }
     )
-  } // ? esta funcion necesita estar aqui o se puede pasar a la seccion de categorias?
+  }
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true)
 
+    // Recibe un array de string[], en donde cada string[] contiene los links de las imagenes
     const updateImages: string[][] = []
 
     // Manejo de errores con notificaciones
@@ -65,77 +67,19 @@ export default function AddProductForm() {
       setIsLoading(false)
       return toast.error('Debes seleccionar una categoría')
     }
-    if (!data.productVariants || data.productVariants.length === 0) {
-      setIsLoading(false)
-      return toast.error('Debes agregar al menos una variante del producto')
-    }
-    data.productVariants.forEach((variant: any, index: number) => {
+    for (let index = 0; index < data.productVariants.length; index++) {
+      const variant = data.productVariants[index]
       if (!variant.images || variant.images.length === 0) {
         setIsLoading(false)
-        return toast.error(`La variante de producto ${index + 1} debe tener al menos una imagen`)
+        toast.error(`La variante de producto ${index + 1} debe tener al menos una imagen`)
+        return
       }
-    })
+    }
 
-    // const handleImagesUpload = async () => {
-    //   toast('Creando producto, por favor espere...', { icon: '📦' })
-
-    //   try {
-    //     for (const [index, variant] of data.productVariants.entries()) {
-    //       updateImages[index] = []
-
-    //       for (const item of variant.images) {
-    //         if (item.name) {
-    //           const fileName = `${variant.id}-${index}-${item.name}`
-    //           const storage = getStorage(firebaseApp)
-    //           const storageRef = ref(storage, `products/${data.id}/${fileName}`)
-    //           const uploadTask = uploadBytesResumable(storageRef, item)
-
-    //           // crea una nueva Promesa que se resuelve cuando la tarea de subida de imagen se completa y retorna la URL de descarga, que se almacena en el array updateImages
-    //           await new Promise<void>((resolve, reject) => {
-    //             uploadTask.on(
-    //               'state_changed',
-    //               (snapshot) => {
-    //                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-    //                 console.log('Upload is ' + progress + '% done')
-
-    //                 switch (snapshot.state) {
-    //                   case 'paused':
-    //                     console.log('Upload is paused')
-    //                     break
-    //                   case 'running':
-    //                     console.log('Upload is running')
-    //                     break
-    //                 }
-    //               },
-    //               (error) => {
-    //                 console.error('Error subiendo imagenes', error)
-    //                 toast.error('Error subiendo imagenes')
-    //                 reject(error)
-    //               },
-    //               () => {
-    //                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-    //                   updateImages[index] = [...updateImages[index], downloadURL]
-    //                   console.log('Imagen disponible en', downloadURL)
-    //                   resolve()
-    //                 }).catch((error) => {
-    //                   console.error('Error obteniendo URL de descarga', error)
-    //                   toast.error('Error obteniendo URL de descarga')
-    //                   reject(error)
-    //                 })
-    //               }
-    //             )
-    //           })
-    //         }
-    //       }
-    //     }
-    //   } catch (error) {
-    //     console.error('Error subiendo imagenes', error)
-    //     // setIsLoading(false)
-    //     return toast.error('Error subiendo imagenes')
-    //   }
-    // }
+    // Subir las imagenes a Firebase y obtener los links
     await handleImagesUpload(data, updateImages)
 
+    // Actualizar la data de las imagenes de las variantes con los links d Firebase
     const productData = {
       ...data,
       productVariants: data.productVariants.map((variant: any, index: number) => {
@@ -150,10 +94,6 @@ export default function AddProductForm() {
 
     setIsProductCreated(true)
     setIsLoading(false)
-
-    // ! PENDIENTE DE REVISAR
-    // generar un refresh en caso de todo bien
-    // window.location.reload()
   }
 
   return (

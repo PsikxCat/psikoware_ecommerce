@@ -8,9 +8,7 @@ interface DescriptionSectionProps {
   isLoading: boolean
 }
 
-export default function DescriptionsSection({
-  register, setValue, watch, errors, isLoading
-}: DescriptionSectionProps) {
+export default function DescriptionsSection({ register, setValue, watch, errors, isLoading }: DescriptionSectionProps) {
   return (
     <section className='w-full flex flex-col gap-3 mb-3'>
       <span className='text-xl font-semibold text-secondary'>

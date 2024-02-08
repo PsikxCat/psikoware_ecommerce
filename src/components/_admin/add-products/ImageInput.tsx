@@ -1,9 +1,7 @@
 'use client'
 
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-
-import { AdminContext, type AdminContextType } from '@/context/adminContext'
 
 interface ImageInputProps {
   onImagesSelected: (images: File[]) => void
@@ -15,16 +13,16 @@ interface ImageInputProps {
 export default function ImageInput({ onImagesSelected, existingImages = [], variantIndex, disabled = false }: ImageInputProps) {
   const [selectedImages, setSelectedImages] = useState<File []>(existingImages)
 
-  const { setProductVariantsImages } = useContext(AdminContext as React.Context<AdminContextType>)
-
   const onDrop = (acceptedFiles: File[]) => {
     const newImages = [...selectedImages, ...acceptedFiles]
     setSelectedImages(newImages)
-    setProductVariantsImages((prevState: File[][]) => {
-      const variantImages = [...prevState]
-      variantImages[variantIndex] = newImages
-      return variantImages
-    })
+    onImagesSelected(newImages)
+  }
+
+  const removeImage = (index: number) => {
+    const newImages = [...selectedImages]
+    newImages.splice(index, 1)
+    setSelectedImages(newImages)
     onImagesSelected(newImages)
   }
 
@@ -34,18 +32,6 @@ export default function ImageInput({ onImagesSelected, existingImages = [], vari
     multiple: true,
     disabled
   })
-
-  const removeImage = (index: number) => {
-    const newImages = [...selectedImages]
-    newImages.splice(index, 1)
-    setSelectedImages(newImages)
-    setProductVariantsImages((prevState) => {
-      const variantImages = [...prevState]
-      variantImages[variantIndex] = newImages
-      return variantImages
-    })
-    onImagesSelected(newImages)
-  }
 
   return (<>
     <div

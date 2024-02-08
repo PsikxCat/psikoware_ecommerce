@@ -10,7 +10,6 @@ interface VariantsSectionProps {
 }
 
 export default function VariantsSection({ register, setValue, watch, errors, isLoading }: VariantsSectionProps) {
-  // esta funcion se pudo importar de AddProductForm.tsx ya que son muy similares, pero se decide ponerla aquíya que tiene ciertas diferencias con la usada
   const onImagesSelected = (index: number, images: File[]) => {
     setValue(
       `productVariants[${index}].images`,
