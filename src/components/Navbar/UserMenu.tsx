@@ -5,7 +5,7 @@ import { AiFillCaretDown } from 'react-icons/ai'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 
-import { GlobalContext, type GlobalContextType } from '@/context'
+import { GlobalContext, type GlobalContextType } from '@/context/globalContext'
 import { Avatar, MenuItem } from '@/components'
 
 export default function UserMenu() {

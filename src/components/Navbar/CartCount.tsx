@@ -3,7 +3,7 @@
 import { useContext } from 'react'
 import Link from 'next/link'
 
-import { GlobalContext, type GlobalContextType } from '@/context'
+import { GlobalContext, type GlobalContextType } from '@/context/globalContext'
 import { PiShoppingCartSimpleBold } from 'react-icons/pi'
 
 export default function CartCount() {

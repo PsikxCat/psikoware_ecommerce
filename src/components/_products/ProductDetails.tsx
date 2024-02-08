@@ -9,7 +9,7 @@ import type { CartProductType, ProductVariantsType } from '@/types'
 
 import { Button, ProductImage, SetVariant, SetQuantity, Tabs } from '@/components'
 import { formatPrice, productRating } from '@/utils'
-import { GlobalContext, type GlobalContextType } from '@/context'
+import { GlobalContext, type GlobalContextType } from '@/context/globalContext'
 
 interface ProductDetailsProps {
   product: any //! TODO: define product type with Prisma

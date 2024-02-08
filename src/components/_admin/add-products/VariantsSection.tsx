@@ -10,8 +10,13 @@ interface VariantsSectionProps {
 }
 
 export default function VariantsSection({ register, setValue, watch, errors, isLoading }: VariantsSectionProps) {
+  // esta funcion se pudo importar de AddProductForm.tsx ya que son muy similares, pero se decide ponerla aquíya que tiene ciertas diferencias con la usada
   const onImagesSelected = (index: number, images: File[]) => {
-    setValue(`productVariants[${index}].images`, images)
+    setValue(
+      `productVariants[${index}].images`,
+      images,
+      { shouldValidate: true, shouldDirty: true, shouldTouch: true }
+    )
   }
 
   return (
@@ -74,22 +79,12 @@ export default function VariantsSection({ register, setValue, watch, errors, isL
             errors={errors}
           />
 
-          {/* <Input
-            id={`productVariants[${index}].images`}
-            label="Imágenes"
-            disabled={isLoading}
-            register={register}
-            errors={errors}
-          /> */}
-
           {/* Imágenes */}
           <ImageInput
             onImagesSelected={(images: File[]) => { onImagesSelected(index, images) }}
             existingImages={watch(`productVariants[${index}].images`)}
-            required
+            variantIndex={index}
             disabled={isLoading}
-            register={register}
-            errors={errors}
           />
 
           <hr className='mt-6 mb-4' />

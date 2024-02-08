@@ -1,7 +1,7 @@
 'use client'
 
 import { useContext } from 'react'
-import { GlobalContext, type GlobalContextType } from '@/context'
+import { GlobalContext, type GlobalContextType } from '@/context/globalContext'
 import { formatPrice } from '../../../utils/index'
 
 export default function ShoppedItem() {

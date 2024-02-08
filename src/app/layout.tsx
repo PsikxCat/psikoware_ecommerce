@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-// import { Space_Grotesk } from 'next/font/google'
+
 import { Space_Grotesk } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 
 import './globals.css'
 import { Navbar, Footer, ScreenShadow } from '@/components'
-import { GlobalState } from '@/context'
+import { GlobalState } from '@/context/globalContext'
 import { getCurrentUser } from '@/libs/actions/getCurrentUser'
 
 const space = Space_Grotesk({

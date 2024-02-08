@@ -34,3 +34,5 @@ export default function CategoriesSection({ categories, selectedCategory, onSele
     </section>
   )
 }
+
+// ! falta validar que al menos una categoria este seleccionada antes de enviar el formulario !!!!!!!!!!!

@@ -3,7 +3,7 @@
 import { useContext } from 'react'
 
 import { formatPrice } from '@/utils'
-import { GlobalContext, type GlobalContextType } from '@/context'
+import { GlobalContext, type GlobalContextType } from '@/context/globalContext'
 import { Button } from '@/components'
 import Link from 'next/link'
 

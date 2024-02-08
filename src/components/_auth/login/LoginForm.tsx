@@ -8,7 +8,7 @@ import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
 import toast from 'react-hot-toast'
 import { signIn } from 'next-auth/react'
 
-import { GlobalContext, type GlobalContextType } from '@/context'
+import { GlobalContext, type GlobalContextType } from '@/context/globalContext'
 import { Input, Button } from '@/components'
 
 export default function LoginForm() {

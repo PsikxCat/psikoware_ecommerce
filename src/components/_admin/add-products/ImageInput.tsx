@@ -1,48 +1,59 @@
 'use client'
 
-import { useState } from 'react'
-import { type FieldErrors, type FieldValues, type UseFormRegister } from 'react-hook-form'
+import { useState, useContext } from 'react'
 import { useDropzone } from 'react-dropzone'
+
+import { AdminContext, type AdminContextType } from '@/context/adminContext'
 
 interface ImageInputProps {
   onImagesSelected: (images: File[]) => void
   existingImages?: File[]
+  variantIndex: number
   disabled?: boolean
-  required?: boolean
-  register: UseFormRegister<FieldValues>
-  errors: FieldErrors
 }
 
-export default function ImageInput({ onImagesSelected, existingImages = [], disabled = false, required = false, register, errors }: ImageInputProps) {
-  const [selectedImages, setSelectedImages] = useState<File[]>(existingImages)
+export default function ImageInput({ onImagesSelected, existingImages = [], variantIndex, disabled = false }: ImageInputProps) {
+  const [selectedImages, setSelectedImages] = useState<File []>(existingImages)
+
+  const { setProductVariantsImages } = useContext(AdminContext as React.Context<AdminContextType>)
 
   const onDrop = (acceptedFiles: File[]) => {
     const newImages = [...selectedImages, ...acceptedFiles]
     setSelectedImages(newImages)
-    onImagesSelected(newImages)
-  }
-
-  const removeImage = (index: number) => {
-    const newImages = [...selectedImages]
-    newImages.splice(index, 1)
-    setSelectedImages(newImages)
+    setProductVariantsImages((prevState: File[][]) => {
+      const variantImages = [...prevState]
+      variantImages[variantIndex] = newImages
+      return variantImages
+    })
     onImagesSelected(newImages)
   }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: { 'image/*': ['.jpg', '.jpeg', '.png'] },
-    multiple: true
+    multiple: true,
+    disabled
   })
+
+  const removeImage = (index: number) => {
+    const newImages = [...selectedImages]
+    newImages.splice(index, 1)
+    setSelectedImages(newImages)
+    setProductVariantsImages((prevState) => {
+      const variantImages = [...prevState]
+      variantImages[variantIndex] = newImages
+      return variantImages
+    })
+    onImagesSelected(newImages)
+  }
 
   return (<>
     <div
       {...getRootProps()}
       className={`w-full h-36 flex items-center justify-center border-2 border-dashed rounded-lg ${isDragActive ? 'border-accent' : 'border-stone-500'}`}
     >
-      <input {...getInputProps()} />
+      <input {...getInputProps()}/>
       <p className='text-center text-stone-300'>Arrastra y suelta las imágenes aquí, o haz clic para seleccionarlas</p>
-
     </div>
 
     {selectedImages.length > 0 && (
@@ -54,6 +65,7 @@ export default function ImageInput({ onImagesSelected, existingImages = [], disa
               alt={`Imagen #${index + 1}`}
               className='w-20 h-20 object-cover rounded-lg'
             />
+
             <button
               type='button'
               onClick={() => { removeImage(index) }}

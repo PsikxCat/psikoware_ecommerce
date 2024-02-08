@@ -59,6 +59,7 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
 
     toast.success('Producto añadido al carrito')
   }, [cartItems])
+
   const handleRemoveItemFromCart = useCallback((id: string) => {
     setCartItems((prev) => {
       const updatedCart = prev.filter((item) => item.productVariants.id !== id)
@@ -73,6 +74,7 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
 
     toast.success('Producto eliminado del carrito')
   }, [cartItems])
+
   const handleItemCartQtyDecrease = useCallback((item: CartProductType) => {
     const updatedCart = [...cartItems]
 
@@ -88,6 +90,7 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
     // persistencia de datos (usuarios no registrados)
     localStorage.setItem('cart', JSON.stringify(updatedCart))
   }, [cartItems])
+
   const handleItemCartQtyIncrease = useCallback((item: CartProductType) => {
     const updatedCart = [...cartItems]
 
@@ -103,6 +106,7 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
     // persistencia de datos (usuarios no registrados)
     localStorage.setItem('cart', JSON.stringify(updatedCart))
   }, [cartItems])
+
   const handleClearCart = useCallback(() => {
     setCartItems([])
     setCartTotalQuantity(0)
@@ -128,8 +132,8 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
 
   // se usa la data en localStorage para setear el estado cartItems para usuarios no registrados
   useEffect(() => {
-    // aplicar la condicional para usuarios no registrados
-    // si el usuario esta registrado, se usa la data de la db
+    // aplicar la condicional para usuarios no registrados ---TODO
+    // si el usuario esta registrado, se usa la data de la db ---TODO
     setCartItems(JSON.parse(localStorage.getItem('cart') ?? '[]'))
   }, [])
 

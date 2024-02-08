@@ -8,7 +8,7 @@ import Link from 'next/link'
 import toast from 'react-hot-toast'
 import { signIn } from 'next-auth/react'
 
-import { GlobalContext, type GlobalContextType } from '@/context'
+import { GlobalContext, type GlobalContextType } from '@/context/globalContext'
 import { Input, Button } from '@/components'
 
 export default function RegisterForm() {

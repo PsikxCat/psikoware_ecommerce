@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import Link from 'next/link'
 
 import { MdArrowBack } from 'react-icons/md'
-import { GlobalContext, type GlobalContextType } from '@/context'
+import { GlobalContext, type GlobalContextType } from '@/context/globalContext'
 import { CartItem } from '@/components'
 
 export default function ProductsSection() {
