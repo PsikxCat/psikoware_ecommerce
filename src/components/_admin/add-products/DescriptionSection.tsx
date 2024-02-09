@@ -8,7 +8,7 @@ interface DescriptionSectionProps {
   isLoading: boolean
 }
 
-export default function DescriptionsSection({ register, setValue, watch, errors, isLoading }: DescriptionSectionProps) {
+export default function DescriptionSection({ register, setValue, watch, errors, isLoading }: DescriptionSectionProps) {
   return (
     <section className='w-full flex flex-col gap-3 mb-3'>
       <span className='text-xl font-semibold text-secondary'>
@@ -16,10 +16,10 @@ export default function DescriptionsSection({ register, setValue, watch, errors,
       </span>
 
       {/* Inputs */}
-      {watch('descriptions')?.map((_: any, index: any) => (
+      {watch('description')?.map((_: any, index: any) => (
         <div key={index} className='flex flex-col gap-2'>
           <Input
-            id={`descriptions[${index}].title`}
+            id={`description[${index}].title`}
             label={`Título de descripción #${index + 1}`}
             required
             disabled={isLoading}
@@ -28,7 +28,7 @@ export default function DescriptionsSection({ register, setValue, watch, errors,
           />
 
           <TextArea
-            id={`descriptions[${index}].content`}
+            id={`description[${index}].content`}
             label={`Contenido de descripción #${index + 1}`}
             required
             disabled={isLoading}

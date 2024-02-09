@@ -7,6 +7,8 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// # types //////////////////////////////////////////////////////////////////////
+
 type OrderProductType {
   id String
   unitPrice Float
@@ -21,7 +23,7 @@ type OrderProductType {
   selectedImg String
 }
 
-type Address {
+type AddressType {
   name String
   addressLine1 String
   addressLine2 String?
@@ -30,20 +32,22 @@ type Address {
   postalCode String
 } // ! Pendiente de contrastar con la data recibida de MP
 
-type Description {
+type DescriptionType {
   title String
   content String
 }
 
-type SpecificationsGroup {
+type SpecificationsGroupType {
   group String
-  content Specifications[]
+  content SpecificationsType[]
 }
 
-type Specifications {
+type SpecificationsType {
   title String
   details String
 }
+
+// # models //////////////////////////////////////////////////////////////////////
 
 model User {
   id              String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -62,12 +66,13 @@ model User {
 
 model Product {
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  productRef String @unique
   name String
   brand String
   category String
   shortDescription String
-  description Description[]
-  specifications SpecificationsGroup[]
+  description DescriptionType[]
+  specifications SpecificationsGroupType[]
   productVariants ProductVariant[]
   reviews Review[]
 }
@@ -75,6 +80,7 @@ model Product {
 model ProductVariant {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   productId String @db.ObjectId
+  variantProductRef String @unique
   price Float
   quantity Int?
   inStock Int
@@ -108,7 +114,7 @@ model Order {
   createDateTime DateTime @default(now())
   paymentId String @unique
   products OrderProductType[]
-  address Address?
+  address AddressType?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

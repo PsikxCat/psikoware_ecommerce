@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { type FieldValues, type SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import axios from 'axios'
 
 import { categories } from '@/utils/categories'
-import { Button, CategoriesSection, DescriptionsSection, Input, SpecificationsSection, TextArea, VariantsSection } from '@/components'
+import { Button, CategoriesSection, DescriptionSection, Input, SpecificationsSection, TextArea, VariantsSection } from '@/components'
 import handleImagesUpload from '@/libs/actions/handleImagesUpload'
 
 export default function AddProductForm() {
@@ -16,7 +17,7 @@ export default function AddProductForm() {
 
   const { register, handleSubmit, setValue, watch, reset, formState: { errors } } = useForm<FieldValues>({
     defaultValues: {
-      descriptions: [{
+      description: [{
         title: '',
         content: ''
       }],
@@ -42,9 +43,9 @@ export default function AddProductForm() {
 
   useEffect(() => {
     if (isProductCreated) {
-      reset()
+      reset() // irrelavante despues de redireccionar :/
       setIsProductCreated(false)
-      router.refresh()
+      router.push('/admin/add-products/success')
     }
   }, [isProductCreated])
 
@@ -59,10 +60,10 @@ export default function AddProductForm() {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true)
 
-    // Recibe un array de string[], en donde cada string[] contiene los links de las imagenes
+    // Recibe un array de string[], en donde cada string[] contiene los links de las imagenes de una variante
     const updateImages: string[][] = []
 
-    // Manejo de errores con notificaciones
+    // Manejo de errores con notificaciones (no se selecciona categoria o no se suben imagenes a las variantes)
     if (!data.category) {
       setIsLoading(false)
       return toast.error('Debes seleccionar una categoría')
@@ -89,11 +90,18 @@ export default function AddProductForm() {
         }
       })
     }
-
     console.log('productData =>', productData)
 
-    setIsProductCreated(true)
-    setIsLoading(false)
+    // Enviar la data a la API para agregar el producto a la base de datos
+    axios.post('/api/create-product', productData).then(() => {
+      toast.success('Producto agregado a la base de datos con éxito')
+      setIsProductCreated(true)
+      setIsLoading(false)
+    }).catch((error) => {
+      toast.error('Hubo un error al agregar el producto a la base de datos')
+      console.error('Error', error)
+      setIsLoading(false)
+    })
   }
 
   return (
@@ -154,7 +162,7 @@ export default function AddProductForm() {
         <hr className='my-6' />
 
         {/* Descripciones */}
-        <DescriptionsSection
+        <DescriptionSection
           register={register}
           setValue={setValue}
           watch={watch}
