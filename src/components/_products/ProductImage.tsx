@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from 'react'
 
-import type { CartProductType } from '@/types'
+import type { UIProductType } from '@/types'
 import Image from 'next/image'
 
 interface ProductImageProps {
-  cartProduct: CartProductType
+  cartProduct: UIProductType
 }
 
 export default function ProductImage({ cartProduct }: ProductImageProps) {

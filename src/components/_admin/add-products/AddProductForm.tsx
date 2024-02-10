@@ -17,6 +17,10 @@ export default function AddProductForm() {
 
   const { register, handleSubmit, setValue, watch, reset, formState: { errors } } = useForm<FieldValues>({
     defaultValues: {
+      name: '',
+      brand: '',
+      shortDescription: '',
+      category: '',
       description: [{
         title: '',
         content: ''
@@ -29,7 +33,6 @@ export default function AddProductForm() {
         }]
       }],
       productVariants: [{
-        id: '',
         price: '',
         inStock: '',
         quantity: '',
@@ -63,24 +66,27 @@ export default function AddProductForm() {
     // Recibe un array de string[], en donde cada string[] contiene los links de las imagenes de una variante
     const updateImages: string[][] = []
 
-    // Manejo de errores con notificaciones (no se selecciona categoria o no se suben imagenes a las variantes)
+    // Manejo de errores con notificaciones (no se selecciona categoria, no se suben imagenes a las variantes o no se ingresan numeros en precio o cantidad en stock)
     if (!data.category) {
       setIsLoading(false)
       return toast.error('Debes seleccionar una categoría')
     }
-    for (let index = 0; index < data.productVariants.length; index++) {
-      const variant = data.productVariants[index]
+    for (const [index, variant] of data.productVariants.entries()) {
       if (!variant.images || variant.images.length === 0) {
         setIsLoading(false)
-        toast.error(`La variante de producto ${index + 1} debe tener al menos una imagen`)
+        toast.error(`La variante #${index + 1} debe tener al menos una imagen`)
         return
+      }
+      if (isNaN(Number(variant.price)) || isNaN(Number(variant.inStock))) {
+        setIsLoading(false)
+        return toast.error(`El precio y la cantidad en stock de la variante #${index + 1} deben ser números`)
       }
     }
 
     // Subir las imagenes a Firebase y obtener los links
     await handleImagesUpload(data, updateImages)
 
-    // Actualizar la data de las imagenes de las variantes con los links d Firebase
+    // Actualizar la data de las imagenes de las variantes con los links de Firebase
     const productData = {
       ...data,
       productVariants: data.productVariants.map((variant: any, index: number) => {
@@ -90,7 +96,6 @@ export default function AddProductForm() {
         }
       })
     }
-    console.log('productData =>', productData)
 
     // Enviar la data a la API para agregar el producto a la base de datos
     axios.post('/api/create-product', productData).then(() => {
@@ -113,15 +118,6 @@ export default function AddProductForm() {
         <h4 className='text-accent text-center font-bold text-lg mb-4'>Datos globales del producto</h4>
 
         <div className='flex flex-col gap-2'>
-          <Input
-            id='id'
-            label="ID general"
-            required
-            disabled={isLoading}
-            register={register}
-            errors={errors}
-          />
-
           <Input
             id='name'
             label="Nombre del producto"

@@ -1,5 +1,6 @@
 import { HomeBanner, ProductCard } from '@/components'
 import { products } from '@/utils/dummyData'
+// ! en lugar de traer los productos de un archivo, se traerían de la base de datos
 
 export default function Home() {
   return (

@@ -26,15 +26,6 @@ export default function VariantsSection({ register, setValue, watch, errors, isL
       {watch('productVariants')?.map((_: any, index: any) => (
         <div key={index} className='flex flex-col gap-2'>
           <Input
-            id={`productVariants[${index}].id`}
-            label={`ID de variante #${index + 1}`}
-            required
-            disabled={isLoading}
-            register={register}
-            errors={errors}
-          />
-
-          <Input
             id={`productVariants[${index}].price`}
             label={`Precio de variante #${index + 1}`}
             required
@@ -55,7 +46,6 @@ export default function VariantsSection({ register, setValue, watch, errors, isL
           <Input
             id={`productVariants[${index}].color`}
             label="Color"
-            required
             disabled={isLoading}
             register={register}
             errors={errors}
@@ -64,7 +54,6 @@ export default function VariantsSection({ register, setValue, watch, errors, isL
           <Input
             id={`productVariants[${index}].colorCode`}
             label="Código de color"
-            required
             disabled={isLoading}
             register={register}
             errors={errors}

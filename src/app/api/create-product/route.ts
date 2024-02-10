@@ -1,65 +1,90 @@
 import { NextResponse } from 'next/server'
-import db from '@/libs/prismadb'
 
 import { getCurrentUser } from '@/libs/actions/getCurrentUser'
-import type { ProductDatabaseType } from '@/types'
+import type { DBProductType, DBProductVariantType, DescriptionType, SpecificationGroupType } from '@/types'
+import db from '@/libs/prismadb'
 
-export async function POST(req: Request) {
-  const currentUser = await getCurrentUser()
-  console.log('currentUser --->', currentUser)
+type DBProductTypeWithId = DBProductType & { id: string }
 
-  if (!currentUser || currentUser.role !== 'ADMIN') {
-    return NextResponse.json({ message: 'Unauthorized', ok: false, status: 401 })
-  }
+// Función para crear un producto
+async function createProduct(data: DBProductType, categoryCount: number) {
   try {
-    const data = await req.json()
-    const { id, name, brand, category, shortDescription, description, specifications, productVariants } = data
+    const { name, brand, category, shortDescription, description, specifications } = data
 
-    console.log('description --->', description)
-    console.log('specifications --->', specifications)
-    console.log('productVariants --->', productVariants)
+    // Mapeo de los campos de descripción y especificaciones
+    const descriptionMap = description?.map((desc: DescriptionType) => ({ title: desc.title, content: desc.content }))
+    const specificationsMap = specifications?.map((specGroup: SpecificationGroupType) =>
+      ({
+        group: specGroup.group,
+        content: specGroup.content.map(cont =>
+          ({ title: cont.title, details: cont.details }))
+      }))
 
-    const product: ProductDatabaseType = {
-      productRef: id,
+    const product = {
+      productRef: `${category.toUpperCase().slice(0, 4)}${categoryCount + 1}`,
       name,
       brand,
       category,
       shortDescription,
-      description: description?.map(d => ({ title: d.title, content: d.content })),
-      specifications: specifications?.map(s => ({ group: s.group, content: s.content.map(c => ({ title: c.title, details: c.details })) }))
-      // productVariants: productVariants?.map(pv => ({
-      //   id: pv.id,
-      //   price: Number(pv.price),
-      //   inStock: Number(pv.inStock),
-      //   color: pv.color,
-      //   colorCode: pv.colorCode,
-      //   capacity: pv.capacity,
-      //   images: pv.images
-      // }))
+      description: descriptionMap,
+      specifications: specificationsMap
     }
-    console.log('product --->', product)
 
-    const newProduct = await db.product.create({ data: product })
-    console.log('newProduct --->', newProduct)
+    return await db.product.create({ data: product })
+  } catch (error) {
+    console.error('Error creando elemento producto', error)
+    return NextResponse.error()
+  }
+}
 
-    if (productVariants) {
-      for (const pv of productVariants) {
-        const variant = {
-          // id: pv.id,
-          productId: newProduct.id,
-          variantProductRef: pv.id,
-          price: Number(pv.price),
-          inStock: Number(pv.inStock),
-          color: pv.color,
-          colorCode: pv.colorCode,
-          capacity: pv.capacity,
-          images: pv.images
-        }
-        await db.productVariant.create({ data: variant })
+// Función para crear variantes de producto
+async function createProductVariants(productVariants: DBProductVariantType[], newProduct: DBProductTypeWithId) {
+  try {
+    for (const [index, pv] of productVariants.entries()) {
+      const variant = {
+        productId: newProduct.id,
+        variantProductRef: `${newProduct.productRef}-V${index + 1}`,
+        price: Number(pv.price),
+        inStock: Number(pv.inStock),
+        color: pv.color || 'Unicolor',
+        colorCode: pv.colorCode || '#000',
+        capacity: pv.capacity,
+        images: pv.images
+      }
+      await db.productVariant.create({ data: variant })
+    }
+  } catch (error) {
+    console.error('Error creando variantes de producto', error)
+    return NextResponse.error()
+  }
+}
+
+// # POST /api/create-product | Crea un nuevo producto en la base de datos
+export async function POST(req: Request) {
+  const currentUser = await getCurrentUser()
+
+  if (!currentUser || currentUser.role !== 'ADMIN') {
+    return NextResponse.json({ message: 'Unauthorized', ok: false, status: 401 })
+  }
+
+  try {
+    const data = await req.json()
+    const categoryCount = await db.product.count({ where: { category: data.category } })
+
+    const newProduct = await createProduct(data, categoryCount)
+
+    // Si newProduct tiene el campo id y data.productVariants existe, crear las variantes. Si no, retornar un error y eliminar el producto creado
+    if ('id' in newProduct && data.productVariants) {
+      try {
+        await createProductVariants(data.productVariants, newProduct)
+      } catch (variantError) {
+        console.error('Error creating product variants:', variantError)
+        await db.product.delete({ where: { id: newProduct.id } })
+        return NextResponse.error()
       }
     }
 
-    return NextResponse.json({ message: 'pendiente', ok: true, status: 200 })
+    return NextResponse.json({ message: 'Producto creado', ok: true, status: 201 })
   } catch (error) {
     console.error('Error', error)
     return NextResponse.error()

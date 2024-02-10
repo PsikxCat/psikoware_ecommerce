@@ -1,13 +1,13 @@
 'use server'
 
-import { type CartProductType } from '@/types'
+import { type UIProductType } from '@/types'
 import { MercadoPagoConfig, Preference } from 'mercadopago'
 import { redirect } from 'next/navigation'
 import { getCurrentUser } from './getCurrentUser'
 
 const mercadopago = new MercadoPagoConfig({ accessToken: process.env.MERCADOPAGO_ACCESS_TOKEN! })
 
-export default async function createPayment(cartTotalAmount: number, cartItems: CartProductType[]) {
+export default async function createPayment(cartTotalAmount: number, cartItems: UIProductType[]) {
   const currentUser = await getCurrentUser()
 
   if (!currentUser) redirect('/auth/login')

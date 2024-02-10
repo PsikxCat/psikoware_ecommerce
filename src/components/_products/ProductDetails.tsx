@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Rating } from '@mui/material'
 import { MdCheckCircle } from 'react-icons/md'
 
-import type { CartProductType, ProductVariantsType } from '@/types'
+import type { UIProductType, ProductVariantsType } from '@/types'
 
 import { Button, ProductImage, SetVariant, SetQuantity, Tabs } from '@/components'
 import { formatPrice, productRating } from '@/utils'
@@ -31,7 +31,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   } = useContext(GlobalContext as React.Context<GlobalContextType>)
 
   // | Estados | //
-  const [cartProduct, setCartProduct] = useState<CartProductType>({
+  const [cartProduct, setCartProduct] = useState<UIProductType>({
     id: product.id,
     productVariants: { ...product.productVariants[0] },
     name: product.name,
@@ -46,7 +46,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     setisInStock(cartProduct.productVariants.inStock > 0)
 
     setIsProductInCart(
-      cartItems.some((item: CartProductType) =>
+      cartItems.some((item: UIProductType) =>
         item.productVariants.id === cartProduct.productVariants.id)
     )
   }, [cartItems, cartProduct])

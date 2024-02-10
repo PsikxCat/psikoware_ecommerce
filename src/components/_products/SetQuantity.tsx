@@ -1,10 +1,10 @@
 'use client'
 
-import { type CartProductType } from '@/types'
+import { type UIProductType } from '@/types'
 
 interface SetQuantityProps {
   cartCounter: boolean
-  cartProduct: CartProductType
+  cartProduct: UIProductType
   disabled?: boolean
   customBtnClass?: string
   handleDecrease: () => void

@@ -1,41 +1,10 @@
-export interface CartProductType {
-  id: string
-  name: string
-  category: string
-  brand: string
-  productVariants: ProductVariantType
-}
-
-export interface ProductDatabaseType {
-  productRef: string
+interface ProductCommonFields {
   name: string
   brand: string
   category: string
   shortDescription: string
   description: DescriptionType[]
   specifications: SpecificationGroupType[]
-}
-
-export interface ProductType {
-  id: string
-  name: string
-  brand: string
-  category: string
-  shortDescription: string
-  description: DescriptionType[]
-  specifications: SpecificationGroupType[]
-  productVariants: ProductVariantType[]
-}
-
-export interface ProductVariantType {
-  variantProductRef?: string
-  price: number
-  inStock: number
-  quantity?: number
-  color: string
-  colorCode: string
-  capacity?: string
-  images: string[]
 }
 
 export interface DescriptionType {
@@ -51,4 +20,30 @@ export interface SpecificationGroupType {
 export interface SpecificationType {
   title: string
   details: string
+}
+
+export interface UIProductType extends ProductCommonFields {
+  id: string // ! POR ARREGLAR
+  productVariants: ProductVariantType[]
+  // reviews: ReviewType[] ?
+}
+
+export interface DBProductType extends ProductCommonFields {
+  productRef: string // ! PENDIENTE
+}
+
+// ! pendiente de analisis
+export interface ProductVariantType {
+  price: number
+  inStock: number
+  quantity?: number
+  color: string
+  colorCode: string
+  capacity?: string
+  images: string[]
+}
+
+export interface DBProductVariantType extends ProductVariantType {
+  variantProductRef: string
+  productId: string // ? necesario?
 }

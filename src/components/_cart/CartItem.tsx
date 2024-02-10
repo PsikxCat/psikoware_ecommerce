@@ -1,4 +1,4 @@
-import type { CartProductType } from '@/types'
+import type { UIProductType } from '@/types'
 import { formatPrice, truncate } from '@/utils'
 import Link from 'next/link'
 import { MdClose } from 'react-icons/md'
@@ -6,10 +6,10 @@ import { MdClose } from 'react-icons/md'
 import { SetQuantity } from '@/components'
 
 interface CartItemProps {
-  item: CartProductType
+  item: UIProductType
   handleRemoveItemFromCart: (id: string) => void
-  handleItemCartQtyDecrease: (item: CartProductType) => void
-  handleItemCartQtyIncrease: (item: CartProductType) => void
+  handleItemCartQtyDecrease: (item: UIProductType) => void
+  handleItemCartQtyIncrease: (item: UIProductType) => void
 }
 
 export default function CartItem(

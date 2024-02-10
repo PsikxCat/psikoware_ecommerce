@@ -1,6 +1,6 @@
 'use client'
 
-import type { CartProductType } from '@/types'
+import type { UIProductType } from '@/types'
 import { createContext, useCallback, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -23,12 +23,12 @@ interface GlobalStateProps {
 export interface GlobalContextType {
   cartTotalQuantity: number
   cartTotalAmount: number
-  cartItems: CartProductType[] | []
+  cartItems: UIProductType[] | []
   currentUser: CurrentUser | null
-  handleAddItemToCart: (product: CartProductType) => void
+  handleAddItemToCart: (product: UIProductType) => void
   handleRemoveItemFromCart: (id: string) => void
-  handleItemCartQtyDecrease: (item: CartProductType) => void
-  handleItemCartQtyIncrease: (item: CartProductType) => void
+  handleItemCartQtyDecrease: (item: UIProductType) => void
+  handleItemCartQtyIncrease: (item: UIProductType) => void
   handleClearCart: () => void
 }
 
@@ -37,9 +37,9 @@ export const GlobalContext = createContext<GlobalContextType | null>(null)
 export function GlobalState({ children, currentUser }: GlobalStateProps) {
   const [cartTotalQuantity, setCartTotalQuantity] = useState<number>(0)
   const [cartTotalAmount, setCartTotalAmount] = useState<number>(0)
-  const [cartItems, setCartItems] = useState<CartProductType[] | []>([])
+  const [cartItems, setCartItems] = useState<UIProductType[] | []>([])
 
-  const handleAddItemToCart = useCallback((item: CartProductType) => {
+  const handleAddItemToCart = useCallback((item: UIProductType) => {
     setCartItems((prev) => {
       let updatedCart = [...prev]
 
@@ -75,7 +75,7 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
     toast.success('Producto eliminado del carrito')
   }, [cartItems])
 
-  const handleItemCartQtyDecrease = useCallback((item: CartProductType) => {
+  const handleItemCartQtyDecrease = useCallback((item: UIProductType) => {
     const updatedCart = [...cartItems]
 
     const itemIndex = updatedCart.findIndex((cartItem) => cartItem.productVariants.id === item.productVariants.id)
@@ -91,7 +91,7 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
     localStorage.setItem('cart', JSON.stringify(updatedCart))
   }, [cartItems])
 
-  const handleItemCartQtyIncrease = useCallback((item: CartProductType) => {
+  const handleItemCartQtyIncrease = useCallback((item: UIProductType) => {
     const updatedCart = [...cartItems]
 
     const itemIndex = updatedCart.findIndex((cartItem) => cartItem.productVariants.id === item.productVariants.id)

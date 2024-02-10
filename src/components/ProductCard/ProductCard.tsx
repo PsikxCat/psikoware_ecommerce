@@ -3,12 +3,14 @@ import Image from 'next/image'
 import { Rating } from '@mui/material'
 
 import { truncate, formatPrice, productRating } from '@/utils'
+import { type UIProductType } from '@/types'
 
 interface ProductCardProps {
-  data: any // ! TODO: crear el tipado de los productos
+  data: UIProductType // ! TODO: crear el tipado de los productos
 }
 
 export default function ProductCard({ data }: ProductCardProps) {
+  console.log('Renderizando ProductCard...')
   return (
     <Link href={`/products/${data.id}`}>
     <article
