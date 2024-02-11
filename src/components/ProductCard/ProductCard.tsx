@@ -6,11 +6,10 @@ import { truncate, formatPrice, productRating } from '@/utils'
 import { type UIProductType } from '@/types'
 
 interface ProductCardProps {
-  data: UIProductType // ! TODO: crear el tipado de los productos
+  data: UIProductType // ! TODO: corregir tipados con respecto a data que llega de database
 }
 
 export default function ProductCard({ data }: ProductCardProps) {
-  console.log('Renderizando ProductCard...')
   return (
     <Link href={`/products/${data.id}`}>
     <article

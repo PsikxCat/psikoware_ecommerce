@@ -63,30 +63,50 @@ export default function AddProductForm() {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true)
 
-    // Recibe un array de string[], en donde cada string[] contiene los links de las imagenes de una variante
-    const updateImages: string[][] = []
-
-    // Manejo de errores con notificaciones (no se selecciona categoria, no se suben imagenes a las variantes o no se ingresan numeros en precio o cantidad en stock)
+    // Manejo de errores con notificaciones
     if (!data.category) {
       setIsLoading(false)
       return toast.error('Debes seleccionar una categoría')
     }
     for (const [index, variant] of data.productVariants.entries()) {
+      // cada variante debe tener al menos una imagen
       if (!variant.images || variant.images.length === 0) {
         setIsLoading(false)
         toast.error(`La variante #${index + 1} debe tener al menos una imagen`)
         return
       }
+      // precio y cantidad en stock deben ser números
       if (isNaN(Number(variant.price)) || isNaN(Number(variant.inStock))) {
         setIsLoading(false)
         return toast.error(`El precio y la cantidad en stock de la variante #${index + 1} deben ser números`)
       }
+      // si se ingresa un color, se debe ingresar un código de color y viceversa
+      if (variant.color && !variant.colorCode) {
+        setIsLoading(false)
+        return toast.error(`Si se ingresa un color para la variante #${index + 1}, se debe ingresar un código de color`)
+      }
+      if (variant.colorCode && !variant.color) {
+        setIsLoading(false)
+        return toast.error(`Si se ingresa un código de color para la variante #${index + 1}, se debe ingresar un color`)
+      }
+      // si se ingresa un codigo de color, debe ser un color hexadecimal valido
+      if (variant.colorCode && !/^#[0-9A-F]{6}$/i.test(variant.colorCode)) {
+        setIsLoading(false)
+        return toast.error(`El código de color para la variante #${index + 1} debe ser un color hexadecimal válido => #000000`)
+      }
     }
 
+    // Array de string[], en donde cada string[] contiene los links de las imagenes de una variante
+    const updateImages: string[][] = []
     // Subir las imagenes a Firebase y obtener los links
     await handleImagesUpload(data, updateImages)
+    // Si no se subieron imagenes, no continuar con el proceso
+    if (updateImages[0].length === 0) {
+      setIsLoading(false)
+      return
+    }
 
-    // Actualizar la data de las imagenes de las variantes con los links de Firebase
+    // Crear la data del producto con sus variantes y los links de las imagenes de estas
     const productData = {
       ...data,
       productVariants: data.productVariants.map((variant: any, index: number) => {

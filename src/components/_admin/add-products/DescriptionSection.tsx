@@ -44,8 +44,8 @@ export default function DescriptionSection({ register, setValue, watch, errors, 
         <button
           type="button"
           onClick={() => {
-            setValue('descriptions', [
-              ...watch('descriptions'),
+            setValue('description', [
+              ...watch('description'),
               { title: '', content: '' }
             ])
           }}
@@ -54,14 +54,14 @@ export default function DescriptionSection({ register, setValue, watch, errors, 
         </button>
 
         {/* Eliminar */}
-        {watch('descriptions') && watch('descriptions').length > 1 && (
+        {watch('description') && watch('description').length > 1 && (
           <button
             className='text-red-500'
             type="button"
             onClick={() => {
-              const updatedDescriptions = [...watch('descriptions')]
+              const updatedDescriptions = [...watch('description')]
               updatedDescriptions.pop()
-              setValue('descriptions', updatedDescriptions)
+              setValue('description', updatedDescriptions)
             }}
           >
             Eliminar Descripción

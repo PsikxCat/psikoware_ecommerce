@@ -10,11 +10,13 @@ export default async function handleImagesUpload(data: any, updateImages: string
     for (const [index, variant] of data.productVariants.entries()) {
       updateImages[index] = []
 
+      const formattedName = data.name.split(' ').join('').split('').slice(0, 10).join('').toUpperCase()
+
       for (const item of variant.images) {
         if (item.name) {
-          const fileName = `${variant.id}-${index}-${item.name}`
+          const fileName = `${formattedName} - 0${index + 1} - ${item.name}`
           const storage = getStorage(firebaseApp)
-          const storageRef = ref(storage, `products/${data.id}/${fileName}`)
+          const storageRef = ref(storage, `products/${data.category}/${fileName}`)
           const uploadTask = uploadBytesResumable(storageRef, item)
 
           // crea una nueva Promesa que se resuelve cuando la tarea de subida de imagen se completa y retorna la URL de descarga, que se almacena en el array updateImages
@@ -56,7 +58,7 @@ export default async function handleImagesUpload(data: any, updateImages: string
       }
     }
   } catch (error) {
-    console.error('Error subiendo imagenes', error)
-    return toast.error('Error subiendo imagenes')
+    console.error('Error al guardar las imagenes en Firebase', error)
+    return toast.error('Error al guardar las imagenes en Firebase')
   }
 }

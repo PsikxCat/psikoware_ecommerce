@@ -47,7 +47,7 @@ async function createProductVariants(productVariants: DBProductVariantType[], ne
         price: Number(pv.price),
         inStock: Number(pv.inStock),
         color: pv.color || 'Unicolor',
-        colorCode: pv.colorCode || '#000',
+        colorCode: pv.colorCode || '#000000',
         capacity: pv.capacity,
         images: pv.images
       }
