@@ -1,4 +1,4 @@
-import type { UIProductType } from '@/types'
+import type { CartProductType } from '@/types'
 import { formatPrice, truncate } from '@/utils'
 import Link from 'next/link'
 import { MdClose } from 'react-icons/md'
@@ -6,10 +6,10 @@ import { MdClose } from 'react-icons/md'
 import { SetQuantity } from '@/components'
 
 interface CartItemProps {
-  item: UIProductType
+  item: CartProductType
   handleRemoveItemFromCart: (id: string) => void
-  handleItemCartQtyDecrease: (item: UIProductType) => void
-  handleItemCartQtyIncrease: (item: UIProductType) => void
+  handleItemCartQtyDecrease: (item: CartProductType) => void
+  handleItemCartQtyIncrease: (item: CartProductType) => void
 }
 
 export default function CartItem(
@@ -25,7 +25,7 @@ export default function CartItem(
       >
         <img
           className='w-16 h-16 max-[450px]:hidden object-contain'
-          src={item.productVariants.images[0]}
+          src={item.productVariant.images[0]}
           alt={item.name}
         />
 
@@ -34,14 +34,14 @@ export default function CartItem(
             {truncate(item.name, 35)}
           </span>
           <span className='capitalize line-clamp-1'>
-            {item.productVariants.color} {item.productVariants.capacity}
+            {item.productVariant.color} {item.productVariant.capacity}
           </span>
         </div>
       </Link>
 
       {/* valor unitario */}
       <span className='justify-self-center flex_center max-[700px]:hidden pt-2'>
-        {formatPrice(item.productVariants.price)}
+        {formatPrice(item.productVariant.price)}
       </span>
 
       {/* cantidad */}
@@ -57,12 +57,12 @@ export default function CartItem(
 
       {/* valor total */}
       <span className='justify-self-end flex_center font-bold pt-2 pr-2 max-[450px]:pr-0'>
-        {formatPrice(item.productVariants.price * item.productVariants.quantity)}
+        {formatPrice(item.productVariant.price * (item.productVariant.quantity ?? 1))}
       </span>
 
       {/* boton clear item */}
       <button className='absolute top-[5px] right-[5px] flex_center text-dark'
-        onClick={() => { handleRemoveItemFromCart(item.productVariants.id) }}
+        onClick={() => { handleRemoveItemFromCart(item.productVariant.id) }}
       >
         <MdClose />
       </button>

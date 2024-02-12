@@ -1,13 +1,13 @@
 'use server'
 
-import { type UIProductType } from '@/types'
+import { type CartProductType } from '@/types'
 import { MercadoPagoConfig, Preference } from 'mercadopago'
 import { redirect } from 'next/navigation'
 import { getCurrentUser } from './getCurrentUser'
 
 const mercadopago = new MercadoPagoConfig({ accessToken: process.env.MERCADOPAGO_ACCESS_TOKEN! })
 
-export default async function createPayment(cartTotalAmount: number, cartItems: UIProductType[]) {
+export default async function createPayment(cartTotalAmount: number, cartItems: CartProductType[]) {
   const currentUser = await getCurrentUser()
 
   if (!currentUser) redirect('/auth/login')
@@ -18,12 +18,12 @@ export default async function createPayment(cartTotalAmount: number, cartItems: 
   const preference = await new Preference(mercadopago).create({
     body: {
       items: cartItems.map((item) => ({
-        id: item.productVariants.id,
-        unit_price: item.productVariants.price,
-        title: `${item.name} ${item.productVariants.capacity} ${item.productVariants.color}`,
+        id: item.productVariant.id,
+        unit_price: item.productVariant.price,
+        title: `${item.name} ${item.productVariant.capacity} ${item.productVariant.color}`,
         category_id: item.category,
-        quantity: item.productVariants.quantity,
-        picture_url: item.productVariants.images[0]
+        quantity: item.productVariant.quantity ?? 1,
+        picture_url: item.productVariant.images[0]
       })),
       payer: {
         name: 'Federico',

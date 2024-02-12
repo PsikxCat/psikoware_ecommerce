@@ -23,7 +23,7 @@ export default function ProductsSection() {
           <section className='flex flex-col gap-2 px-1 z-10'>
             {cartItems.map((item) => (
               <CartItem
-                key={item.productVariants.id}
+                key={item.productVariant.id}
                 item={item}
                 handleRemoveItemFromCart={handleRemoveItemFromCart}
                 handleItemCartQtyDecrease={handleItemCartQtyDecrease}

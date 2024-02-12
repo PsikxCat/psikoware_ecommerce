@@ -1,23 +1,16 @@
 'use client'
 
-import { useState, type ReactNode } from 'react'
+import { useState } from 'react'
 
+import { type ProductType } from '@/types'
 import { ReviewList } from '@/components'
 
 interface TabsProps {
-  product: any // ! TODO: define product type with Prisma
+  product: ProductType
 }
 
 export default function Tabs({ product }: TabsProps) {
   const [activeTab, setActiveTab] = useState('description')
-
-  // Se toma una cadena de texto con saltos de linea (\n) y se renderiza cada parrafo en un <p>
-  const renderContentWithLineBreaks = (content: string): ReactNode[] =>
-    content.split('\n').map((paragraph: string, index: number) => (
-      <p key={index} className='mb-3'>
-        {paragraph}
-      </p>
-    ))
 
   return (
     <section className='bg-stone-900 rounded-md p-2 w-full md:w-[80%] max-w-[1400px] z-10'>
@@ -42,7 +35,7 @@ export default function Tabs({ product }: TabsProps) {
           className={`uppercase cursor-pointer ${activeTab === 'reviews' ? 'text-accent font-bold' : 'text-muted'}`}
           onClick={() => { setActiveTab('reviews') }}
         >
-          reviews
+          reseñas
         </h3>
 
       </div>
@@ -64,7 +57,7 @@ export default function Tabs({ product }: TabsProps) {
         {/* especificaciones */}
         {activeTab === 'specifications' && (
           <div className='flex_center_column gap-5'>
-            {product.specifications.map((item: { group: string, items: Array<{ title: string, content: string }> }) => (
+            {product.specifications.map((item: { group: string, content: Array<{ title: string, details: string }> }) => (
               <div key={item.group} className='flex_center_column gap-5 md:px-4 mb-4 pt-6'>
                 {/* titulo grupo */}
                 <div className='border-b border-secondary w-[90%] flex_center'>
@@ -72,13 +65,15 @@ export default function Tabs({ product }: TabsProps) {
                 </div>
 
                 {/* contenido grupo */}
-                {item.items.map((item) => (
+                {item.content.map((item) => (
                   <div key={item.title} className='flex flex-col md:flex-row w-full mb-3 overflow-hidden'>
                     {/* titulo */}
-                    <h4 className='text-primary font-bold text-lg md:w-[30%] px-[9%]'>{item.title}</h4>
+                    <h4 className='text-primary font-bold text-lg md:w-[30%] px-[9%] leading-[20px]'>
+                      {item.title}
+                    </h4>
                     {/* contenido */}
                     <div className='text-muted text-base md:w-[70%] px-[9%]'>
-                      {renderContentWithLineBreaks(item.content)}
+                      {(item.details)}
                     </div>
                   </div>
                 ))}

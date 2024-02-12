@@ -1,6 +1,6 @@
 'use client'
 
-import type { UIProductType } from '@/types'
+import type { CartProductType } from '@/types'
 import { createContext, useCallback, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -23,12 +23,12 @@ interface GlobalStateProps {
 export interface GlobalContextType {
   cartTotalQuantity: number
   cartTotalAmount: number
-  cartItems: UIProductType[] | []
+  cartItems: CartProductType[] | []
   currentUser: CurrentUser | null
-  handleAddItemToCart: (product: UIProductType) => void
+  handleAddItemToCart: (product: CartProductType) => void
   handleRemoveItemFromCart: (id: string) => void
-  handleItemCartQtyDecrease: (item: UIProductType) => void
-  handleItemCartQtyIncrease: (item: UIProductType) => void
+  handleItemCartQtyDecrease: (item: CartProductType) => void
+  handleItemCartQtyIncrease: (item: CartProductType) => void
   handleClearCart: () => void
 }
 
@@ -37,9 +37,9 @@ export const GlobalContext = createContext<GlobalContextType | null>(null)
 export function GlobalState({ children, currentUser }: GlobalStateProps) {
   const [cartTotalQuantity, setCartTotalQuantity] = useState<number>(0)
   const [cartTotalAmount, setCartTotalAmount] = useState<number>(0)
-  const [cartItems, setCartItems] = useState<UIProductType[] | []>([])
+  const [cartItems, setCartItems] = useState<CartProductType[] | []>([])
 
-  const handleAddItemToCart = useCallback((item: UIProductType) => {
+  const handleAddItemToCart = useCallback((item: CartProductType) => {
     setCartItems((prev) => {
       let updatedCart = [...prev]
 
@@ -62,7 +62,7 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
 
   const handleRemoveItemFromCart = useCallback((id: string) => {
     setCartItems((prev) => {
-      const updatedCart = prev.filter((item) => item.productVariants.id !== id)
+      const updatedCart = prev.filter((item) => item.productVariant.id !== id)
 
       setCartTotalQuantity(updatedCart.length)
 
@@ -75,15 +75,15 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
     toast.success('Producto eliminado del carrito')
   }, [cartItems])
 
-  const handleItemCartQtyDecrease = useCallback((item: UIProductType) => {
+  const handleItemCartQtyDecrease = useCallback((item: CartProductType) => {
     const updatedCart = [...cartItems]
 
-    const itemIndex = updatedCart.findIndex((cartItem) => cartItem.productVariants.id === item.productVariants.id)
+    const itemIndex = updatedCart.findIndex((cartItem) => cartItem.productVariant.id === item.productVariant.id)
 
-    if (itemIndex > -1 && updatedCart[itemIndex].productVariants.quantity <= 1) {
-      handleRemoveItemFromCart(item.productVariants.id)
+    if (itemIndex > -1 && (updatedCart[itemIndex].productVariant.quantity ?? 1) <= 1) {
+      handleRemoveItemFromCart(item.productVariant.id)
     } else {
-      updatedCart[itemIndex].productVariants.quantity--
+      updatedCart[itemIndex].productVariant.quantity = (updatedCart[itemIndex].productVariant.quantity ?? 1) - 1
       setCartItems(updatedCart)
     }
 
@@ -91,15 +91,15 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
     localStorage.setItem('cart', JSON.stringify(updatedCart))
   }, [cartItems])
 
-  const handleItemCartQtyIncrease = useCallback((item: UIProductType) => {
+  const handleItemCartQtyIncrease = useCallback((item: CartProductType) => {
     const updatedCart = [...cartItems]
 
-    const itemIndex = updatedCart.findIndex((cartItem) => cartItem.productVariants.id === item.productVariants.id)
+    const itemIndex = updatedCart.findIndex((cartItem) => cartItem.productVariant.id === item.productVariant.id)
 
-    if (itemIndex > -1 && updatedCart[itemIndex].productVariants.quantity >= item.productVariants.inStock) {
+    if (itemIndex > -1 && (updatedCart[itemIndex].productVariant.quantity ?? 1) >= item.productVariant.inStock) {
       toast.error('No hay mas stock de este producto')
     } else {
-      updatedCart[itemIndex].productVariants.quantity++
+      updatedCart[itemIndex].productVariant.quantity = (updatedCart[itemIndex].productVariant.quantity ?? 1) + 1
       setCartItems(updatedCart)
     }
 
@@ -119,8 +119,8 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
 
   useEffect(() => {
     if (cartItems.length > 0) {
-      const totalQuantity = cartItems.reduce((acc, item) => acc + item.productVariants.quantity, 0)
-      const totalPrice = cartItems.reduce((acc, item) => acc + item.productVariants.price * item.productVariants.quantity, 0)
+      const totalQuantity = cartItems.reduce((acc, item) => acc + (item.productVariant.quantity ?? 1), 0)
+      const totalPrice = cartItems.reduce((acc, item) => acc + item.productVariant.price * (item.productVariant.quantity ?? 1), 0)
 
       setCartTotalQuantity(totalQuantity)
       setCartTotalAmount(totalPrice)

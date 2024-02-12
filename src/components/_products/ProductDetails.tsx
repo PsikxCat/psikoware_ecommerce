@@ -5,16 +5,15 @@ import { useRouter } from 'next/navigation'
 import { Rating } from '@mui/material'
 import { MdCheckCircle } from 'react-icons/md'
 
-import type { UIProductType, ProductVariantsType } from '@/types'
+import type { CartProductType, ProductType } from '@/types'
 
 import { Button, ProductImage, SetVariant, SetQuantity, Tabs } from '@/components'
 import { formatPrice, productRating } from '@/utils'
 import { GlobalContext, type GlobalContextType } from '@/context/globalContext'
 
 interface ProductDetailsProps {
-  product: any //! TODO: define product type with Prisma
+  product: ProductType
 }
-// # Recordar quitar los tipados innecesarios de los mapeos cuando se setee el tipado general de product. esto en cada componente que use product.
 
 // | Componente local | //
 function HorizontalLine() {
@@ -24,6 +23,18 @@ function HorizontalLine() {
 export default function ProductDetails({ product }: ProductDetailsProps) {
   const router = useRouter()
 
+  const defaultProduct: CartProductType = {
+    id: product.id,
+    name: product.name,
+    shortDescription: product.shortDescription,
+    brand: product.brand,
+    category: product.category,
+    description: product.description,
+    specifications: product.specifications,
+    productVariant: { ...product.productVariants[0], quantity: 1 },
+    reviews: product.reviews
+  }
+
   // | Contexto | //
   const {
     cartItems,
@@ -31,23 +42,17 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   } = useContext(GlobalContext as React.Context<GlobalContextType>)
 
   // | Estados | //
-  const [cartProduct, setCartProduct] = useState<UIProductType>({
-    id: product.id,
-    productVariants: { ...product.productVariants[0] },
-    name: product.name,
-    brand: product.brand,
-    category: product.category
-  })
-  const [isInStock, setisInStock] = useState(true)
-  const [isProductInCart, setIsProductInCart] = useState(false)
+  const [cartProduct, setCartProduct] = useState({ ...defaultProduct })
+  const [isInStock, setisInStock] = useState<boolean>(true)
+  const [isProductInCart, setIsProductInCart] = useState<boolean>(false)
 
   // | Efectos | //
   useEffect(() => {
-    setisInStock(cartProduct.productVariants.inStock > 0)
+    setisInStock(cartProduct.productVariant.inStock > 0)
 
     setIsProductInCart(
-      cartItems.some((item: UIProductType) =>
-        item.productVariants.id === cartProduct.productVariants.id)
+      cartItems?.some((item: CartProductType) =>
+        item.productVariant.id === cartProduct.productVariant.id)
     )
   }, [cartItems, cartProduct])
 
@@ -55,8 +60,8 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   const handleColorSelect = (color: string) => {
     // busca variante con color seleccionado y capacidad guardada en cartProduct
     const findVariant = product.productVariants
-      .find((variant: ProductVariantsType) =>
-        variant.color === color && variant.capacity === cartProduct.productVariants.capacity)
+      .find((variant: any) =>
+        variant.color === color && variant.capacity === cartProduct.productVariant.capacity)
 
     // si encuentra variante, setea cartProduct con la variante encontrada
     if (findVariant) {
@@ -68,8 +73,8 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   }
   const handleCapacitySelect = (capacity: string) => {
     const findVariant = product.productVariants
-      .find((variant: ProductVariantsType) =>
-        variant.color === cartProduct.productVariants.color && variant.capacity === capacity)
+      .find((variant: any) =>
+        variant.color === cartProduct.productVariant.color && variant.capacity === capacity)
 
     if (findVariant) {
       setCartProduct((prev) => ({
@@ -79,24 +84,24 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     }
   }
   const handleQuantityDecrease = () => {
-    if (cartProduct.productVariants.quantity === 1) return
+    if (cartProduct.productVariant.quantity === 1) return
 
     setCartProduct((prev) => ({
       ...prev,
-      productVariants: {
-        ...prev.productVariants,
-        quantity: prev.productVariants.quantity - 1
+      productVariant: {
+        ...prev.productVariant,
+        quantity: (prev.productVariant.quantity ?? 1) - 1
       }
     }))
   }
   const handleQuantityIncrease = () => {
-    if (cartProduct.productVariants.inStock === cartProduct.productVariants.quantity) return
+    if (cartProduct.productVariant.inStock === cartProduct.productVariant.quantity) return
 
     setCartProduct((prev) => ({
       ...prev,
-      productVariants: {
-        ...prev.productVariants,
-        quantity: prev.productVariants.quantity + 1
+      productVariant: {
+        ...prev.productVariant,
+        quantity: (prev.productVariant.quantity ?? 1) + 1
       }
     }))
   }
@@ -118,15 +123,23 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             <div>
               <h2>{product.name}</h2>
 
-              <div className='flex max-[300px]:flex-col items-center gap-3'>
-                <Rating value={productRating(product)} precision={0.5} readOnly/>
-                <div className='mt-1 max-[300px]:mb-4'>{product.reviews.length === 1 ? '1 review' : `${product.reviews.length} reviews`}</div>
+              <div className='flex_center max-[300px]:flex-col gap-3 bg-stone-700'>
+                <div className='pt-2'>
+                  <Rating value={productRating(product)} precision={0.5} readOnly/>
+                </div>
+
+                <div className='mt-1 max-[300px]:mb-4'>
+                  {product.reviews?.length === 0 || !product.reviews
+                    ? 'Sin reseñas'
+                    : product.reviews?.length === 1 ? '1 reseña' : `${product.reviews?.length} reseñas`
+                  }
+                </div>
               </div>
             </div>
             <HorizontalLine/>
 
             {/* descripcion */}
-            <p className='text-justify px-1 py-2 overflow-y-scroll leading-5'>
+            <p className='text-justify px-1 py-2 mb-4 overflow-y-scroll leading-5 xl:max-h-[135px]'>
               {product.shortDescription}
             </p>
             <HorizontalLine/>
@@ -172,7 +185,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
             {/* precio */}
             <div className={`text-3xl font-bold my-3 ${!isInStock ? 'line-through text-muted' : 'text-primary'}`}>
-              {formatPrice(cartProduct.productVariants.price * cartProduct.productVariants.quantity)}
+              {formatPrice(cartProduct.productVariant.price * (cartProduct.productVariant.quantity ?? 1))}
             </div>
 
             {/* Boton y mensaje */}

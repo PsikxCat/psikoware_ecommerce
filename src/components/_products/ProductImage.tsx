@@ -2,19 +2,19 @@
 
 import { useEffect, useState } from 'react'
 
-import type { UIProductType } from '@/types'
+import type { CartProductType } from '@/types'
 import Image from 'next/image'
 
 interface ProductImageProps {
-  cartProduct: UIProductType
+  cartProduct: CartProductType
 }
 
 export default function ProductImage({ cartProduct }: ProductImageProps) {
-  const [selectedImage, setSelectedImage] = useState<string>(cartProduct.productVariants.images[0])
+  const [selectedImage, setSelectedImage] = useState<string>(cartProduct.productVariant.images[0])
 
   useEffect(() => {
-    setSelectedImage(cartProduct.productVariants.images[0])
-  }, [cartProduct.productVariants.color])
+    setSelectedImage(cartProduct.productVariant.images[0])
+  }, [cartProduct.productVariant.color])
 
   const handleImageSelect = (image: string) => {
     setSelectedImage(image)
@@ -35,7 +35,7 @@ export default function ProductImage({ cartProduct }: ProductImageProps) {
 
       {/* images */}
       <div className='flex_center gap-2 h-[15%] w-full border-t border-stone-700'>
-        {cartProduct.productVariants.images.map((image: string) => (
+        {cartProduct.productVariant.images.map((image: string) => (
             <div className={`relative h-[90%] flex_center aspect-square border-accent rounded-sm cursor-pointer ${image === selectedImage && 'border-[3px]'} `}
               key={image}
             >

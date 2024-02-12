@@ -22,28 +22,44 @@ export interface SpecificationType {
   details: string
 }
 
-export interface UIProductType extends ProductCommonFields {
-  id: string // ! POR ARREGLAR
+export interface ReviewType {
+  id: string
+  userId: string
+  productId: string
+  rating: number
+  comment: string
+  createDateTime: Date
+}
+
+export interface ProductType extends ProductCommonFields {
+  id: string
   productVariants: ProductVariantType[]
-  // reviews: ReviewType[] ?
+  reviews: ReviewType[] | []
 }
 
 export interface DBProductType extends ProductCommonFields {
-  productRef: string // ! PENDIENTE
+  productRef: string
 }
 
-// ! pendiente de analisis
+export interface CartProductType extends ProductCommonFields {
+  id: string
+  // productRef: string
+  productVariant: ProductVariantType
+  reviews: ReviewType[] | []
+}
+
 export interface ProductVariantType {
+  id: string
   price: number
   inStock: number
-  quantity?: number
+  quantity?: number | null
   color: string
   colorCode: string
-  capacity?: string
+  capacity?: string | null
   images: string[]
 }
 
 export interface DBProductVariantType extends ProductVariantType {
   variantProductRef: string
-  productId: string // ? necesario?
+  productId: string
 }

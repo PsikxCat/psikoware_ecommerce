@@ -1,10 +1,10 @@
 'use client'
 
-import type { UIProductType, ProductVariantsType } from '@/types'
+import type { CartProductType, ProductVariantType } from '@/types'
 
 interface SetVariantsProps {
-  cartProduct: UIProductType
-  productVariants: ProductVariantsType[]
+  cartProduct: CartProductType
+  productVariants: ProductVariantType[]
   handleColorSelect: (color: string) => void
   handleCapacitySelect: (capacity: string) => void
 }
@@ -12,6 +12,7 @@ interface SetVariantsProps {
 export default function SetVariant({
   productVariants, cartProduct, handleColorSelect, handleCapacitySelect
 }: SetVariantsProps) {
+  // Crea un objeto con dos conjuntos (Set) para almacenar los colores y capacidades únicos
   const variants = productVariants
     .reduce((acc, variant) => {
       if (variant.color) acc.color.add(variant.color)
@@ -19,6 +20,7 @@ export default function SetVariant({
       return acc
     }, { color: new Set<string>(), capacity: new Set<string>() })
 
+  // Función para obtener el código de color correspondiente a un color
   const codeColor = (color: string) => {
     const variant = productVariants.find((variant) => variant.color === color)
     return variant?.colorCode
@@ -27,14 +29,14 @@ export default function SetVariant({
   return (
     <div className='flex flex-col gap-1'>
       {/* color variants */}
-      {[...variants.color].length && (
+      {[...variants.color].length > 0 && (
         <section className='flex items-center gap-4'>
           <span className='font-bold uppercase'>color:</span>
           {/* variantes */}
           <div className='flex gap-1'>
             {[...variants.color].map((color) => (
               <div
-                className={`${cartProduct.productVariants.color === color ? 'border-[1.5px]' : 'border-none'} h-7 w-7 border-secondary rounded-full flex_center cursor-pointer`}
+                className={`${cartProduct.productVariant.color === color ? 'border-[1.5px]' : 'border-none'} h-7 w-7 border-secondary rounded-full flex_center cursor-pointer`}
                 key={color}
                 onClick={() => { handleColorSelect(color) }}
               >
@@ -43,17 +45,18 @@ export default function SetVariant({
             ))}
           </div>
         </section>
+
       )}
 
       {/* capacity variants */}
-      {[...variants.capacity].length && (
+      {[...variants.capacity].length > 0 && (
         <section className='flex items-center gap-4'>
           <span className='font-bold uppercase'>capacidad:</span>
           {/* variantes */}
           <div className='flex gap-1'>
             {[...variants.capacity].map((capacity) => (
               <div
-                className={`${cartProduct.productVariants.capacity === capacity ? 'border-[1.5px]' : 'border-none'} px-2 py-1 border-secondary bg-stone-950 rounded-md flex_center cursor-pointer`}
+                className={`${cartProduct.productVariant.capacity === capacity ? 'border-[1.5px]' : 'border-none'} px-2 py-1 border-secondary bg-stone-950 rounded-md flex_center cursor-pointer`}
                 key={capacity}
                 onClick={() => { handleCapacitySelect(capacity) }}
               >

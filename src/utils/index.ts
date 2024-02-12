@@ -13,8 +13,9 @@ export const formatPrice = (price: number) => {
   }).format(price)
 }
 
-export const productRating = (data: any) => { // ! corregir any <---
-  return data.reviews.reduce((acc: number, review: any) => acc + review.rating, 0) / data.reviews.length
+export const productRating = (product: any) => { // ! corregir any <---
+  if (product.reviews?.length === 0 || !product.reviews) return 0
+  return product.reviews.reduce((acc: number, review: any) => acc + review.rating, 0) / product.reviews.length
 }
 
 export const getUserTimeZone = () => {

@@ -1,10 +1,10 @@
 'use client'
 
-import { type UIProductType } from '@/types'
+import { type CartProductType } from '@/types'
 
 interface SetQuantityProps {
   cartCounter: boolean
-  cartProduct: UIProductType
+  cartProduct: CartProductType
   disabled?: boolean
   customBtnClass?: string
   handleDecrease: () => void
@@ -31,7 +31,7 @@ export default function SetQuantity({
         </button>
 
         <span className='h-6 w-6 flex_center'>
-          {cartProduct.productVariants.quantity}
+          {cartProduct.productVariant.quantity}
         </span>
 
         <button className={`flex_center cursor-pointer ${customBtnClass}`}

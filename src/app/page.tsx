@@ -1,8 +1,9 @@
 import { HomeBanner, ProductCard } from '@/components'
-import { products } from '@/utils/dummyData'
-// ! en lugar de traer los productos de un archivo, se traerían de la base de datos
+import { getAllProducts } from '@/libs/actions/getDataFromDB'
 
-export default function Home() {
+export default async function Home() {
+  const products = await getAllProducts()
+
   return (
     <section className="w-full flex_center bg-dark">
       <div className="container">
@@ -14,8 +15,8 @@ export default function Home() {
 
           {/* lista productos */}
           <section className='section products_container bg-secondary'>
-            {products.map((product) => (
-              <ProductCard key={product.id} data={product} />
+            {products?.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </section>
         </main>

@@ -1,16 +1,18 @@
 import { ProductDetails } from '@/components'
-import { product } from '@/utils/dummyData'
+import { getProductById } from '@/libs/actions/getDataFromDB'
 
 interface IParams {
   id?: string
 }
 
-export default function ProductPage({ params }: { params: IParams }) {
-  console.log(params)
+export default async function ProductPage({ params }: { params: IParams }) {
+  let product = null
+  if (params.id) product = await getProductById(params.id)
+
   return (
     <div className="container bg-dark">
       <section className="section bg-secondary">
-        <ProductDetails product={product} />
+        {product && <ProductDetails product={product} />}
       </section>
     </div>
   )
