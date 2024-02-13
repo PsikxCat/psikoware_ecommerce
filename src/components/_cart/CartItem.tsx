@@ -57,7 +57,7 @@ export default function CartItem(
 
       {/* valor total */}
       <span className='justify-self-end flex_center font-bold pt-2 pr-2 max-[450px]:pr-0'>
-        {formatPrice(item.productVariant.price * (item.productVariant.quantity ?? 1))}
+        {formatPrice(item.productVariant.price * (item.productVariant.quantity))}
       </span>
 
       {/* boton clear item */}

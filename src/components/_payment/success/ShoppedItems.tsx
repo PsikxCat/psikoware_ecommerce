@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { GlobalContext, type GlobalContextType } from '@/context/globalContext'
 
 import { type CartProductType } from '@/types'
-import { formatPrice } from '../../../utils/index'
+import { formatPrice } from '@/utils/index'
 
 export default function ShoppedItem() {
   const { cartItems } = useContext(GlobalContext as React.Context<GlobalContextType>)
@@ -24,7 +24,7 @@ export default function ShoppedItem() {
           <span className='justify-self-center'>{item.productVariant.quantity}</span>
 
           <span className='justify-self-end'>
-            {formatPrice(item.productVariant.price * (item.productVariant.quantity ?? 1))}
+            {formatPrice(item.productVariant.price * (item.productVariant.quantity))}
           </span>
         </section>
       ))}

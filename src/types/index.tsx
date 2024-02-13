@@ -52,7 +52,7 @@ export interface ProductVariantType {
   id: string
   price: number
   inStock: number
-  quantity?: number | null
+  quantity: number
   color: string
   colorCode: string
   capacity?: string | null

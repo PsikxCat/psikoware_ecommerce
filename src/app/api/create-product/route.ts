@@ -46,6 +46,7 @@ async function createProductVariants(productVariants: DBProductVariantType[], ne
         variantProductRef: `${newProduct.productRef}-V${index + 1}`,
         price: Number(pv.price),
         inStock: Number(pv.inStock),
+        quantity: 1,
         color: pv.color || 'Unicolor',
         colorCode: pv.colorCode || '#000000',
         capacity: pv.capacity,

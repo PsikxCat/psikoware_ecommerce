@@ -80,10 +80,10 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
 
     const itemIndex = updatedCart.findIndex((cartItem) => cartItem.productVariant.id === item.productVariant.id)
 
-    if (itemIndex > -1 && (updatedCart[itemIndex].productVariant.quantity ?? 1) <= 1) {
+    if (itemIndex > -1 && (updatedCart[itemIndex].productVariant.quantity) <= 1) {
       handleRemoveItemFromCart(item.productVariant.id)
     } else {
-      updatedCart[itemIndex].productVariant.quantity = (updatedCart[itemIndex].productVariant.quantity ?? 1) - 1
+      updatedCart[itemIndex].productVariant.quantity = (updatedCart[itemIndex].productVariant.quantity) - 1
       setCartItems(updatedCart)
     }
 
@@ -96,10 +96,10 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
 
     const itemIndex = updatedCart.findIndex((cartItem) => cartItem.productVariant.id === item.productVariant.id)
 
-    if (itemIndex > -1 && (updatedCart[itemIndex].productVariant.quantity ?? 1) >= item.productVariant.inStock) {
+    if (itemIndex > -1 && (updatedCart[itemIndex].productVariant.quantity) >= item.productVariant.inStock) {
       toast.error('No hay mas stock de este producto')
     } else {
-      updatedCart[itemIndex].productVariant.quantity = (updatedCart[itemIndex].productVariant.quantity ?? 1) + 1
+      updatedCart[itemIndex].productVariant.quantity = (updatedCart[itemIndex].productVariant.quantity) + 1
       setCartItems(updatedCart)
     }
 
@@ -119,8 +119,8 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
 
   useEffect(() => {
     if (cartItems.length > 0) {
-      const totalQuantity = cartItems.reduce((acc, item) => acc + (item.productVariant.quantity ?? 1), 0)
-      const totalPrice = cartItems.reduce((acc, item) => acc + item.productVariant.price * (item.productVariant.quantity ?? 1), 0)
+      const totalQuantity = cartItems.reduce((acc, item) => acc + (item.productVariant.quantity), 0)
+      const totalPrice = cartItems.reduce((acc, item) => acc + item.productVariant.price * (item.productVariant.quantity), 0)
 
       setCartTotalQuantity(totalQuantity)
       setCartTotalAmount(totalPrice)

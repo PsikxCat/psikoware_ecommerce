@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Rating } from '@mui/material'
 import { MdCheckCircle } from 'react-icons/md'
 
-import type { CartProductType, ProductType } from '@/types'
+import type { CartProductType, ProductType, ProductVariantType } from '@/types'
 
 import { Button, ProductImage, SetVariant, SetQuantity, Tabs } from '@/components'
 import { formatPrice, productRating } from '@/utils'
@@ -23,7 +23,14 @@ function HorizontalLine() {
 export default function ProductDetails({ product }: ProductDetailsProps) {
   const router = useRouter()
 
-  const defaultProduct: CartProductType = {
+  // | Contexto | //
+  const {
+    cartItems,
+    handleAddItemToCart
+  } = useContext(GlobalContext as React.Context<GlobalContextType>)
+
+  // | Estados | //
+  const [cartProduct, setCartProduct] = useState<CartProductType>({
     id: product.id,
     name: product.name,
     shortDescription: product.shortDescription,
@@ -33,16 +40,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     specifications: product.specifications,
     productVariant: { ...product.productVariants[0], quantity: 1 },
     reviews: product.reviews
-  }
-
-  // | Contexto | //
-  const {
-    cartItems,
-    handleAddItemToCart
-  } = useContext(GlobalContext as React.Context<GlobalContextType>)
-
-  // | Estados | //
-  const [cartProduct, setCartProduct] = useState({ ...defaultProduct })
+  })
   const [isInStock, setisInStock] = useState<boolean>(true)
   const [isProductInCart, setIsProductInCart] = useState<boolean>(false)
 
@@ -60,26 +58,26 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   const handleColorSelect = (color: string) => {
     // busca variante con color seleccionado y capacidad guardada en cartProduct
     const findVariant = product.productVariants
-      .find((variant: any) =>
+      .find((variant: ProductVariantType) =>
         variant.color === color && variant.capacity === cartProduct.productVariant.capacity)
 
     // si encuentra variante, setea cartProduct con la variante encontrada
     if (findVariant) {
       setCartProduct((prev) => ({
         ...prev,
-        productVariants: { ...findVariant }
+        productVariant: { ...findVariant }
       }))
     }
   }
   const handleCapacitySelect = (capacity: string) => {
     const findVariant = product.productVariants
-      .find((variant: any) =>
+      .find((variant: ProductVariantType) =>
         variant.color === cartProduct.productVariant.color && variant.capacity === capacity)
 
     if (findVariant) {
       setCartProduct((prev) => ({
         ...prev,
-        productVariants: { ...findVariant }
+        productVariant: { ...findVariant }
       }))
     }
   }
@@ -90,7 +88,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       ...prev,
       productVariant: {
         ...prev.productVariant,
-        quantity: (prev.productVariant.quantity ?? 1) - 1
+        quantity: (prev.productVariant.quantity) - 1
       }
     }))
   }
@@ -101,7 +99,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       ...prev,
       productVariant: {
         ...prev.productVariant,
-        quantity: (prev.productVariant.quantity ?? 1) + 1
+        quantity: (prev.productVariant.quantity) + 1
       }
     }))
   }
@@ -109,7 +107,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   return (
     <div className='flex_center_column gap-5'>
       {/* producto */}
-      <main className="flex_center_column rounded-md p-2 bg-stone-900 w-full md:w-[80%] max-w-[1400px] xl:h-[660px] xl:max-h-[800px] z-10">
+      <main className="flex_center_column rounded-md p-2 bg-stone-900 w-full md:w-[80%] max-w-[1400px] xl:h-[680px] xl:max-h-[800px] z-10">
         <div className='text-muted flex_center_column xl:flex-row w-full h-full border border-stone-700 rounded-md overflow-hidden'>
           {/* imagen producto */}
           <section className="relative flex_center text-primary h-full min-h-[50%] w-full xl:w-1/2 bg-stone-950">
@@ -185,7 +183,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
             {/* precio */}
             <div className={`text-3xl font-bold my-3 ${!isInStock ? 'line-through text-muted' : 'text-primary'}`}>
-              {formatPrice(cartProduct.productVariant.price * (cartProduct.productVariant.quantity ?? 1))}
+              {formatPrice(cartProduct.productVariant.price * (cartProduct.productVariant.quantity))}
             </div>
 
             {/* Boton y mensaje */}

@@ -22,7 +22,7 @@ export default async function createPayment(cartTotalAmount: number, cartItems: 
         unit_price: item.productVariant.price,
         title: `${item.name} ${item.productVariant.capacity} ${item.productVariant.color}`,
         category_id: item.category,
-        quantity: item.productVariant.quantity ?? 1,
+        quantity: item.productVariant.quantity,
         picture_url: item.productVariant.images[0]
       })),
       payer: {
