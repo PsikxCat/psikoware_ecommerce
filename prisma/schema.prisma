@@ -82,7 +82,7 @@ model ProductVariant {
   productId String @db.ObjectId
   variantProductRef String @unique
   price Float
-  quantity Int?
+  quantity Int
   inStock Int
   color String
   colorCode String

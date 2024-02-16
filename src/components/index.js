@@ -37,6 +37,8 @@ export { default as DescriptionSection } from './_admin/add-products/Description
 export { default as SpecificationsSection } from './_admin/add-products/SpecificationsSection.tsx'
 export { default as CategoriesSection } from './_admin/add-products/CategoriesSection.tsx'
 export { default as VariantsSection } from './_admin/add-products/VariantsSection.tsx'
+export { default as ManageProducts } from './_admin/manage-products/ManageProducts.tsx'
+export { default as ProductsDataTable } from './_admin/manage-products/ProductsDataTable.tsx'
 
 export { default as ShoppedItems } from './_payment/success/ShoppedItems.tsx'
 export { default as TotalSection } from './_payment/success/TotalSection.tsx'

@@ -40,6 +40,7 @@ module.exports = {
     }],
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off'
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/array-type': 'off'
   }
 }

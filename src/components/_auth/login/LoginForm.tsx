@@ -81,13 +81,13 @@ export default function LoginForm() {
 
     {/* login con google y github */}
     <div className='flex gap-2 max-[350px]:flex-row max-[630px]:flex-col'>
-      <button className='flex items-center justify-center gap-2 bg-[#b0343b] text-white text-[16px] font-medium px-4 py-2 rounded-md transition duration-[.4s] hover:bg-[#c74040]'
+      <button className='flex items-center justify-center gap-2 bg-[#b0343b] text-white text-[16px] font-medium px-4 py-2 rounded-md transition duration-500 hover:bg-[#c74040]'
         onClick={async () => { await handleSignIn('google') }}
       >
         <AiFillGoogleCircle size={24} /> <span className='max-[350px]:hidden'>Inicia sesión con Google</span>
       </button>
 
-      <button className='flex items-center justify-center gap-2 bg-[#333] text-white text-[16px] font-medium px-4 py-2 rounded-md transition duration-[.4s] hover:bg-[#555]'
+      <button className='flex items-center justify-center gap-2 bg-[#333] text-white text-[16px] font-medium px-4 py-2 rounded-md transition duration-500 hover:bg-[#555]'
         onClick={() => { console.log('logueo con github') }}
       >
         <AiFillGithub size={24} /> <span className='max-[350px]:hidden'>Inicia sesión con Github</span>
