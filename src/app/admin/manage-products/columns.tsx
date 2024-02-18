@@ -4,7 +4,7 @@ import { type ColumnDef } from '@tanstack/react-table'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { HiArrowsUpDown } from 'react-icons/hi2'
 
-import { type ProductType } from '@/types'
+import { type TableProductType } from '@/types'
 import { formatPrice } from '@/utils'
 import { Button } from '@/components/ui/button'
 import {
@@ -22,7 +22,7 @@ import {
 
 const styledHeader = (label: string) => <h4 className="font-bold uppercase">{label}</h4>
 
-export const columns: ColumnDef<ProductType>[] = [
+export const columns: ColumnDef<TableProductType>[] = [
   {
     header: ({ column }) => {
       return (
@@ -71,7 +71,7 @@ export const columns: ColumnDef<ProductType>[] = [
     accessorKey: 'variant.capacity',
     cell: ({ row }) => {
       const capacity = row.original.variant.capacity
-      return <div className='text-center'>{capacity || '-'}</div>
+      return <div className='text-center'>{capacity ?? '-'}</div>
     }
   },
   {

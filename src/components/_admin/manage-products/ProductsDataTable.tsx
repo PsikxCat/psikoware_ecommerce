@@ -4,15 +4,18 @@ import { useState } from 'react'
 import {
   type ColumnDef,
   type SortingState,
+  type ColumnFiltersState,
   flexRender,
   useReactTable,
   getCoreRowModel,
   getPaginationRowModel,
-  getSortedRowModel
+  getSortedRowModel,
+  getFilteredRowModel
 } from '@tanstack/react-table'
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
 interface ProductsDataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -23,21 +26,37 @@ export default function ProductsDataTable<TData, Tvalue>({
   columns, data
 }: ProductsDataTableProps<TData, Tvalue>) {
   const [sorting, setSorting] = useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
   const table = useReactTable({
     columns,
     data,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
     state: {
-      sorting
+      sorting,
+      columnFilters
     }
   })
 
   return (
     <section>
+      {/* Filter */}
+      <div className="flex items-center py-4">
+        <Input
+          placeholder="Filtrar por nombre..."
+          value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+          onChange={(event) =>
+            table.getColumn('name')?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+      </div>
+
       {/* Tabla */}
       <div className='rounded-md border bg-secondary text-dark'>
         <Table>
@@ -87,6 +106,7 @@ export default function ProductsDataTable<TData, Tvalue>({
           </TableBody>
         </Table>
       </div>
+
       {/* Paginacion */}
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
@@ -108,6 +128,6 @@ export default function ProductsDataTable<TData, Tvalue>({
           Siguiente
         </Button>
       </div>
-      </section>
+    </section>
   )
 }

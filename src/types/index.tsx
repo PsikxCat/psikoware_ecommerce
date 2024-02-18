@@ -37,6 +37,11 @@ export interface ProductType extends ProductCommonFields {
   reviews: ReviewType[] | []
 }
 
+export interface TableProductType extends ProductType {
+  productRef: string
+  variant: DBProductVariantType
+}
+
 export interface DBProductType extends ProductCommonFields {
   productRef: string
 }
