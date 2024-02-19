@@ -35,8 +35,9 @@ export const columns: ColumnDef<TableProductType>[] = [
       )
     },
     accessorKey: 'category',
+    id: 'Categoría',
     cell: ({ row }) => {
-      const name = row.getValue('category')
+      const name = row.getValue('Categoría')
       return <div className='text-center uppercase'>{name as string}</div>
     }
 
@@ -44,24 +45,27 @@ export const columns: ColumnDef<TableProductType>[] = [
   {
     header: () => styledHeader('referencia'),
     accessorKey: 'variant.variantProductRef',
+    id: 'Referencia variante',
     cell: ({ row }) => {
-      const variantProductRef = row.original.variant.variantProductRef
+      const variantProductRef: string = row.getValue('Referencia variante')
       return <div className='text-center'>{variantProductRef}</div>
     }
   },
   {
     header: () => styledHeader('nombre'),
     accessorKey: 'name',
+    id: 'Nombre',
     cell: ({ row }) => {
-      const name = row.getValue('name')
+      const name = row.getValue('Nombre')
       return <div className='font-bold text-center'>{name as string}</div>
     }
   },
   {
     header: () => styledHeader('color'),
     accessorKey: 'variant.color',
+    id: 'Color',
     cell: ({ row }) => {
-      const color = row.original.variant.color
+      const color: string = row.getValue('Color')
       return <div className='text-center'>{color === 'Unicolor' ? '-' : color}</div>
     }
 
@@ -69,9 +73,10 @@ export const columns: ColumnDef<TableProductType>[] = [
   {
     header: () => styledHeader('capacidad'),
     accessorKey: 'variant.capacity',
+    id: 'Capacidad',
     cell: ({ row }) => {
-      const capacity = row.original.variant.capacity
-      return <div className='text-center'>{capacity ?? '-'}</div>
+      const capacity: string = row.getValue('Capacidad') || '-'
+      return <div className='text-center'>{capacity}</div>
     }
   },
   {
@@ -86,8 +91,9 @@ export const columns: ColumnDef<TableProductType>[] = [
       )
     },
     accessorKey: 'variant.price',
+    id: 'Precio',
     cell: ({ row }) => {
-      const price = row.original.variant.price
+      const price: number = row.getValue('Precio')
       return <div className='text-center'>{formatPrice(price)}</div>
     }
   },
@@ -103,8 +109,9 @@ export const columns: ColumnDef<TableProductType>[] = [
       )
     },
     accessorKey: 'variant.inStock',
+    id: 'Stock',
     cell: ({ row }) => {
-      const inStock = row.original.variant.inStock
+      const inStock: number = row.getValue('Stock')
       return <div className={`font-bold text-center
       ${(inStock === 1 || inStock === 2) ? 'text-orange-900' : 'text-dark'} ${inStock === 0 ? 'text-red-700' : 'text-dark'}`}>
         {inStock}
@@ -113,7 +120,7 @@ export const columns: ColumnDef<TableProductType>[] = [
 
   },
   {
-    id: 'actions',
+    id: 'acciones',
     cell: ({ row }) => {
       const data = row.original
 

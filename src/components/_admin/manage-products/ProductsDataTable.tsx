@@ -5,6 +5,7 @@ import {
   type ColumnDef,
   type SortingState,
   type ColumnFiltersState,
+  type VisibilityState,
   flexRender,
   useReactTable,
   getCoreRowModel,
@@ -16,6 +17,12 @@ import {
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
 
 interface ProductsDataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -27,6 +34,7 @@ export default function ProductsDataTable<TData, Tvalue>({
 }: ProductsDataTableProps<TData, Tvalue>) {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
 
   const table = useReactTable({
     columns,
@@ -37,24 +45,54 @@ export default function ProductsDataTable<TData, Tvalue>({
     getFilteredRowModel: getFilteredRowModel(),
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
+    onColumnVisibilityChange: setColumnVisibility,
     state: {
       sorting,
-      columnFilters
+      columnFilters,
+      columnVisibility
     }
   })
 
   return (
     <section>
-      {/* Filter */}
+      {/* Filtrado por nombre y visibilidad de columnas */}
       <div className="flex items-center py-4">
+        {/* Filter */}
         <Input
           placeholder="Filtrar por nombre..."
-          value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+          value={(table.getColumn('Referencia variante')?.getFilterValue() as string) ?? ''}
           onChange={(event) =>
-            table.getColumn('name')?.setFilterValue(event.target.value)
+            table.getColumn('Referencia variante')?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
+
+        {/* Visibility */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="ml-auto bg-accent text-dark">
+              Ver columnas
+            </Button>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent align="end" className='bg-secondary'>
+            {table
+              .getAllColumns()
+              .filter((column) => column.getCanHide())
+              .map((column) => {
+                return (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="capitalize"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value) => { column.toggleVisibility(!!value) }}
+                  >
+                    {column.id}
+                  </DropdownMenuCheckboxItem>
+                )
+              })}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
 
       {/* Tabla */}
