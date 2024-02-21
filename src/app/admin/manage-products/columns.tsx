@@ -5,8 +5,9 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 import { HiArrowsUpDown } from 'react-icons/hi2'
 
 import { type TableProductType } from '@/types'
-import { formatPrice } from '@/utils'
+import { formatPrice, truncate } from '@/utils'
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,23 +25,27 @@ const styledHeader = (label: string) => <h4 className="font-bold uppercase">{lab
 
 export const columns: ColumnDef<TableProductType>[] = [
   {
-    header: ({ column }) => {
-      return (
-        <Button variant="ghost" className='hover:bg-stone-700'
-          onClick={() => { column.toggleSorting(column.getIsSorted() === 'asc') }}
-        >
-          {styledHeader('categoría')}
-          <HiArrowsUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-    accessorKey: 'category',
-    id: 'Categoría',
-    cell: ({ row }) => {
-      const name = row.getValue('Categoría')
-      return <div className='text-center uppercase'>{name as string}</div>
-    }
-
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && 'indeterminate')
+        }
+        onCheckedChange={(value) => { table.toggleAllPageRowsSelected(!!value) }}
+        aria-label="Select all"
+      />
+    ),
+    id: 'select',
+    cell: ({ row }) => (
+      <Checkbox
+        className='m-auto'
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => { row.toggleSelected(!!value) }}
+        aria-label="Select row"
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false
   },
   {
     header: () => styledHeader('referencia'),
@@ -57,7 +62,11 @@ export const columns: ColumnDef<TableProductType>[] = [
     id: 'Nombre',
     cell: ({ row }) => {
       const name = row.getValue('Nombre')
-      return <div className='font-bold text-center'>{name as string}</div>
+      return <div>
+        <p className='font-bold text-center'>
+          {truncate(name as string, 60)}
+        </p>
+      </div>
     }
   },
   {
@@ -132,7 +141,7 @@ export const columns: ColumnDef<TableProductType>[] = [
             </Button>
           </DropdownMenuTrigger>
 
-          <DropdownMenuContent align="end" className='bg-sushi-600 text-dark'>
+          <DropdownMenuContent align="end" className='text-dark'>
             <DropdownMenuLabel>Variante {data.variant.variantProductRef}</DropdownMenuLabel>
             <DropdownMenuItem>Actualizar stock</DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -145,7 +154,7 @@ export const columns: ColumnDef<TableProductType>[] = [
               <DropdownMenuSubTrigger>Producto Global</DropdownMenuSubTrigger>
 
               <DropdownMenuPortal>
-              <DropdownMenuSubContent className='bg-sushi-600 text-dark'>
+              <DropdownMenuSubContent className='text-dark'>
                 <DropdownMenuLabel>Referencia Global {data.productRef}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
 

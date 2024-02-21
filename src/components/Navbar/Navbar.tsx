@@ -5,16 +5,16 @@ import { CartCount, UserMenu } from '@/components'
 
 export default function Navbar() {
   return (
-    <section className="sticky top-0 w-full h-[calc(30px+2vw)] z-50 flex_center bg-[#050505be] shadow-md py-4 border-b-[1px] border-secondary">
-      <div className='container flex_center'>
-        <nav className='flex items-center justify-between w-full gap-3 md:gap-0 '>
+    <section className="sticky top-0 w-full h-[calc(30px+2vw)] z-50 bg-[#050505be] shadow-md">
+      <div className='container flex_center_column h-full'>
+        <nav className='flex items-center justify-between w-full gap-3 md:gap-0 border-b border-b-secondary'>
           {/* logo */}
           <Link href="/">
             <Image
               className="cursor-pointer object-cover"
               style={{ width: 'auto', height: '100%' }}
               src="/images/logo.webp"
-              alt="Sushi Logo"
+              alt="psikoware logo"
               width={200}
               height={100}
               priority

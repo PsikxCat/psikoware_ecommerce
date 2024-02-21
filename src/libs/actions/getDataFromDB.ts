@@ -17,6 +17,26 @@ export async function getAllProducts(): Promise<ProductType[]> {
   }
 }
 
+export async function getCheapestProducts(): Promise<ProductType[]> {
+  try {
+    const allProducts = await getAllProducts()
+
+    if (!allProducts.length) {
+      throw new Error('No se encontraron productos.')
+    }
+
+    // obtener los diez productos mas economicos en su variante[0]
+    const cheapestProducts = allProducts
+      .sort((a, b) => a.productVariants[0].price - b.productVariants[0].price)
+      .slice(0, 10)
+
+    return cheapestProducts
+  } catch (error) {
+    console.error('Error al obtener los productos más baratos:', error)
+    throw new Error('Ocurrió un error al obtener los productos más baratos.')
+  }
+}
+
 export async function getProductById(id: string): Promise<ProductType> {
   try {
     const product = await db.product.findUnique({
@@ -71,59 +91,6 @@ export async function getProductsBySearch(search: string): Promise<ProductType[]
     throw new Error(`Ocurrió un error al obtener los productos de la búsqueda ${search}.`)
   }
 }
-
-// interface IProductParams {
-//   category?: string | null
-//   searchTerm?: string | null
-// }
-
-// export default async function getProducts(params: IProductParams) {
-//   // if (params.category) {
-//   //   return await getProductsByCategory(params.category)
-//   // }
-
-//   // if (params.searchTerm) {
-//   //   return await getProductsBySearch(params.searchTerm)
-//   // }
-
-//   // return await getAllProducts()
-//   try {
-//     const { category, searchTerm } = params
-
-//     const searchString = searchTerm ?? ''
-
-//     // const query = {
-//     //   where: {
-//     //     category: category ?? undefined,
-//     //     name: { contains: searchString }
-//     //   }
-//     // }
-//     const query: any = {}
-//     if (category) query.category = category
-
-//     const products = await db.product.findMany({
-//       where: {
-//         ...query,
-//         OR: [
-//           {
-//             name: { contains: searchString, mode: 'insensitive' },
-//             shortDescription: { contains: searchString, mode: 'insensitive' }
-//           }
-//         ]
-//       },
-//       include: {
-//         reviews: {
-//           include: { user: true },
-//           orderBy: { createDateTime: 'desc' }
-//         }
-//       }
-//     })
-
-//     return products
-//   } catch (error) {
-//     throw new Error('Ocurrió un error al obtener los productos.')
-//   }
-// }
 
 export default async function getOrders() { // falta tipar
   try {

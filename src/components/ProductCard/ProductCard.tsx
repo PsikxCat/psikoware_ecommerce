@@ -13,7 +13,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Link href={`/products/${product.id}`}>
     <article
-      className='box_shadow text-center text-sm col-span-1 cursor-pointer rounded-md p-2 transition-all hover:scale-105 duration-300 bg-stone-900 group z-10'
+      className='box_shadow text-center text-sm col-span-1 cursor-pointer rounded-md p-2 bg-stone-900 group z-10'
     >
       <section className="flex_center_column gap-2 w-full border border-stone-700 group-hover:border-accent rounded-md">
         {/* imagen */}
@@ -21,7 +21,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div className='absolute top-[40%] left-0 w-full h-[25%] bg-accent hidden group-hover:block'/>
 
           <Image
-            className='w-full h-full object-contain z-20'
+            className='w-full h-full object-contain'
             src={product.productVariants[0].images[0]}
             alt={product.name}
             fill

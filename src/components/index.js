@@ -1,16 +1,25 @@
+// # Componentes Globales
+
+export { default as Button } from './Button/Button.tsx'
+export { default as Avatar } from './Avatar/Avatar.tsx'
+export { default as ProductCard } from './ProductCard/ProductCard.tsx'
+export { default as ScreenShadow } from './ScreenShadow/ScreenShadow.tsx'
+
 export { default as Navbar } from './Navbar/Navbar.tsx'
 export { default as CartCount } from './Navbar/CartCount.tsx'
 export { default as UserMenu } from './Navbar/UserMenu.tsx'
 export { default as MenuItem } from './Navbar/MenuItem.tsx'
+export { default as Categories } from './Navbar/Categories.tsx'
+export { default as Category } from './Navbar/Category.tsx'
+
 export { default as Footer } from './Footer/Footer.tsx'
 export { default as FooterList } from './Footer/FooterList.tsx'
-export { default as ScreenShadow } from './ScreenShadow/ScreenShadow.tsx'
-export { default as ProductCard } from './ProductCard/ProductCard.tsx'
-export { default as Button } from './Button/Button.tsx'
-export { default as Avatar } from './Avatar/Avatar.tsx'
+
 export { default as FormWrap } from './Form/FormWrap.tsx'
 export { default as Input } from './Form/Input.tsx'
 export { default as TextArea } from './Form/TextArea.tsx'
+
+// # Componentes de Páginas
 
 export { default as HomeBanner } from './_home/HomeBanner.tsx'
 

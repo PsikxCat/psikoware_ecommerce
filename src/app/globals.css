@@ -144,7 +144,7 @@
   }
 
   .screen_shadow {
-    @apply fixed bottom-0 h-[12%] w-full bg-gradient-to-t from-black via-black/50 to-transparent;
+    @apply fixed bottom-0 h-[12%] w-full bg-gradient-to-t from-black via-black/50 to-transparent z-0;
     background: linear-gradient(
       to top,
       rgba(0, 0, 0, 0.7),

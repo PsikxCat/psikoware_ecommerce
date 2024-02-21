@@ -1,8 +1,8 @@
 import { HomeBanner, ProductCard } from '@/components'
-import { getAllProducts } from '@/libs/actions/getDataFromDB'
+import { getCheapestProducts } from '@/libs/actions/getDataFromDB'
 
 export default async function Home() {
-  const products = await getAllProducts()
+  const products = await getCheapestProducts()
 
   return (
     <section className="w-full flex_center bg-dark">
@@ -14,7 +14,12 @@ export default async function Home() {
           </section>
 
           {/* lista productos */}
-          <section className='section products_container bg-secondary'>
+          <section className='w-full flex_center'>
+            <h2 className="text-dark bg-secondary py-2 px-[30vw] rounded-t text-center mb-0 uppercase">
+              Destacados
+            </h2>
+          </section>
+          <section className='section products_container bg-secondary z-10'>
             {products?.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
