@@ -28,7 +28,7 @@ export async function getCheapestProducts(): Promise<ProductType[]> {
     // obtener los diez productos mas economicos en su variante[0]
     const cheapestProducts = allProducts
       .sort((a, b) => a.productVariants[0].price - b.productVariants[0].price)
-      .slice(0, 10)
+      .slice(0, 12)
 
     return cheapestProducts
   } catch (error) {

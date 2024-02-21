@@ -11,7 +11,7 @@ export default function CartCount() {
 
   return (
     <Link
-      className='relative cursor-pointer text-xl md:text-[26px]'
+      className='relative cursor-pointer pt-1 text-xl md:text-[26px]'
       href='/cart'
     >
       <PiShoppingCartSimpleBold />
