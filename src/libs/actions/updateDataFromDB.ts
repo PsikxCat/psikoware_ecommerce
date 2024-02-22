@@ -3,13 +3,14 @@
 import db from '@/libs/prismadb'
 
 interface Response {
-  response: string
+  ok?: true
+  error?: true
   message: string
 }
 
 export async function updateStock(id: string, stock: number): Promise<Response> {
   if (stock < 0 || stock > 500 || !stock || typeof stock !== 'number') {
-    return { response: 'error', message: 'Ingresa un valor numerico entre 0 y 500' }
+    return { error: true, message: 'Ingresa un valor numerico entre 0 y 500' }
   }
 
   try {
@@ -18,10 +19,10 @@ export async function updateStock(id: string, stock: number): Promise<Response> 
       data: { inStock: stock }
     })
 
-    return { response: 'ok', message: 'Stock actualizado' }
+    return { ok: true, message: 'Stock actualizado' }
   } catch (error) {
     console.error(error)
-    return { response: 'error', message: 'Ocurrio un error al actualizar el stock' }
+    return { error: true, message: 'Ocurrio un error al actualizar el stock' }
   }
 }
 
@@ -31,10 +32,10 @@ export async function deleteVariantProduct(id: string): Promise<Response> {
       where: { id }
     })
 
-    return { response: 'ok', message: 'Variante eliminada' }
+    return { ok: true, message: 'Variante eliminada' }
   } catch (error) {
     console.error(error)
-    return { response: 'error', message: 'Ocurrio un error al eliminar la variante' }
+    return { error: true, message: 'Ocurrio un error al eliminar la variante' }
   }
 }
 
@@ -44,9 +45,9 @@ export async function deleteProduct(id: string): Promise<Response> {
       where: { id }
     })
 
-    return { response: 'ok', message: 'Producto eliminado' }
+    return { ok: true, message: 'Producto eliminado' }
   } catch (error) {
     console.error(error)
-    return { response: 'error', message: 'Ocurrio un error al eliminar el producto' }
+    return { error: true, message: 'Ocurrio un error al eliminar el producto' }
   }
 }

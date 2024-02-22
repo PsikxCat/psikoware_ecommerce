@@ -9,6 +9,7 @@ import toast from 'react-hot-toast'
 
 import { type TableProductType } from '@/types'
 import { formatPrice, truncate } from '@/utils'
+import { deleteObject, getStorage, ref } from 'firebase/storage'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -53,7 +54,6 @@ export const columns: ColumnDef<TableProductType>[] = [
     enableHiding: false
   },
   {
-    // header: () => styledHeader('referencia'),
     header: ({ column }) => {
       return (
         <Button variant="ghost" className='hover:bg-stone-700'
@@ -151,6 +151,7 @@ export const columns: ColumnDef<TableProductType>[] = [
     cell: ({ row }) => {
       const router = useRouter()
       const data = row.original
+      const storage = getStorage()
 
       const [isLoading, setIsLoading] = useState(false)
       const [isBackdropOpen, setIsBackdropOpen] = useState(false)
@@ -186,8 +187,8 @@ export const columns: ColumnDef<TableProductType>[] = [
         setIsLoading(true)
 
         const updatedStock = await updateStock(data.variant.id, Number(stockRef.current!.value))
-        if (updatedStock?.response === 'ok') toast.success('Stock actualizado')
-        if (updatedStock?.response === 'error') toast.error(updatedStock.message)
+        if (updatedStock?.ok) toast.success('Stock actualizado')
+        if (updatedStock?.error) toast.error(updatedStock.message)
 
         setIsLoading(false)
         handleCloseModal()
@@ -196,11 +197,31 @@ export const columns: ColumnDef<TableProductType>[] = [
       }
 
       const handleDeleteVariantProduct = async () => {
+        toast('Eliminando variante...', { icon: '🗑️' })
         setIsLoading(true)
 
         const deletedVariant = await deleteVariantProduct(data.variant.id)
-        if (deletedVariant?.response === 'ok') toast.success('Variante eliminada')
-        if (deletedVariant?.response === 'error') toast.error(deletedVariant.message)
+
+        if (deletedVariant?.error) toast.error(deletedVariant.message)
+
+        // Eliminar imagenes de la variante de firebase storage
+        await (async () => {
+          try {
+            for (const image of data.variant.images) {
+              const imageRef = ref(storage, image)
+              await deleteObject(imageRef)
+              console.log('Imagen eliminada:', image)
+            }
+          } catch (error) {
+            console.error(error)
+            toast.error('Ocurrio un error al eliminar las imagenes')
+          }
+        })()
+
+        if (deletedVariant?.ok) toast.success('Variante eliminada')
+
+        // si no hay mas variantes, eliminar el producto global
+        if (data.productVariants.length === 1) await deleteProduct(data.id)
 
         setIsLoading(false)
         handleCloseModal()
@@ -209,11 +230,29 @@ export const columns: ColumnDef<TableProductType>[] = [
       }
 
       const handleDeleteGlobalProduct = async () => {
+        toast('Eliminando producto...', { icon: '🗑️' })
         setIsLoading(true)
 
         const deletedProduct = await deleteProduct(data.id)
-        if (deletedProduct?.response === 'ok') toast.success('Producto eliminado')
-        if (deletedProduct?.response === 'error') toast.error(deletedProduct.message)
+        if (deletedProduct?.error) toast.error(deletedProduct.message)
+
+        // Eliminar imagenes de todas las variantes de firebase storage
+        await (async () => {
+          try {
+            for (const variant of data.productVariants) {
+              for (const image of variant.images) {
+                const imageRef = ref(storage, image)
+                await deleteObject(imageRef)
+                console.log('Imagen eliminada:', image)
+              }
+            }
+          } catch (error) {
+            console.error(error)
+            toast.error('Ocurrio un error al eliminar las imagenes')
+          }
+        })()
+
+        if (deletedProduct?.ok) toast.success('Producto eliminado')
 
         setIsLoading(false)
         handleCloseModal()
@@ -292,7 +331,10 @@ export const columns: ColumnDef<TableProductType>[] = [
 
               <div className="flex justify-end gap-4 mt-4">
                 <Button variant="ghost" disabled={isLoading} onClick={handleCloseModal}>Cancelar</Button>
-                <Button variant="destructive" disabled={isLoading} onClick={handleDeleteVariantProduct} >Eliminar</Button>
+                {data.productVariants.length > 1
+                  ? <Button variant="destructive" disabled={isLoading} onClick={handleDeleteVariantProduct}>Eliminar</Button>
+                  : <Button variant="destructive" disabled={isLoading} onClick={handleDeleteGlobalProduct}>Eliminar</Button>
+                }
               </div>
             </section>
           )}
@@ -316,4 +358,3 @@ export const columns: ColumnDef<TableProductType>[] = [
     }
   }
 ]
-// ! FALTA ELIMINAR LAS IMAGENES DE FIREBASE STORAGE

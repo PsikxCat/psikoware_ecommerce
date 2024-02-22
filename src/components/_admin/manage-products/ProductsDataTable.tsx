@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 import {
   type ColumnDef,
   type SortingState,
@@ -14,6 +16,8 @@ import {
   getFilteredRowModel
 } from '@tanstack/react-table'
 
+import { deleteObject, getStorage, ref } from 'firebase/storage'
+import { deleteVariantProduct, deleteProduct } from '@/libs/actions/updateDataFromDB'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -33,6 +37,12 @@ interface ProductsDataTableProps<TData, TValue> {
 export default function ProductsDataTable<TData, Tvalue>({
   columns, data
 }: ProductsDataTableProps<TData, Tvalue>) {
+  const router = useRouter()
+  const storage = getStorage()
+
+  const [isLoading, setIsLoading] = useState(false)
+  const [isBackdropOpen, setIsBackdropOpen] = useState(false)
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
@@ -59,6 +69,50 @@ export default function ProductsDataTable<TData, Tvalue>({
       rowSelection
     }
   })
+
+  const handleDeleteMultipleVariants = (rows: any) => {
+    setIsLoading(true)
+    toast('Eliminando variantes...', { icon: '🗑️' })
+
+    rows.forEach(async (row: any) => {
+      const deletedVariant = await deleteVariantProduct(row.original.variant.id)
+      if (deletedVariant?.error) toast.error(deletedVariant.message)
+
+      // Eliminar imagenes de la variante
+      await (async () => {
+        try {
+          for (const image of row.original.variant.images) {
+            const imageRef = ref(storage, image)
+            await deleteObject(imageRef)
+            console.log('Imagen eliminada:', image)
+          }
+        } catch (error) {
+          console.error(error)
+          toast.error('Ocurrio un error al eliminar las imagenes de la variante')
+        }
+      })()
+
+      // si no hay mas variantes, eliminar el producto global
+      if (row.original.productVariants.length === 1) await deleteProduct(row.original.id)
+
+      if (deletedVariant?.ok) toast.success(deletedVariant.message)
+    })
+
+    setIsLoading(false)
+    handleCloseModal()
+
+    router.refresh()
+  }
+
+  const handleOpenDeleteModal = () => {
+    setIsBackdropOpen(true)
+    setIsDeleteModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsBackdropOpen(false)
+    setIsDeleteModalOpen(false)
+  }
 
   return (
     <section>
@@ -164,9 +218,8 @@ export default function ProductsDataTable<TData, Tvalue>({
           {table.getFilteredSelectedRowModel().rows.length > 0 && (
             <Button
               className='bg-red-700 text-accent font-bold hover:bg-red-600'
-              onClick={() => {
-                console.log('Eliminar filas seleccionadas')
-              }}
+              disabled={isLoading}
+              onClick={handleOpenDeleteModal}
             >
               Eliminar variante(s)
             </Button>
@@ -216,6 +269,35 @@ export default function ProductsDataTable<TData, Tvalue>({
             </Button>
           </div>
         </div>
+
+        {/* Modal de eliminacion */}
+        {isDeleteModalOpen && (
+          <section className="flex_center_column z-50 absolute top-[60%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-muted bg-dark p-4 rounded-lg text-center">
+            <h1 className="text-2xl text-primary">Actualizar stock</h1>
+
+            <div className='p-4 flex_center_column text-lg'>
+              <p>Esta acción eliminará las variantes seleccionadas.</p>
+              <p>En el caso de las variantes sean las únicas de un producto, este producto también será eliminado.</p>
+              <p>¿Estás seguro de que quieres eliminar las variantes seleccionadas?</p>
+            </div>
+
+            <div className='flex justify-end w-full gap-4 mt-4'>
+              <Button variant="ghost" disabled={isLoading} onClick={handleCloseModal}>Cancelar</Button>
+              <Button
+                variant="destructive"
+                disabled={isLoading}
+                onClick={() => { handleDeleteMultipleVariants(table.getFilteredSelectedRowModel().rows) }}>
+                  Eliminar
+              </Button>
+            </div>
+          </section>
+        )}
+
+        {/* Backdrop */}
+        {isBackdropOpen
+          ? <div className="absolute z-40 top-0 left-0 w-full h-full bg-black/50" onClick={handleCloseModal}/>
+          : null
+          }
       </section>
     </section>
   )
