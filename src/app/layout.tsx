@@ -28,7 +28,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <div className='flex_center_column min-h-[100svh] w-full'>
             <Navbar />
 
-            <div className='flex_center flex-1 w-full'>
+            <div className='flex_center flex-1 w-full container'>
               {children}
             </div>
 

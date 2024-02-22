@@ -16,7 +16,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
     <section className="w-full flex flex-col items-center bg-dark">
       <Categories category={category} />
 
-      <div className="container bg-secondary min-h-[calc(100vh-calc(30px+2vw)-20vh)]">
+      <div className="container bg-secondary pt-[55px] min-h-[calc(100vh-calc(30px+2vw)-20vh)]">
         {products.length > 0
           ? (
           <section className='section products_container bg-secondary z-10'>

@@ -7,13 +7,13 @@ export default function Navbar() {
   return (
     <section className="flex_center sticky top-0 w-full h-[calc(30px+2vw)] z-50 bg-[#050505be] shadow-md">
       <div className='container h-full'>
-        <nav className='flex items-center justify-between w-full gap-3 md:gap-0 border-b border-b-secondary'>
+        <nav className='flex items-center justify-between w-full gap-3 md:gap-0'>
           {/* Logo Psikoware */}
           <Link href="/">
             <Image
               className="cursor-pointer object-cover"
               style={{ width: 'auto', height: '100%' }}
-              src="/images/logo.webp"
+              src="https://firebasestorage.googleapis.com/v0/b/psikoware.appspot.com/o/psikoware%2Fpsikoware2.webp?alt=media&token=ed193116-16f2-4a9e-8041-cc8b55af74b4"
               alt="psikoware logo"
               width={200}
               height={100}

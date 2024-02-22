@@ -9,7 +9,7 @@ interface CategoriesProps {
 
 export default function Categories({ category }: CategoriesProps) {
   return (
-    <section className='container'>
+    <section className='container fixed top-[calc(30px+2vw)] bg-[#050505be] z-40 h-[55px]'>
       <div className="flex_center flex-row text-muted overflow-x-auto uppercase font-bold">
         {categories.map((item) => (
           <Category

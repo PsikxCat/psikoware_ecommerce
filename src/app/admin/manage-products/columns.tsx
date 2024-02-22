@@ -1,12 +1,16 @@
 'use client'
 
+import { useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { type ColumnDef } from '@tanstack/react-table'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { HiArrowsUpDown } from 'react-icons/hi2'
+import toast from 'react-hot-toast'
 
 import { type TableProductType } from '@/types'
 import { formatPrice, truncate } from '@/utils'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
   DropdownMenu,
@@ -20,6 +24,7 @@ import {
   DropdownMenuPortal,
   DropdownMenuSubContent
 } from '@/components/ui/dropdown-menu'
+import { updateStock, deleteVariantProduct, deleteProduct } from '@/libs/actions/updateDataFromDB'
 
 const styledHeader = (label: string) => <h4 className="font-bold uppercase">{label}</h4>
 
@@ -48,7 +53,17 @@ export const columns: ColumnDef<TableProductType>[] = [
     enableHiding: false
   },
   {
-    header: () => styledHeader('referencia'),
+    // header: () => styledHeader('referencia'),
+    header: ({ column }) => {
+      return (
+        <Button variant="ghost" className='hover:bg-stone-700'
+          onClick={() => { column.toggleSorting(column.getIsSorted() === 'asc') }}
+        >
+          {styledHeader('Referencia variante')}
+          <HiArrowsUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
     accessorKey: 'variant.variantProductRef',
     id: 'Referencia variante',
     cell: ({ row }) => {
@@ -121,51 +136,184 @@ export const columns: ColumnDef<TableProductType>[] = [
     id: 'Stock',
     cell: ({ row }) => {
       const inStock: number = row.getValue('Stock')
-      return <div className={`font-bold text-center
-      ${(inStock === 1 || inStock === 2) ? 'text-orange-900' : 'text-dark'} ${inStock === 0 ? 'text-red-700' : 'text-dark'}`}>
-        {inStock}
+      return (
+      <div
+        className={`font-bold text-center ${(inStock === 1 || inStock === 2) ? 'text-orange-800' : 'text-dark'} ${inStock === 0 ? 'text-red-700' : 'text-dark'}`}
+      >
+        {inStock === 0 ? 'Sin Stock' : inStock }
       </div>
+      )
     }
 
   },
   {
     id: 'acciones',
     cell: ({ row }) => {
+      const router = useRouter()
       const data = row.original
 
+      const [isLoading, setIsLoading] = useState(false)
+      const [isBackdropOpen, setIsBackdropOpen] = useState(false)
+      const [isStockModalOpen, setIsStockModalOpen] = useState(false)
+      const [isDeleteVarProductModalOpen, setIsDeleteVarProductModalOpen] = useState(false)
+      const [isDeleteGlobalProductModalOpen, setIsDeleteGlobalProductModalOpen] = useState(false)
+
+      const stockRef = useRef<HTMLInputElement>(null)
+
+      const handleCloseModal = () => {
+        setIsStockModalOpen(false)
+        setIsBackdropOpen(false)
+        setIsDeleteVarProductModalOpen(false)
+        setIsDeleteGlobalProductModalOpen(false)
+      }
+
+      const handleOpenStockModal = () => {
+        setIsStockModalOpen(true)
+        setIsBackdropOpen(true)
+      }
+
+      const handleOpenDeleteVarProductModal = () => {
+        setIsDeleteVarProductModalOpen(true)
+        setIsBackdropOpen(true)
+      }
+
+      const handleOpenDeleteGlobalProductModal = () => {
+        setIsDeleteGlobalProductModalOpen(true)
+        setIsBackdropOpen(true)
+      }
+
+      const handleUpdateStock = async () => {
+        setIsLoading(true)
+
+        const updatedStock = await updateStock(data.variant.id, Number(stockRef.current!.value))
+        if (updatedStock?.response === 'ok') toast.success('Stock actualizado')
+        if (updatedStock?.response === 'error') toast.error(updatedStock.message)
+
+        setIsLoading(false)
+        handleCloseModal()
+
+        router.refresh()
+      }
+
+      const handleDeleteVariantProduct = async () => {
+        setIsLoading(true)
+
+        const deletedVariant = await deleteVariantProduct(data.variant.id)
+        if (deletedVariant?.response === 'ok') toast.success('Variante eliminada')
+        if (deletedVariant?.response === 'error') toast.error(deletedVariant.message)
+
+        setIsLoading(false)
+        handleCloseModal()
+
+        router.refresh()
+      }
+
+      const handleDeleteGlobalProduct = async () => {
+        setIsLoading(true)
+
+        const deletedProduct = await deleteProduct(data.id)
+        if (deletedProduct?.response === 'ok') toast.success('Producto eliminado')
+        if (deletedProduct?.response === 'error') toast.error(deletedProduct.message)
+
+        setIsLoading(false)
+        handleCloseModal()
+
+        router.refresh()
+      }
+
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <FiMoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
+        <>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <FiMoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
 
-          <DropdownMenuContent align="end" className='text-dark'>
-            <DropdownMenuLabel>Variante {data.variant.variantProductRef}</DropdownMenuLabel>
-            <DropdownMenuItem>Actualizar stock</DropdownMenuItem>
-            <DropdownMenuSeparator />
+            <DropdownMenuContent align="end" className='text-dark'>
+              <DropdownMenuLabel>Variante {data.variant.variantProductRef}</DropdownMenuLabel>
+              <DropdownMenuItem onClick={handleOpenStockModal}>Actualizar stock</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Editar variante</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleOpenDeleteVarProductModal}>Eliminar variante</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>Producto Global</DropdownMenuSubTrigger>
+                <DropdownMenuPortal>
+                <DropdownMenuSubContent className='text-dark'>
+                  <DropdownMenuLabel>Referencia Global {data.productRef}</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Editar producto global</DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleOpenDeleteGlobalProductModal}>Eliminar producto global</DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuPortal>
+              </DropdownMenuSub>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
-            <DropdownMenuItem>Editar variante</DropdownMenuItem>
-            <DropdownMenuItem>Eliminar variante</DropdownMenuItem>
-            <DropdownMenuSeparator />
+          {/* Backdrop */}
+          {isBackdropOpen
+            ? <div className="absolute z-40 top-0 left-0 w-full h-full bg-black/50" onClick={handleCloseModal}/>
+            : null
+          }
 
-            <DropdownMenuSub>
-              <DropdownMenuSubTrigger>Producto Global</DropdownMenuSubTrigger>
+          {/* Modal actualizar stock */}
+          {isStockModalOpen && (
+            <section className="flex_center_column z-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-muted bg-dark p-4 rounded-lg">
+              <h1 className="text-2xl text-primary">Actualizar stock</h1>
+              <p className='text-lg p-2'>Ingresa la cantidad de stock disponible para la variante de producto {data.variant.variantProductRef}</p>
+              <Input type="number" className='w-16' defaultValue={data.variant.inStock} ref={stockRef}/>
+              <div className="flex justify-end gap-4 mt-4">
+                <Button variant="ghost" disabled={isLoading} onClick={handleCloseModal}>Cancelar</Button>
+                <Button variant="secondary" disabled={isLoading} onClick={handleUpdateStock}>Actualizar</Button>
+              </div>
+            </section>
+          )}
 
-              <DropdownMenuPortal>
-              <DropdownMenuSubContent className='text-dark'>
-                <DropdownMenuLabel>Referencia Global {data.productRef}</DropdownMenuLabel>
-                <DropdownMenuSeparator />
+          {/* Modal eliminar variante de producto */}
+          {isDeleteVarProductModalOpen && (
+            <section className="z-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-muted bg-dark p-4 rounded-lg">
+              <h1 className="text-2xl text-accent">Eliminar variante de producto</h1>
 
-                <DropdownMenuItem>Editar producto global</DropdownMenuItem>
-                <DropdownMenuItem>Eliminar producto global</DropdownMenuItem>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-            </DropdownMenuSub>
-          </DropdownMenuContent>
-        </DropdownMenu>
+              {data.productVariants.length > 1
+                ? (
+                <div className='p-4 flex_center_column text-lg'>
+                  <p>Esta acción eliminará la variante de producto {data.variant.variantProductRef} de la base de datos</p>
+                  <p>¿Estás seguro que deseas eliminar la variante?</p>
+                </div>
+                  )
+                : (
+                <div className='p-4 flex_center_column text-lg'>
+                  <p>El producto global {data.productRef} solo tiene una variante.</p>
+                  <p>Esta acción eliminará el producto global {data.productRef} de la base de datos</p>
+                  <p>¿Estás seguro que deseas eliminar el producto global?</p>
+                </div>
+                  )}
+
+              <div className="flex justify-end gap-4 mt-4">
+                <Button variant="ghost" disabled={isLoading} onClick={handleCloseModal}>Cancelar</Button>
+                <Button variant="destructive" disabled={isLoading} onClick={handleDeleteVariantProduct} >Eliminar</Button>
+              </div>
+            </section>
+          )}
+
+          {/* Modal eliminar producto global */}
+          {isDeleteGlobalProductModalOpen && (
+            <section className="z-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-muted bg-dark p-4 rounded-lg">
+              <h1 className="text-2xl text-accent">Eliminar producto global</h1>
+              <div className='p-4 flex_center_column text-lg'>
+                <p>Esta acción eliminará el producto global {data.productRef} de la base de datos</p>
+                <p>¿Estás seguro que deseas eliminar el producto global?</p>
+              </div>
+              <div className="flex justify-end gap-4 mt-4">
+                <Button variant="ghost" onClick={handleCloseModal}>Cancelar</Button>
+                <Button variant="destructive" onClick={handleDeleteGlobalProduct}>Eliminar</Button>
+              </div>
+            </section>
+          )}
+        </>
       )
     }
   }
 ]
+// ! FALTA ELIMINAR LAS IMAGENES DE FIREBASE STORAGE

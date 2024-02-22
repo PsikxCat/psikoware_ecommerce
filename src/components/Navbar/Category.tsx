@@ -11,7 +11,7 @@ export default function Category({ label, icon: Icon, selected }: CategoryProps)
   return (
     <Link
       href={`/products?category=${label}`}
-      className={`flex_center text-center gap-1 p-4 transition duration-150 cursor-pointer
+      className={`flex_center text-center gap-1 p-4 transition duration-150 cursor-pointer rounded-t-md
       ${selected ? 'bg-secondary text-dark' : 'text-secondary hover:text-accent'}`}
     >
       <Icon size={20} />

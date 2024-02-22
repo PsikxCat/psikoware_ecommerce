@@ -23,7 +23,13 @@ export default function HomeBanner() {
 
         {/* imagen */}
         <div className="flex_center">
-          <Image src="/images/banner.webp" alt="Banner" width={330} height={330} priority/>
+          <Image
+            src="https://firebasestorage.googleapis.com/v0/b/psikoware.appspot.com/o/psikoware%2Fbanner.webp?alt=media&token=8448e92f-5f5c-4466-bdd4-7db65825ebac"
+            alt="Banner"
+            width={330}
+            height={330}
+            priority
+          />
         </div>
 
         {/* link */}

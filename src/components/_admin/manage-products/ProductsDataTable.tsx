@@ -104,7 +104,7 @@ export default function ProductsDataTable<TData, Tvalue>({
 
       {/* Tabla */}
       <section className='rounded-md border text-dark'>
-        <Table>
+        <Table className='min-h-[33vh]'>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id} className='bg-dark text-muted hover:bg-dark'>
@@ -128,7 +128,7 @@ export default function ProductsDataTable<TData, Tvalue>({
             {table.getRowModel().rows?.length
               ? (
                   table.getRowModel().rows.map((row) => (
-                <TableRow className='text-center'
+                <TableRow className='text-center max-h-[50px]'
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
                 >
@@ -171,10 +171,11 @@ export default function ProductsDataTable<TData, Tvalue>({
               Eliminar variante(s)
             </Button>
           )}
-
         </div>
 
+        {/* Paginacion */}
         <div className='flex space-x-3'>
+          {/* Productos por pagina */}
           <Select
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value) => {
@@ -215,7 +216,6 @@ export default function ProductsDataTable<TData, Tvalue>({
             </Button>
           </div>
         </div>
-        {/* Productos por pagina */}
       </section>
     </section>
   )
