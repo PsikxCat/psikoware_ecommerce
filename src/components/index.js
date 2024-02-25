@@ -1,4 +1,4 @@
-// # Componentes Globales
+// # Componentes globales
 
 export { default as Button } from './Button/Button.tsx'
 export { default as Avatar } from './Avatar/Avatar.tsx'
@@ -19,7 +19,7 @@ export { default as FormWrap } from './Form/FormWrap.tsx'
 export { default as Input } from './Form/Input.tsx'
 export { default as TextArea } from './Form/TextArea.tsx'
 
-// # Componentes de Páginas
+// # Componentes de páginas de la tienda
 
 export { default as HomeBanner } from './_home/HomeBanner.tsx'
 
@@ -38,16 +38,23 @@ export { default as SubtotalSection } from './_cart/SubtotalSection.tsx'
 export { default as RegisterForm } from './_auth/register/RegisterForm.tsx'
 export { default as LoginForm } from './_auth/login/LoginForm.tsx'
 
+// # Componentes de dashboard
+
 export { default as AdminNavbar } from './_admin/Navbar.tsx'
 export { default as NullData } from './_admin/NullData.tsx'
+
 export { default as AddProductForm } from './_admin/add-products/AddProductForm.tsx'
 export { default as CategoryInput } from './_admin/add-products/CategoryInput.tsx'
 export { default as DescriptionSection } from './_admin/add-products/DescriptionSection.tsx'
 export { default as SpecificationsSection } from './_admin/add-products/SpecificationsSection.tsx'
 export { default as CategoriesSection } from './_admin/add-products/CategoriesSection.tsx'
 export { default as VariantsSection } from './_admin/add-products/VariantsSection.tsx'
+
 export { default as ManageProducts } from './_admin/manage-products/ManageProducts.tsx'
 export { default as ProductsDataTable } from './_admin/manage-products/ProductsDataTable.tsx'
+
+export { default as Orders } from './_admin/orders/Orders.tsx'
+export { default as OrdersDataTable } from './_admin/orders/OrdersDataTable.tsx'
 
 export { default as ShoppedItems } from './_payment/success/ShoppedItems.tsx'
 export { default as TotalSection } from './_payment/success/TotalSection.tsx'

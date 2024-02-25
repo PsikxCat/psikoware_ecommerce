@@ -48,6 +48,7 @@ export default function AddProductForm() {
     if (isProductCreated) {
       reset() // irrelavante despues de redireccionar :/
       setIsProductCreated(false)
+      router.refresh()
       router.push('/admin/add-products/success')
     }
   }, [isProductCreated])

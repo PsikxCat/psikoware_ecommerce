@@ -68,3 +68,29 @@ export interface DBProductVariantType extends ProductVariantType {
   variantProductRef: string
   productId: string
 }
+
+interface OrderProduct {
+  id: string
+  unitPrice: number
+  name: string
+  category: string
+  quantity: number
+  selectedImg: string
+}
+
+interface OrderUser {
+  name: string
+  email: string
+}
+
+export interface OrderType {
+  id: string
+  products: OrderProduct[]
+  // address?: null | string // ? falta corregir el tema de la direccion
+  amount: number
+  status: string
+  deliveryStatus: string
+  createDateTime: Date
+  paymentId: string
+  user: OrderUser
+}

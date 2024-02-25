@@ -51,3 +51,30 @@ export async function deleteProduct(id: string): Promise<Response> {
     return { error: true, message: 'Ocurrio un error al eliminar el producto' }
   }
 }
+
+export async function deleteOrder(id: string): Promise<Response> {
+  try {
+    await db.order.delete({
+      where: { id }
+    })
+
+    return { ok: true, message: 'Orden eliminada' }
+  } catch (error) {
+    console.error(error)
+    return { error: true, message: 'Ocurrio un error al eliminar la orden' }
+  }
+}
+
+export async function updateShipment(id: string, status: string): Promise<Response> {
+  try {
+    await db.order.update({
+      where: { id },
+      data: { deliveryStatus: status }
+    })
+
+    return { ok: true, message: 'Estado de envio actualizado' }
+  } catch (error) {
+    console.error(error)
+    return { error: true, message: 'Ocurrio un error al actualizar el estado de envio' }
+  }
+}

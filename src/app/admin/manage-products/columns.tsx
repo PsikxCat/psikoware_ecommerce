@@ -26,6 +26,7 @@ import {
   DropdownMenuSubContent
 } from '@/components/ui/dropdown-menu'
 import { updateStock, deleteVariantProduct, deleteProduct } from '@/libs/actions/updateDataFromDB'
+import Image from 'next/image'
 
 const styledHeader = (label: string) => <h4 className="font-bold uppercase">{label}</h4>
 
@@ -54,12 +55,29 @@ export const columns: ColumnDef<TableProductType>[] = [
     enableHiding: false
   },
   {
+    header: () => styledHeader('imagen'),
+    id: 'Imagen',
+    cell: ({ row }) => {
+      const image: string = row.original.variant.images[0]
+      return (
+        <div className='w-full h-16 flex_center'>
+          <Image
+            src={image}
+            alt="imagen"
+            width={80}
+            height={80}
+          />
+        </div>
+      )
+    }
+  },
+  {
     header: ({ column }) => {
       return (
         <Button variant="ghost" className='hover:bg-stone-700'
           onClick={() => { column.toggleSorting(column.getIsSorted() === 'asc') }}
         >
-          {styledHeader('Referencia variante')}
+          {styledHeader('Ref')}
           <HiArrowsUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
@@ -77,7 +95,7 @@ export const columns: ColumnDef<TableProductType>[] = [
     id: 'Nombre',
     cell: ({ row }) => {
       const name = row.getValue('Nombre')
-      return <div>
+      return <div className='min-w-[150px]'>
         <p className='font-bold text-center'>
           {truncate(name as string, 60)}
         </p>
@@ -302,7 +320,7 @@ export const columns: ColumnDef<TableProductType>[] = [
               <h1 className="text-2xl text-primary">Actualizar stock</h1>
               <p className='text-lg p-2'>Ingresa la cantidad de stock disponible para la variante de producto {data.variant.variantProductRef}</p>
               <Input type="number" className='w-16' defaultValue={data.variant.inStock} ref={stockRef}/>
-              <div className="flex justify-end gap-4 mt-4">
+              <div className="flex justify-end gap-4 mt-8">
                 <Button variant="ghost" disabled={isLoading} onClick={handleCloseModal}>Cancelar</Button>
                 <Button variant="secondary" disabled={isLoading} onClick={handleUpdateStock}>Actualizar</Button>
               </div>
@@ -325,7 +343,7 @@ export const columns: ColumnDef<TableProductType>[] = [
                 <div className='p-4 flex_center_column text-lg'>
                   <p>El producto global {data.productRef} solo tiene una variante.</p>
                   <p>Esta acción eliminará el producto global {data.productRef} de la base de datos</p>
-                  <p>¿Estás seguro que deseas eliminar el producto global?</p>
+                  <p className='mt-6'>¿Estás seguro que deseas eliminar el producto global?</p>
                 </div>
                   )}
 
@@ -345,7 +363,7 @@ export const columns: ColumnDef<TableProductType>[] = [
               <h1 className="text-2xl text-accent">Eliminar producto global</h1>
               <div className='p-4 flex_center_column text-lg'>
                 <p>Esta acción eliminará el producto global {data.productRef} de la base de datos</p>
-                <p>¿Estás seguro que deseas eliminar el producto global?</p>
+                <p className='mt-6'>¿Estás seguro que deseas eliminar el producto global?</p>
               </div>
               <div className="flex justify-end gap-4 mt-4">
                 <Button variant="ghost" onClick={handleCloseModal}>Cancelar</Button>

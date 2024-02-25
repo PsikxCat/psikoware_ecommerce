@@ -1,5 +1,5 @@
 import db from '@/libs/prismadb'
-import type { ProductType } from '@/types'
+import type { ProductType, OrderType } from '@/types'
 
 export async function getAllProducts(): Promise<ProductType[]> {
   try {
@@ -92,10 +92,21 @@ export async function getProductsBySearch(search: string): Promise<ProductType[]
   }
 }
 
-export default async function getOrders() { // falta tipar
+export async function getOrders(): Promise<OrderType[]> {
   try {
     const orders = await db.order.findMany({
-      include: { user: true },
+      select: {
+        products: true,
+        // address: true,
+        id: true,
+        paymentId: true,
+        user: { select: { name: true, email: true } },
+        // : al configurarse en select, se excluye el traer la relacion user desde include (7)
+        createDateTime: true,
+        amount: true,
+        status: true,
+        deliveryStatus: true
+      },
       orderBy: { createDateTime: 'desc' }
     })
 
@@ -106,10 +117,21 @@ export default async function getOrders() { // falta tipar
   }
 }
 
-export async function getOrdersByUser(userId: string) { // falta tipar
+export async function getOrdersByUser(userId: string): Promise<OrderType[]> {
   try {
     const orders = await db.order.findMany({
       where: { userId },
+      select: {
+        products: true,
+        // address: true,
+        id: true,
+        paymentId: true,
+        user: { select: { name: true, email: true } },
+        createDateTime: true,
+        amount: true,
+        status: true,
+        deliveryStatus: true
+      },
       orderBy: { createDateTime: 'desc' }
     })
 

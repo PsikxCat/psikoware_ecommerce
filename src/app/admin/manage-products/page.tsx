@@ -7,7 +7,7 @@ export default async function ManageProductsPage() {
   const products = await getAllProducts()
 
   if (!currentUser || currentUser?.role !== 'ADMIN') {
-    return <NullData title="No cuentas con autorización p ara acceder a esta pagina" />
+    return <NullData title="No cuentas con autorización para acceder a esta pagina" />
   }
 
   return (

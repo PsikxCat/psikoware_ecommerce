@@ -20,11 +20,11 @@ export default function AdminNavbar() {
       </Link>
 
       <Link href="/admin/manage-products">
-        <AdminNavItem label="Gestionar productos" icon={MdDns} selected={pathname === '/admin/manage-products'} />
+        <AdminNavItem label="Gestionar Productos" icon={MdDns} selected={pathname === '/admin/manage-products'} />
       </Link>
 
       <Link href="/admin/orders">
-        <AdminNavItem label="Ordenes de compra" icon={MdFormatListBulleted} selected={pathname === '/admin/orders'} />
+        <AdminNavItem label="Ordenes de Compra" icon={MdFormatListBulleted} selected={pathname === '/admin/orders'} />
       </Link>
     </nav>
   )
