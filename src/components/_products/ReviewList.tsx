@@ -1,9 +1,11 @@
-import moment from 'moment'
-import 'moment/locale/es'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 import { Rating } from '@mui/material'
 import { getUserTimeZone } from '@/utils'
 import { Avatar } from '@/components'
+
+dayjs.extend(relativeTime)
 
 interface ReviewListProps {
   product: any // ! TODO: define product type with Prisma
@@ -12,7 +14,7 @@ interface ReviewListProps {
 const ReviewList: React.FC<ReviewListProps> = ({ product }) => {
   const setTimeAgo = (createdDate: any) => { //! any por ahora ////////////
     const formatCreatedDate = createdDate.slice(0, 19) + getUserTimeZone()
-    return moment(formatCreatedDate).fromNow()
+    return dayjs(formatCreatedDate).fromNow()
   } // # enviar a utils?
 
   return (

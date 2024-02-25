@@ -34,8 +34,7 @@ export async function POST(req: NextRequest) {
       products
     }
 
-    const order = await db.order.create({ data: orderData })
-    console.log('order --->', order)
+    await db.order.create({ data: orderData })
 
     return Response.json({ message: 'Payment created', ok: true, status: 201 })
   } catch (error) {

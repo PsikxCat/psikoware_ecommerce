@@ -1,7 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import moment from 'moment'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 import toast from 'react-hot-toast'
 import { type ColumnDef } from '@tanstack/react-table'
 import { HiArrowsUpDown } from 'react-icons/hi2'
@@ -20,6 +21,7 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 
+dayjs.extend(relativeTime)
 const styledHeader = (label: string) => <h4 className="font-bold uppercase">{label}</h4>
 
 export const columns: ColumnDef<OrderType>[] = [
@@ -159,7 +161,7 @@ export const columns: ColumnDef<OrderType>[] = [
     id: 'Fecha',
     cell: ({ row }) => {
       const date: string = row.getValue('Fecha')
-      return <div className='text-center'>{moment(date).fromNow()}</div>
+      return <div className='text-center'>{dayjs(date).fromNow()}</div>
     }
   },
   {
