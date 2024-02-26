@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import toast from 'react-hot-toast'
@@ -112,12 +113,13 @@ export const columns: ColumnDef<OrderType>[] = [
       const status: string = row.getValue('Estado')
       return (
         <span className={`text-center text-xs font-bold py-1 px-3 rounded-md lowercase
-          ${status === 'approved' ? 'text-lime-800 bg-lime-500' : (status === 'rejected' ? 'text-pink-800 bg-pink-300' : 'text-yellow-800 bg-yellow-500')}`}
+          ${status === 'approved' ? 'text-lime-800 bg-lime-500' : (status === 'in_process' ? 'text-yellow-800 bg-yellow-500' : 'text-pink-800 bg-pink-300')}`}
         >
-          {status === 'approved' ? 'Aprobado' : (status === 'rejected' ? 'Rechazado' : status)}
+          {status === 'approved' ? 'Aprobado' : (status === 'rejected' ? 'Rechazado' : (status === 'in_process' ? 'Pendiente' : status))}
         </span>
       )
     }
+    // ! Pendiente capturar la actualizacion de estado de pago desde MercadoPago
   },
   {
     header: ({ column }) => {
@@ -141,7 +143,7 @@ export const columns: ColumnDef<OrderType>[] = [
           ${status === 'rejected' ? 'line-through text-pink-800 bg-pink-300' : (deliveryStatus === 'dispatched' ? 'text-yellow-800 bg-yellow-500' : (deliveryStatus === 'completed' ? 'text-lime-800 bg-lime-500' : 'text-pink-800 bg-pink-300'))}`
         }
         >
-          {status === 'rejected' ? 'pendiente' : (deliveryStatus === 'dispatched' ? 'despachada' : (deliveryStatus === 'completed' ? 'completada' : 'pendiente'))}
+          {status !== 'approved' ? 'pendiente' : (deliveryStatus === 'dispatched' ? 'despachada' : (deliveryStatus === 'completed' ? 'completada' : 'pendiente'))}
         </span>
       )
     }
@@ -204,10 +206,12 @@ export const columns: ColumnDef<OrderType>[] = [
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end" className='text-dark'>
-        <DropdownMenuItem disabled={isEnable} onClick={async () => { await handleUpdateShipment('dispatched') }}>Pedido enviado</DropdownMenuItem>
-        <DropdownMenuItem disabled={isEnable} onClick={async () => { await handleUpdateShipment('completed') }}>Confirmado recibido</DropdownMenuItem>
+        <DropdownMenuItem disabled={!isEnable} onClick={async () => { await handleUpdateShipment('dispatched') }}>Pedido enviado</DropdownMenuItem>
+        <DropdownMenuItem disabled={!isEnable} onClick={async () => { await handleUpdateShipment('completed') }}>Confirmado recibido</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => { console.log('handleOpenDetailsModal') }}>Ver detalles</DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href={`/orders/${data.id}`}>Ver detalles</Link>
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleDeleteOrder}>Eliminar orden</DropdownMenuItem>
       </DropdownMenuContent>

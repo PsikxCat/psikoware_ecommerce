@@ -21,6 +21,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'http2.mlstatic.com'
       }
     ],
     dangerouslyAllowSVG: true

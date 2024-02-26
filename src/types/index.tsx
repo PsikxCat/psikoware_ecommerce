@@ -81,6 +81,7 @@ interface OrderProduct {
 interface OrderUser {
   name: string
   email: string
+  id: string
 }
 
 export interface OrderType {

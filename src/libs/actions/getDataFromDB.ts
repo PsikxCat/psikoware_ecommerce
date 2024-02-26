@@ -100,7 +100,7 @@ export async function getOrders(): Promise<OrderType[]> {
         // address: true,
         id: true,
         paymentId: true,
-        user: { select: { name: true, email: true } },
+        user: { select: { name: true, email: true, id: true } },
         // : al configurarse en select, se excluye el traer la relacion user desde include (7)
         createDateTime: true,
         amount: true,
@@ -126,7 +126,7 @@ export async function getOrdersByUser(userId: string): Promise<OrderType[]> {
         // address: true,
         id: true,
         paymentId: true,
-        user: { select: { name: true, email: true } },
+        user: { select: { name: true, email: true, id: true } },
         createDateTime: true,
         amount: true,
         status: true,
@@ -139,5 +139,33 @@ export async function getOrdersByUser(userId: string): Promise<OrderType[]> {
   } catch (error) {
     console.error(`Error al obtener los pedidos del usuario ${userId}:`, error)
     throw new Error(`Ocurrió un error al obtener los pedidos del usuario ${userId}.`)
+  }
+}
+
+export async function getOrderById(id: string): Promise<OrderType> {
+  try {
+    const order = await db.order.findUnique({
+      where: { id },
+      select: {
+        products: true,
+        // address: true,
+        id: true,
+        paymentId: true,
+        user: { select: { name: true, email: true, id: true } },
+        createDateTime: true,
+        amount: true,
+        status: true,
+        deliveryStatus: true
+      }
+    })
+
+    if (!order) {
+      throw new Error(`No se encontró un pedido con el ID ${id}`)
+    }
+
+    return order
+  } catch (error) {
+    console.error(`Error al obtener el pedido con ID ${id}:`, error)
+    throw new Error(`Ocurrió un error al obtener el pedido con ID ${id}.`)
   }
 }
