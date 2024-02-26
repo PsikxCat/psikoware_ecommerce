@@ -42,7 +42,7 @@ export default function UserMenu() {
             ? (<>
             <Link href={'/orders'}>
               <MenuItem onClick={toogleOpen}>
-                Tus Pedidos
+                Ordenes de Compra
               </MenuItem>
             </Link>
 

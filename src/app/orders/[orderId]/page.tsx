@@ -6,8 +6,6 @@ interface IParams {
 }
 
 export default async function ProductPage({ params }: { params: IParams }) {
-  console.log('params --->', params)
-
   let order = null
   if (params.orderId) order = await getOrderById(params.orderId)
 

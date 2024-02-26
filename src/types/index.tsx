@@ -95,3 +95,12 @@ export interface OrderType {
   paymentId: string
   user: OrderUser
 }
+
+export interface OrderProductType {
+  id: string
+  unitPrice: number
+  name: string
+  category: string
+  quantity: number
+  selectedImg: string
+}

@@ -31,6 +31,7 @@ export { default as Tabs } from './_products/Tabs.tsx'
 export { default as ReviewList } from './_products/ReviewList.tsx'
 
 export { default as OrderDetails } from './_orders/OrderDetails.tsx'
+export { default as OrderCard } from './_orders/OrderCard.tsx'
 
 export { default as UserCart } from './_cart/UserCart.tsx'
 export { default as CartItem } from './_cart/CartItem.tsx'
