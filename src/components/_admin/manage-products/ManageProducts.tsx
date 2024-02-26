@@ -1,7 +1,7 @@
 'use client'
 
 import { ProductsDataTable } from '@/components'
-import type { ProductType } from '@/types'
+import type { ProductType, TableProductType } from '@/types'
 import { columns } from '@/app/admin/manage-products/columns'
 
 interface ManageProductsProps {
@@ -9,8 +9,8 @@ interface ManageProductsProps {
 }
 
 export default function ManageProducts({ products }: ManageProductsProps) {
-  const mappedProducts = products.flatMap((product) =>
-    product.productVariants.map(variant => ({
+  const mappedProducts: TableProductType[] = products.flatMap((product: any) =>
+    product.productVariants.map((variant: any) => ({
       ...product,
       variant
     }))
