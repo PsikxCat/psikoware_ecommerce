@@ -72,8 +72,7 @@ export default function LoginForm() {
   }
 
   const handleSignIn = async (provider: string) => {
-    const res = await signIn(provider)
-    console.log('respuesta signIn Google', res)
+    await signIn(provider)
   }
 
   return (<>
@@ -88,7 +87,7 @@ export default function LoginForm() {
       </button>
 
       <button className='flex items-center justify-center gap-2 bg-[#333] text-white text-[16px] font-medium px-4 py-2 rounded-md transition duration-500 hover:bg-[#555]'
-        onClick={() => { console.log('logueo con github') }}
+        onClick={async () => { await handleSignIn('github') }}
       >
         <AiFillGithub size={24} /> <span className='max-[350px]:hidden'>Inicia sesión con Github</span>
       </button>

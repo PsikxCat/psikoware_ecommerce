@@ -41,32 +41,27 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async signIn(user) {
-      // console.log('user', user)
-      if (user.account?.provider === 'google') {
-        const userEmail = user?.user?.email
-        const userName = user.user.name!
+      const userEmail = user?.user?.email
+      const userName = user.user.name!
 
-        if (!userEmail) {
-          throw new Error('Correo electrónico no disponible en la información del usuario.')
+      if (!userEmail) {
+        throw new Error('Correo electrónico no disponible en la información del usuario.')
+      }
+
+      const existingUser = await db.user.findUnique({
+        where: {
+          email: userEmail
         }
+      })
 
-        const existingUser = await db.user.findUnique({
-          where: {
-            email: userEmail
+      if (!existingUser) {
+        await db.user.create({
+          data: {
+            email: userEmail,
+            name: userName,
+            image: user?.user?.image
           }
         })
-        // console.log('existingUser', existingUser)
-        if (!existingUser) {
-          // console.log('Creando nuevo usuario...')
-          await db.user.create({
-            data: {
-              email: userEmail,
-              name: userName,
-              image: user?.user?.image
-            }
-          })
-          // console.log('Nuevo usuario creado:', newUser)
-        }
       }
 
       return true
