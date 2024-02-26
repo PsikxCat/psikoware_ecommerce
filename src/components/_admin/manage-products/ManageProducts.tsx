@@ -1,7 +1,7 @@
 'use client'
 
 import { ProductsDataTable } from '@/components'
-import type { ProductType, TableProductType } from '@/types'
+import type { ProductType } from '@/types'
 import { columns } from '@/app/admin/manage-products/columns'
 
 interface ManageProductsProps {
@@ -9,10 +9,10 @@ interface ManageProductsProps {
 }
 
 export default function ManageProducts({ products }: ManageProductsProps) {
-  const mappedProducts: TableProductType[] = products.flatMap(product =>
+  const mappedProducts = products.flatMap((product) =>
     product.productVariants.map(variant => ({
       ...product,
-      variant // corregir el tipado para completar esta parte
+      variant
     }))
   )
 
@@ -25,5 +25,3 @@ export default function ManageProducts({ products }: ManageProductsProps) {
     </section>
   )
 }
-
-// ! PENDIENTE: Error de tipado en mappedProducts

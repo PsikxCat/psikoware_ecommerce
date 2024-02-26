@@ -10,7 +10,10 @@ import { getCurrentUser } from '@/libs/actions/getCurrentUser'
 
 const space = Space_Grotesk({
   subsets: ['latin'],
-  weight: ['400', '700']
+  weight: ['400', '700'],
+  variable: '--font-grotesque',
+  display: 'swap',
+  adjustFontFallback: false
 })
 
 export const metadata: Metadata = {

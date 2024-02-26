@@ -44,6 +44,7 @@ export const authOptions: AuthOptions = {
       // console.log('user', user)
       if (user.account?.provider === 'google') {
         const userEmail = user?.user?.email
+        const userName = user.user.name!
 
         if (!userEmail) {
           throw new Error('Correo electrónico no disponible en la información del usuario.')
@@ -60,7 +61,7 @@ export const authOptions: AuthOptions = {
           await db.user.create({
             data: {
               email: userEmail,
-              name: user?.user?.name,
+              name: userName,
               image: user?.user?.image
             }
           })
