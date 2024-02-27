@@ -50,7 +50,7 @@ export const columns: ColumnDef<OrderType>[] = [
     enableHiding: false
   },
   {
-    header: () => styledHeader('Orden ID'),
+    header: () => styledHeader('Id de pago'),
     accessorKey: 'paymentId',
     id: 'Orden ID',
     cell: ({ row }) => {

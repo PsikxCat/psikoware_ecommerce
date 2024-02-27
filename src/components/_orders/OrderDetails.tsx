@@ -14,9 +14,9 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
       <h2>Detalles del pedido</h2>
 
       <div className='flex flex-col mb-6 gap-1 text-xl'>
-        <p><span className='font-bold'>ID:</span> {order.id}</p>
+        <p><span className='font-bold'>ID de pago:</span> {order.paymentId}</p>
         <p><span className='font-bold'>Usuario:</span>  {order.user.name}</p>
-        <p><span className='font-bold'>Fecha:</span> {dayjs(order.createDateTime).format('DD/MM/YYYY')}</p>
+        <p><span className='font-bold'>Fecha:</span> {dayjs(order.createDateTime).format('DD/MM/YYYY HH:mm')}</p>
 
         <p className='font-bold'>
           Estado de pago:&nbsp;
