@@ -21,12 +21,16 @@ export const columns: ColumnDef<OrderType>[] = [
     }
   },
   {
-    header: () => styledHeader('precio'),
+    header: () => {
+      return (
+        <div className='max-[500px]:hidden'>{styledHeader('Precio')}</div>
+      )
+    },
     accessorKey: 'amount',
     id: 'Precio',
     cell: ({ row }) => {
       const price: number = row.getValue('Precio')
-      return <div className='text-center font-bold'>{formatPrice(price)}</div>
+      return <div className='text-center font-bold max-[500px]:hidden'>{formatPrice(price)}</div>
     }
   },
   {
@@ -63,12 +67,16 @@ export const columns: ColumnDef<OrderType>[] = [
     }
   },
   {
-    header: () => styledHeader('Fecha'),
+    header: () => {
+      return (
+        <div className='max-[600px]:hidden'>{styledHeader('Fecha')}</div>
+      )
+    },
     accessorKey: 'createDateTime',
     id: 'Fecha',
     cell: ({ row }) => {
       const date: string = row.getValue('Fecha')
-      return <div className='text-center'>{dayjs(date).format('DD/MM/YYYY')}</div>
+      return <div className='text-center max-[600px]:hidden'>{dayjs(date).format('DD/MM/YYYY')}</div>
     }
   },
   {

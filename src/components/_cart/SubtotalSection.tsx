@@ -50,7 +50,7 @@ export default function SubtotalSection() {
 
           <Link
             className='text-muted text-sm tracking-wide flex_center gap-1 hover:text-secondary transition-all duration-200'
-            href='/'
+            href='/products'
           >
             <MdArrowBack />
             <span>Seguir comprando</span>

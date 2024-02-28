@@ -2,12 +2,15 @@
 
 import { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { Rating } from '@mui/material'
 import { MdCheckCircle } from 'react-icons/md'
+import { PiStorefront } from 'react-icons/pi'
 
 import type { CartProductType, ProductType, ProductVariantType } from '@/types'
 
 import { Button, ProductImage, SetVariant, SetQuantity, Tabs } from '@/components'
+import { categories } from '@/utils/categories'
 import { formatPrice, productRating } from '@/utils'
 import { GlobalContext, type GlobalContextType } from '@/context/globalContext'
 
@@ -21,7 +24,7 @@ function HorizontalLine() {
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
-  const router = useRouter()
+  const router = useRouter() // CAMBIAR POR LINK?
 
   // | Contexto | //
   const {
@@ -111,7 +114,25 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         <div className='text-muted flex_center_column xl:flex-row w-full h-full border border-stone-700 rounded-md overflow-hidden'>
           {/* imagen producto */}
           <section className="relative flex_center text-primary h-full min-h-[50%] w-full xl:w-1/2 bg-stone-950">
+            {/* botones de navegacion */}
+            <div className='flex items-center justify-between p-2 absolute top-0 left-0 w-full z-50'>
+              <Link href={'/products'}
+                className='flex items-center text-stone-400 hover:text-accent cursor-pointer transition-all duration-200'
+              >
+                <PiStorefront size={24}/>
+                <span className='ml-1 text-[14px] max-[500px]:hidden'>Todos los productos</span>
+              </Link>
+
+              <Link href={`/products?category=${product.category}`}
+                className='flex items-center text-stone-400 hover:text-accent cursor-pointer transition-all duration-200'
+              >
+                {categories.find((cat) => cat.label === product.category)?.icon({ size: 24 })}
+                <span className='ml-1 text-[14px] max-[500px]:hidden'>Más {product.category.toLowerCase()}</span>
+              </Link>
+            </div>
+
             <div className='absolute top-[33%] left-0 w-full h-[20%] bg-accent'/>
+
             <ProductImage cartProduct={cartProduct}/>
           </section>
 
