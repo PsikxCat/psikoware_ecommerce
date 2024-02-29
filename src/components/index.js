@@ -9,6 +9,7 @@ export { default as Navbar } from './Navbar/Navbar.tsx'
 export { default as CartCount } from './Navbar/CartCount.tsx'
 export { default as UserMenu } from './Navbar/UserMenu.tsx'
 export { default as MenuItem } from './Navbar/MenuItem.tsx'
+export { default as Searchbar } from './Navbar/Searchbar.tsx'
 export { default as Category } from './Navbar/Category.tsx'
 export { default as Categories } from './Navbar/Categories.tsx'
 

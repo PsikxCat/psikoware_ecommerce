@@ -1,3 +1,5 @@
+'use server'
+
 import db from '@/libs/prismadb'
 import type { ProductType, OrderType } from '@/types'
 
@@ -80,7 +82,7 @@ export async function getProductsByCategory(category: string): Promise<ProductTy
 export async function getProductsBySearch(search: string): Promise<ProductType[]> {
   try {
     const products = await db.product.findMany({
-      where: { name: { contains: search } },
+      where: { name: { contains: search, mode: 'insensitive' } },
       include: {
         productVariants: true,
         reviews: true

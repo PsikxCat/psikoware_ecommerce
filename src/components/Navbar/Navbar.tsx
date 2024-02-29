@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { CartCount, UserMenu } from '@/components'
+import { CartCount, Searchbar, UserMenu } from '@/components'
 
 export default function Navbar() {
   return (
@@ -21,8 +21,10 @@ export default function Navbar() {
             />
           </Link>
 
-          { /* // ! TODO search bar <================================ */ }
-          <section className='max-md:hidden'>Search</section>
+          {/* Searchbar */}
+          <section>
+            <Searchbar />
+          </section>
 
           {/* Carrito & Menu Cliente */}
           <section className='flex_center gap-4 min-[400px]:gap-8 md:gap-12 pr-4 h-[calc(30px+2vw)]'>
