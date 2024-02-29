@@ -1,12 +1,14 @@
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/es'
 
 import { type ProductType } from '@/types'
 import { Rating } from '@mui/material'
 import { Avatar } from '@/components'
 import AddReview from './AddReview'
 
-dayjs.extend(relativeTime) // # solve language issue
+dayjs.extend(relativeTime)
+dayjs.locale('es')
 
 interface ReviewListProps {
   product: ProductType
@@ -32,10 +34,10 @@ export default function ReviewList({ product }: ReviewListProps) {
                       : 'https://api.dicebear.com/7.x/bottts-neutral/svg?seed=Samantha' }
                   />
 
-                  <h4 className="font-bold">{review.user.name}</h4>
+                  <h4 className="font-bold">{review.user.name.split(' ')[0]}</h4>
 
                   <span className="text-muted">
-                    {review.createdDate}
+                    {dayjs(review.createDateTime).fromNow()}
                   </span>
                 </section>
 
