@@ -1,52 +1,59 @@
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
+import { type ProductType } from '@/types'
 import { Rating } from '@mui/material'
-import { getUserTimeZone } from '@/utils'
 import { Avatar } from '@/components'
+import AddReview from './AddReview'
 
-dayjs.extend(relativeTime)
+dayjs.extend(relativeTime) // # solve language issue
 
 interface ReviewListProps {
-  product: any // ! TODO: define product type with Prisma
+  product: ProductType
 }
 
-const ReviewList: React.FC<ReviewListProps> = ({ product }) => {
-  const setTimeAgo = (createdDate: any) => { //! any por ahora ////////////
-    const formatCreatedDate = createdDate.slice(0, 19) + getUserTimeZone()
-    return dayjs(formatCreatedDate).fromNow()
-  } // # enviar a utils?
-
+export default function ReviewList({ product }: ReviewListProps) {
   return (
-    <div className='flex_center'>
-      <div className="text-sm flex flex-col gap-4">
-        {product.reviews.length > 0 && product.reviews.map((review: any) => ( //! any por ahora ////////////
-          <div key={review.id} className="flex flex-col gap-1 bg-white/10 rounded-md p-4 max-w-lg">
-            {/* user avatar/name & time ago */}
-            <section className='flex items-center gap-2'>
-              <Avatar src={review.user.image} />
+    <section className='flex_center'>
+      <div className='flex flex-col'>
+        {/* Formulario de review */}
+        <AddReview product={product} />
 
-              <h4 className="font-bold">{review.user.name}</h4>
+        {/* Reviews de usuarios */}
+        <div className="text-sm flex flex-col gap-4 py-8">
+          {product.reviews?.length
+            ? product.reviews.map((review: any) => (
+              <div key={review.id} className="flex flex-col bg-white/10 rounded-md p-4 min-w-[300px] max-w-lg">
+                {/* user avatar/name & time ago */}
+                <section className='flex items-center gap-2'>
+                  <Avatar
+                    src={review.user?.image
+                      ? review.user.image
+                      : 'https://api.dicebear.com/7.x/bottts-neutral/svg?seed=Samantha' }
+                  />
 
-              <span className="text-muted">
-                {setTimeAgo(review.createdDate)}
-              </span>
-            </section>
+                  <h4 className="font-bold">{review.user.name}</h4>
 
-            {/* rating */}
-            <section className='mt-1 pl-1'>
-              <Rating value={review.rating} precision={0.5} size='small' readOnly/>
-            </section>
+                  <span className="text-muted">
+                    {review.createdDate}
+                  </span>
+                </section>
 
-            {/* comment */}
-            <section className="text-muted px-2">
-              {review.comment}
-            </section>
-          </div>
-        ))}
+                {/* rating */}
+                <section className='mt-1 pl-1'>
+                  <Rating value={review.rating} size='small' readOnly/>
+                </section>
+
+                {/* comment */}
+                <section className="text-muted px-2">
+                  {review.comment}
+                </section>
+              </div>
+            ))
+            : <h4 className="text-muted py-8">Este producto aún no tiene reseñas.</h4>
+          }
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
-
-export default ReviewList

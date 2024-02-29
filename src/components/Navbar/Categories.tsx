@@ -29,7 +29,7 @@ export default function Categories({ category }: CategoriesProps) {
 
       {/* navbar desplegable <1200px */}
       <button onClick={() => { setIsOpen((prev) => !prev) }}
-        className='flex items-center uppercase font-bold transition duration-150 cursor-pointer text-secondary hover:text-accent'
+        className='flex items-center uppercase font-bold transition duration-150 cursor-pointer text-secondary hover:text-accent min-[1200px]:hidden'
       >
         Categorias
         {isOpen ? <FaAngleUp size={20} /> : <FaAngleDown size={20} />}

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const currentUser: any = await getCurrentUser()
+  const currentUser = await getCurrentUser()
 
   return (
     <html lang="es">

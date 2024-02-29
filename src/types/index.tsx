@@ -23,12 +23,10 @@ export interface SpecificationType {
 }
 
 export interface ReviewType {
-  id: string
   userId: string
   productId: string
   rating: number
   comment: string
-  createDateTime: Date
 }
 
 export interface ProductType extends ProductCommonFields {

@@ -51,7 +51,7 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
 
       setCartTotalQuantity(updatedCart.length)
 
-      // persistencia de datos (especificamente para usuarios no registrados?)
+      // persistencia de datos
       localStorage.setItem('cart', JSON.stringify(updatedCart))
 
       return updatedCart
@@ -66,7 +66,7 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
 
       setCartTotalQuantity(updatedCart.length)
 
-      // persistencia de datos (usuarios no registrados)
+      // persistencia de datos
       localStorage.setItem('cart', JSON.stringify(updatedCart))
 
       return updatedCart
@@ -87,7 +87,7 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
       setCartItems(updatedCart)
     }
 
-    // persistencia de datos (usuarios no registrados)
+    // persistencia de datos
     localStorage.setItem('cart', JSON.stringify(updatedCart))
   }, [cartItems])
 
@@ -103,7 +103,7 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
       setCartItems(updatedCart)
     }
 
-    // persistencia de datos (usuarios no registrados)
+    // persistencia de datos
     localStorage.setItem('cart', JSON.stringify(updatedCart))
   }, [cartItems])
 
@@ -113,7 +113,7 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
 
     toast.success('Carrito vaciado')
 
-    // persistencia de datos (usuarios no registrados)
+    // persistencia de datos
     localStorage.setItem('cart', JSON.stringify([]))
   }, [])
 
@@ -130,10 +130,8 @@ export function GlobalState({ children, currentUser }: GlobalStateProps) {
     }
   }, [cartItems])
 
-  // se usa la data en localStorage para setear el estado cartItems para usuarios no registrados
+  // se usa la data en localStorage para setear el estado cartItems
   useEffect(() => {
-    // aplicar la condicional para usuarios no registrados ---TODO
-    // si el usuario esta registrado, se usa la data de la db ---TODO
     setCartItems(JSON.parse(localStorage.getItem('cart') ?? '[]'))
   }, [])
 

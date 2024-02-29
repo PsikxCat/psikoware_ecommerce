@@ -43,7 +43,9 @@ export async function getProductById(id: string): Promise<ProductType> {
       where: { id },
       include: {
         productVariants: true,
-        reviews: true
+        reviews: {
+          include: { user: true }
+        }
       }
     })
 

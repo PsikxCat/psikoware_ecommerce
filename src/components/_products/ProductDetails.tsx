@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Rating } from '@mui/material'
 import { MdCheckCircle } from 'react-icons/md'
-import { PiStorefront } from 'react-icons/pi'
+import { FaThList } from 'react-icons/fa'
 
 import type { CartProductType, ProductType, ProductVariantType } from '@/types'
 
@@ -119,7 +119,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               <Link href={'/products'}
                 className='flex items-center text-stone-400 hover:text-accent cursor-pointer transition-all duration-200'
               >
-                <PiStorefront size={24}/>
+                <FaThList size={24}/>
                 <span className='ml-1 text-[14px] max-[500px]:hidden'>Todos los productos</span>
               </Link>
 

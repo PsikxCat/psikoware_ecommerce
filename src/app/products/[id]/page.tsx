@@ -14,6 +14,8 @@ export default async function ProductPage({ params }: { params: IParams }) {
       <section className="section bg-secondary">
         {product && <ProductDetails product={product} />}
       </section>
+
+      {/* related products? */}
     </div>
   )
 }

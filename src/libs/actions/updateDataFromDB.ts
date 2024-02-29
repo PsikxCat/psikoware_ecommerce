@@ -1,6 +1,7 @@
 'use server'
 
 import db from '@/libs/prismadb'
+import { type ReviewType } from '@/types'
 
 interface Response {
   ok?: true
@@ -76,5 +77,17 @@ export async function updateShipment(id: string, status: string): Promise<Respon
   } catch (error) {
     console.error(error)
     return { error: true, message: 'Ocurrio un error al actualizar el estado de envio' }
+  }
+}
+
+export async function createReview(data: ReviewType): Promise<Response> {
+  console.log('entro request')
+  try {
+    await db.review.create({ data })
+
+    return { ok: true, message: 'Reseña creada' }
+  } catch (error) {
+    console.error(error)
+    return { error: true, message: 'Ocurrio un error al crear la reseña' }
   }
 }

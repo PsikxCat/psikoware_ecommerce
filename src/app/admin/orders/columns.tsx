@@ -163,7 +163,7 @@ export const columns: ColumnDef<OrderType>[] = [
     id: 'Fecha',
     cell: ({ row }) => {
       const date: string = row.getValue('Fecha')
-      return <div className='text-center'>{dayjs(date).fromNow()}</div>
+      return <div className='text-center'>{dayjs(date).format('DD/MM/YYYY')}</div>
     }
   },
   {
