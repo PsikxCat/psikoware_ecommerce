@@ -102,3 +102,11 @@ export interface OrderProductType {
   quantity: number
   selectedImg: string
 }
+
+export interface UserType {
+  id: string
+  name: string
+  email: string
+  role: string
+  // createdate??
+}

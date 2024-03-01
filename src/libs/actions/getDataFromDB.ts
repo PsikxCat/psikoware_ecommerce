@@ -173,3 +173,16 @@ export async function getOrderById(id: string): Promise<OrderType> {
     throw new Error(`Ocurrió un error al obtener el pedido con ID ${id}.`)
   }
 }
+
+export async function getUsers(): Promise<any[]> {
+  try {
+    const users = await db.user.findMany({
+      select: { id: true, name: true, email: true, role: true }
+    })
+
+    return users
+  } catch (error) {
+    console.error('Error al obtener los usuarios:', error)
+    throw new Error('Ocurrió un error al obtener los usuarios.')
+  }
+}
