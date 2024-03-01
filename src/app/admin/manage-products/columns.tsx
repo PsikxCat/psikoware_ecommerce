@@ -291,7 +291,7 @@ export const columns: ColumnDef<TableProductType>[] = [
               <DropdownMenuLabel>Variante {data.variant.variantProductRef}</DropdownMenuLabel>
               <DropdownMenuItem onClick={handleOpenStockModal}>Actualizar stock</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Editar variante</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => toast('En construcción...', { icon: '🚧' })}>Editar variante</DropdownMenuItem>
               <DropdownMenuItem onClick={handleOpenDeleteVarProductModal}>Eliminar variante</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuSub>
@@ -300,7 +300,7 @@ export const columns: ColumnDef<TableProductType>[] = [
                 <DropdownMenuSubContent className='text-dark'>
                   <DropdownMenuLabel>Referencia Global {data.productRef}</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>Editar producto global</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => toast('En construcción...', { icon: '🚧' })}>Editar producto global</DropdownMenuItem>
                   <DropdownMenuItem onClick={handleOpenDeleteGlobalProductModal}>Eliminar producto global</DropdownMenuItem>
                 </DropdownMenuSubContent>
               </DropdownMenuPortal>

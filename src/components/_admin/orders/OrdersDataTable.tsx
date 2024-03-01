@@ -10,6 +10,7 @@ import {
   flexRender,
   getCoreRowModel,
   useReactTable,
+  getPaginationRowModel,
   getSortedRowModel
 } from '@tanstack/react-table'
 
@@ -46,6 +47,7 @@ export default function OrdersDataTable<TData, Tvalue>({
 
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
 
     onSortingChange: setSorting,
     onColumnVisibilityChange: setColumnVisibility,
@@ -118,48 +120,48 @@ export default function OrdersDataTable<TData, Tvalue>({
       <section className='rounded-md border text-dark'>
         <Table>
           <TableHeader>
-              {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id} className='bg-dark text-muted hover:bg-dark'>
-                  {headerGroup.headers.map((header) => {
-                    return (
-                      <TableHead className='text-center' key={header.id}>
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                      </TableHead>
-                    )
-                  })}
-                </TableRow>
-              ))}
-            </TableHeader>
-
-            <TableBody>
-              {table.getRowModel().rows?.length
-                ? (
-                    table.getRowModel().rows.map((row) => (
-                  <TableRow className='text-center h-14'
-                    key={row.id}
-                    data-state={row.getIsSelected() && 'selected'}
-                  >
-                    {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                    ))
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id} className='bg-dark text-muted hover:bg-dark'>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead className='text-center' key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                    </TableHead>
                   )
-                : (
-                <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24">
-                    No se encontraron resultados.
-                  </TableCell>
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+
+          <TableBody>
+            {table.getRowModel().rows?.length
+              ? (
+                  table.getRowModel().rows.map((row) => (
+                <TableRow className='text-center h-14'
+                  key={row.id}
+                  data-state={row.getIsSelected() && 'selected'}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                  ))}
                 </TableRow>
-                  )}
-            </TableBody>
+                  ))
+                )
+              : (
+              <TableRow>
+                <TableCell colSpan={columns.length} className="h-24">
+                  No se encontraron resultados.
+                </TableCell>
+              </TableRow>
+                )}
+          </TableBody>
         </Table>
       </section>
 
