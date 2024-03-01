@@ -32,7 +32,7 @@ export default function Searchbar() {
   }, [debouncedSearchTerm])
 
   return (
-    <div className="flex_center group">
+    <div className="flex_center group max-[800px]:hidden">
       {/* search */}
       <input className="py-1 px-3 border border-secondary bg-stone-800 rounded-md focus:outline-none w-80 group-hover:border-accent"
         type="text"
