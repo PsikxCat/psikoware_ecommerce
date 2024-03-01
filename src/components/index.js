@@ -48,6 +48,8 @@ export { default as LoginForm } from './_auth/login/LoginForm.tsx'
 
 export { default as AdminNavbar } from './_admin/Navbar.tsx'
 export { default as NullData } from './_admin/NullData.tsx'
+export { default as Summary } from './_admin/Summary.tsx'
+export { default as BarGraph } from './_admin/BarGraph.tsx'
 
 export { default as AddProductForm } from './_admin/add-products/AddProductForm.tsx'
 export { default as CategoryInput } from './_admin/add-products/CategoryInput.tsx'

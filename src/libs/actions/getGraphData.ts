@@ -12,8 +12,8 @@ export default async function getGraphData() {
       by: ['createDateTime'],
       where: {
         createDateTime: { // filtrar por fecha de creacion
-          gte: startDate.toDate(), // greater than or equal
-          lte: endDate.toDate() // less than or equal
+          gte: startDate.toISOString(), // greater than or equal
+          lte: endDate.toISOString() // less than or equal
         },
         status: 'approved' // solo las ordenes aprobadas
       },
@@ -26,13 +26,12 @@ export default async function getGraphData() {
     const aggregatedData: Record<string, { day: string, date: string, totalAmount: number }> = {}
 
     // clon de startDate para iterar sobre los 7 dias (funcionalidad?)
-    const currentDate = startDate.clone()
+    let currentDate = startDate.clone()
 
     // iterar sobre los 7 dias, esta iteracion inicializara los objetos en aggregatedData
-    while (currentDate <= endDate) {
+    while (currentDate.isSame(endDate) || currentDate.isBefore(endDate)) {
       // formatear la fecha actual a nombre dia 'dddd'
       const day = currentDate.format('dddd')
-      console.log('day --->', day)
 
       // del objeto aggregatedData, inicializar el objeto con la key correspondiente que almacenara los datos de ese dia
       aggregatedData[day] = {
@@ -40,9 +39,8 @@ export default async function getGraphData() {
         date: currentDate.format('YYYY-MM-DD'),
         totalAmount: 0
       }
-
       // pasar al siguiente dia
-      currentDate.add(1, 'day')
+      currentDate = currentDate.add(1, 'day')
     }
 
     // calcular el total de ventas por dia
@@ -58,6 +56,6 @@ export default async function getGraphData() {
 
     return graphData
   } catch (error) {
-
+    console.error('getGraphData', error)
   }
 }
