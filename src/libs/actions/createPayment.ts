@@ -35,8 +35,8 @@ export default async function createPayment(cartTotalAmount: number, cartItems: 
         },
         address: {
           zip_code: '110940',
-          street_name: 'Insurgentes Sur',
-          street_number: 1602
+          street_name: 'Insurgentes Sur'
+          // street_number: '1602'
         }
       },
       back_urls: {
