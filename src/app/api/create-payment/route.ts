@@ -29,8 +29,8 @@ export async function POST(req: NextRequest) {
       paymentId,
       amount: Number(payment.transaction_amount),
       currency: payment.currency_id as string,
-      status: payment.status as string,
-      deliveryStatus: 'pending',
+      status: payment.status as string, // ! este tipo debería ser un enum !!!!!!!!!!!!!!!!!!!!!!!!!!! TODO
+      deliveryStatus: 'pending', // ! este tipo debería ser un enum !!!!!!!!!!!!!!!!!!!!!!!!!!! TODO
       products
     }
 
