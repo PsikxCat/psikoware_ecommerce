@@ -83,9 +83,6 @@ export default function Tabs({ product }: TabsProps) {
         {/* reviews */}
         {activeTab === 'reviews' && (
           <div className='flex flex-col justify-start w-full gap-4 p-4'>
-            {/* // ! pendiente seccion de agregar review */ }
-            {/* <div className='bg-red-600/30'>add review | PENDIENTE solo habilitado si usuario ha comprado producto</div> */}
-
             <ReviewList product={product} />
           </div>
         )}

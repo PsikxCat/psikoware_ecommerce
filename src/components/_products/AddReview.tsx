@@ -3,13 +3,14 @@
 import { useRouter } from 'next/navigation'
 import { useContext, useState } from 'react'
 import { type FieldValues, useForm } from 'react-hook-form'
+import axios from 'axios'
 import toast from 'react-hot-toast'
 
 import type { ProductType, OrderType, ReviewType } from '@/types'
 import { GlobalContext, type GlobalContextType } from '@/context/globalContext'
 import { Rating } from '@mui/material'
 import { Button, TextArea } from '@/components'
-import { createReview } from '@/libs/actions/updateDataFromDB'
+// import { createReview } from '@/libs/actions/updateDataFromDB'
 
 interface AddReviewProps {
   product: ProductType
@@ -25,7 +26,6 @@ interface SafeUser {
   updatedAt: string
   role: string
   orders: OrderType[]
-
 }
 
 export default function AddReview({ product }: AddReviewProps) {
@@ -53,6 +53,10 @@ export default function AddReview({ product }: AddReviewProps) {
       setIsLoading(false)
       return toast.error('Debes calificar el producto.')
     }
+    if (!data.comment.trim()) {
+      setIsLoading(false)
+      return toast.error('Debes escribir un comentario.')
+    }
 
     const reviewData: ReviewType = {
       comment: data.comment,
@@ -61,17 +65,40 @@ export default function AddReview({ product }: AddReviewProps) {
       userId: currentUser!.id
     }
 
-    const reviewCreated = await createReview(reviewData)
-    if (reviewCreated.ok) toast.success(reviewCreated.message)
-    else { toast.error(reviewCreated.message) }
+    /** Uso de la función createReview. // ! Que es mejor, funciones o API routes?
+    try {
+      const reviewCreated = await createReview(reviewData)
+      if (reviewCreated.ok) toast.success(reviewCreated.message)
+      else { toast.error(reviewCreated.message) }
+    } catch (error) {
+      console.error('Error', error)
+      return toast.error('Ocurrió un error al enviar la reseña.')
+    } finally {
+      setIsLoading(false)
+    }
+     */
 
-    reset()
-    router.refresh()
-    setIsLoading(false)
+    axios.post('/api/create-review', reviewData).then((res) => {
+      if (res.data.ok) {
+        toast.success('Reseña creada, gracias por tu opinión.')
+        router.refresh()
+      } else {
+        toast.error(res.data.message)
+      }
+    }).catch((error) => {
+      toast.error('Hubo un error al enviar la reseña.')
+      console.error('Error', error)
+    }).finally(() => {
+      reset()
+      setIsLoading(false)
+    })
   }
 
+  // order.products contiene las variantes de productos compradas
   const isProductPurchased = () =>
-    safeUser.orders.some(order => order.products.some(prod => product.productVariants.some((pvar) => pvar.id === prod.id)))
+    safeUser.orders.some(order => order.products.some((pVarOrder) => product.productVariants.some((pVar) => {
+      return pVar.id === pVarOrder.id
+    }))) && safeUser.orders.some(order => order.status === 'approved' && order.deliveryStatus === 'completed') // refactorizar este mierdero
 
   const productPurchased = safeUser && isProductPurchased()
   const alreadyReviewed = safeUser && product.reviews.some(review => review.userId === safeUser.id)
