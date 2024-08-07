@@ -40,8 +40,8 @@ export default async function createPayment(cartTotalAmount: number, cartItems: 
         }
       },
       back_urls: {
-        success: 'http://localhost:3000/payment/success',
-        failure: 'http://localhost:3000/payment/failure'
+        success: `${process.env.NEXTAUTH_URL}/payment/success`,
+        failure: `${process.env.NEXTAUTH_URL}/payment/failure`
       },
       auto_return: 'approved',
       external_reference: currentUserId.toString()

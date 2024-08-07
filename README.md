@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PsikoWare E-commerce
 
-## Getting Started
+## Descripción
+PsikoWare E-commerce es una plataforma de comercio electrónico especializada en componentes para PC. Desarrollada con Next.js, ofrece una experiencia de compra fluida con un sistema de autenticación robusto y un panel de administración para la gestión de productos y pedidos.
 
-First, run the development server:
+## Demostración en Vivo
+Visita y prueba el proyecto desplegado en: [https://psikoware-ecommerce.vercel.app/](https://psikoware-ecommerce.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Características
+- Catálogo de productos organizado por categorías
+- Carrito de compras interactivo
+- Sistema de autenticación con múltiples proveedores (GitHub, Google, Credenciales)
+- Pasarela de pagos integrada con MercadoPago (modo sandbox)
+- Panel de administración para gestión de productos y visualización de pedidos
+- Diseño responsivo y atractivo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologías Utilizadas
+- Next.js 14.0.0
+- React 18.2.0
+- TypeScript
+- Prisma ORM
+- MongoDB
+- NextAuth.js
+- Tailwind CSS
+- MercadoPago SDK
+- React Hook Form
+- Chart.js para visualizaciones en el dashboard
+- Firebase para almacenamiento de imágenes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Uso
+1. Navega por las diferentes categorías de productos.
+2. Inicia sesión o regístrate usando GitHub, Google o credenciales.
+3. Añade productos al carrito o procede directamente a la compra.
+4. Completa el proceso de pago utilizando MercadoPago.
+5. Como administrador, accede al panel de administración para gestionar productos y visualizar pedidos.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Acceso como Administrador
+- Usuario: user@admin.com
+- Contraseña: 1234
+**Advertencia**: Por favor, no modifiques ni elimines datos en el dashboard.
 
-## Learn More
+### Datos para pagos MercadoPago (Modo Sandbox)
+- En la seccion ¿Cómo quieres pagar? selecciona Tarjeta de Crédito
+- Número de tarjeta: 3743 781877 55283
+- Nombre del titular: APRO
+- Vencimiento: 11/25
+- Código de seguridad: 1234
+- Documento del titular: 123456789
+- Selecciona pago en una cuota
 
-To learn more about Next.js, take a look at the following resources:
+## Estado del Proyecto
+En desarrollo activo. Próximamente se añadirán funcionalidades faltantes en Panel de Administración y mejoras en la interfaz de usuario.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contacto
+- GitHub: [Psikxcat](https://github.com/psikxcat)
+- Email: arevalogrichard@gmail.com
+- LinkedIn: [Richard Arevalo](https://www.linkedin.com/in/arevalorichard/)
+- Sitio web: [richardarevalo.netlify.app](https://richardarevalo.netlify.app/)
